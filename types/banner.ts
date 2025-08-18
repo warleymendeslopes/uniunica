@@ -1,52 +1,29 @@
-export interface SkeletonAniversario {
-  isActived: boolean;
-  isLoading: boolean;
-}
+import { ReactNode } from "react";
 
-interface OffersOndaRoxa {
-  isActived: boolean;
-  offerondaroxa: React.ReactNode;
-  position: number;
-  idOffers?: string;
-  marginTop?: number;
-  marginBotton?: number;
-}
-
-interface OffersAniversario {
-  isActived: boolean;
-  offer: React.ReactNode;
-  possition: number;
-  idOffers?: string;
-  marginTop?: number;
-  marginBotton?: number;
-}
-
-interface OfferEAD {
-  isActived: boolean;
-  offer?: React.ReactNode;
-  position: number;
-  idOffer?: string;
-  marginTop?: number;
-  marginBottom?: number;
-}
-
-export interface BannerAniversario {
-  content: {
-    headerTitle?: string | React.ReactNode;
-    title?: string;
-    subTitle?: string;
-    ctaName?: string;
-    onButtonClick?: () => void;
-    modalContent?: React.ReactNode;
-    imgbanner?: string;
-    mobileBgImage?: string;
-    benefitList?: { text: string; icon?: string }[];
-    offer?: OffersAniversario;
-    offerOndaRoxa?: OffersOndaRoxa;
-    offerEAD?: OfferEAD;
-  };
-  width?: number;
-  alignment?: 'center' | 'start' | 'end';
-  animation: boolean;
-  skeleton?: SkeletonAniversario;
+export interface BannerSite {
+  configBanner: {
+    col: number // maximo de duas colunas
+    position: 'center' | 'start' | 'end'; // centro, ao lado esquerdo, ao lado direito
+    skeleton: boolean // para ver se deve aplicar um skeleton no banner
+    titleFont?: string // classe CSS da fonte para os títulos (ex: 'font-poppins')
+  }
+  content1: {
+    backgroundImage?: string
+    openTitle?: string  // descricao que fica acima do titulo
+    title: string  // titulo principal do banner
+    subtitle?: string // descricao que fica abaixo do titulo
+    offer?: ReactNode // pode ser qualquer html que fica abaixo do titulo
+    button: boolean // se vai ter o botao ou nao
+    onClickButton?: () => void // funcao que o botao vai executar caso exista
+    buttonText?: string // texto do botão
+  }
+  content2?: {
+    openTitle?: string
+    title: string
+    subtitle?: string
+    offer?: ReactNode
+    button: boolean
+    onClickButton?: () => void
+    buttonText?: string
+  }
 }

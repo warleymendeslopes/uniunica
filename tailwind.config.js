@@ -11,6 +11,7 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)"],
+        poppins: ['Poppins', 'sans-serif'],
         mono: ["var(--font-mono)"],
       },
     },

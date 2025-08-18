@@ -1,63 +1,32 @@
 'use client'
-import Image from "next/image";
-import {usePartner} from "@/context/PartnerContext";
+import BannerSiteUniUnica from "@/components/banner/page";
+import {BannerSite} from "@/types/banner";
+import ModalitySiteUniUnica from "@/components/banner/modalidades";
+import FooterSiteUniUnica from "@/components/footer/page";
+const bannerCentralizado: BannerSite = {
+  configBanner: {
+    col: 1,
+    position: 'center',
+    skeleton: false,
+    titleFont: 'poppins'
+  },
+  content1: {
+    backgroundImage: '/fimEADdesktop.webp',
+    title: `<b style="font-size: 5rem;">O FIM <br/> DO EAD</b>`,
+    subtitle: '<sapan style="padding: 6px 17px; background: #8f33ff;">ENTENDA O QUE VAI ACONTECER </sapan>',
+    button: true,
+    buttonText: 'INSCREVA-SE ANTES QUE ACABE',
+    onClickButton: () => console.log('Botão clicado!')
+  },
+};
+
 
 export default function Home() {
-  const { partnerData, loading } = usePartner();
-  console.log(partnerData)
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <h1>Bem-vindo, parceiro {partnerData?.responsible.name}</h1>
-        <p>WhatsApp: {partnerData?.whatsapp}</p>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <>
+      <BannerSiteUniUnica {...bannerCentralizado} />
+      <ModalitySiteUniUnica />
+      <FooterSiteUniUnica />
+    </>
   );
 }
