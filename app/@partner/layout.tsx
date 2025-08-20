@@ -5,6 +5,7 @@ import {usePartner} from "@/context/PartnerContext";
 import {Alert, Button} from "@heroui/react";
 import {clearCookiesAndRedirect} from "@/utils/clearCookiesAndRedirect";
 import AppHeader from "@/components/header/page";
+import FooterSiteUniUnica from "@/components/footer/page";
 
 export default function InternoLayout({children, }: {children: React.ReactNode;}) {
     const { partnerData, loading } = usePartner();
@@ -46,6 +47,7 @@ export default function InternoLayout({children, }: {children: React.ReactNode;}
                 </div>
                 {children}
             </div>
+            <FooterSiteUniUnica />
             
         </>
     );

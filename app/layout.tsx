@@ -12,6 +12,7 @@ import {PartnerProvider} from "@/context/PartnerContext";
 import CryptoJS from "crypto-js";
 import type {PartnerInfo} from "@/types/PartnerInfo";
 import {SetAgencyParam} from "@/app/SetAgencyParam";
+import FooterSiteUniUnica from "@/components/footer/page";
 
 export const metadata: Metadata = {
   title: {
@@ -102,17 +103,7 @@ export default async function RootLayout({
                         <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
                             {children}
                         </main>
-                        <footer className="w-full flex items-center justify-center py-3">
-                            <Link
-                                isExternal
-                                className="flex items-center gap-1 text-current"
-                                href="https://heroui.com?utm_source=next-app-template"
-                                title="heroui.com homepage"
-                            >
-                                <span className="text-default-600">Powered by</span>
-                                <p className="text-primary">HeroUI</p>
-                            </Link>
-                        </footer>
+                        <FooterSiteUniUnica />
                     </div>
                 </Providers>
                 </body>
