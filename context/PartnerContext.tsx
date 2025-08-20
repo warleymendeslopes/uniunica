@@ -57,9 +57,7 @@ export const PartnerProvider = ({
                             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWIwMDUxNjY1NGU4MGQyYTI2YzcxZDIiLCJ1c2VybmFtZSI6InBpbmNlbF9hdG9taWNvIiwiaWF0IjoxNzA2MDM0NDU1fQ.62DfpzfuX208RRmblolDJO3dJOhMB7kDdSpj-Wuv6Nk',
                     },
                 });
-
                 const data = await res.json();
-
                 const encrypted = CryptoJS.AES.encrypt(JSON.stringify(data), ENCRYPTION_SECRET).toString();
                 Cookies.set(COOKIE_KEY, encrypted, { expires: 1 }); // 1 dia
 

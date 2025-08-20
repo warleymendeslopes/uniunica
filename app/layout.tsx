@@ -73,7 +73,6 @@ export default async function RootLayout({
                         fontSans.variable,
                     )}
                 >
-
                 <SetAgencyParam codSite={codSite} />
                 <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
                     {/*<div className="relative flex flex-col h-screen">*/}
@@ -89,7 +88,7 @@ export default async function RootLayout({
             );
         case 'internal':
             return (
-                <html suppressHydrationWarning lang="en">
+                <html suppressHydrationWarning lang="pt-br">
                 <head />
                 <body
                     className={clsx(

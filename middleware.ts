@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { validatePartner } from "@/utils/validatePartner"
+import {validatePartner} from "@/services/api";
+
 
 export async function middleware(request: NextRequest) {
     const url = request.nextUrl
