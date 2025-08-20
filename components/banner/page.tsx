@@ -74,18 +74,18 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({configBanner, co
 
     return (
         <section
-            className="relative w-full min-h-[80vh] lg:min-h-screen flex items-center bg-cover bg-center bg-no-repeat top-[-60]"
+            className="relative w-full min-h-[80vh] lg:min-h-screen flex items-center bg-cover bg-center bg-no-repeat "
             style={{
                 backgroundImage: `url(${content1.backgroundImage})`
             }}
         >
-            {/* Overlay para melhor legibilidade do texto */}
+          
             <div className="absolute inset-0 bg-black/40"></div>
 
             <GridUniUnica>
             <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`${getPositionClasses()} ${getColumnClasses()}`}>
-                    {/* Primeira coluna/conteúdo */}
+                   
                     <div className="w-full">
                         {renderContent(content1)}
                     </div>
