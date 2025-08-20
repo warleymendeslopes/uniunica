@@ -20,19 +20,19 @@ const modalities: Modality[] = [
     {
         title: 'SEGUNDA GRADUAÇÃO',
         href: '/segunda-graduacao',
-        image: '/capa-modalidade/capaSegundagraduacao.webp'
+        image: '/capa-modalidade/capaSegundaGraduacao.webp'
     },
     {
         title: 'DISCIPLINAS ISOLADAS',
         href: '/disciplina-isolada',
-        image: '/capa-modalidade/capaDisciplinasisoladas.webp'
+        image: '/capa-modalidade/capaDisciplinasIsoladas.webp'
     }
 ];
 
 function ModalityCard({ title, href, image }: Modality) {
     return (
         <div
-            className="relative shadow-md p-6 text-center min-h-[50vh] lg:min-h-[100vh] "
+            className="relative shadow-md  text-center min-h-[50vh] lg:min-h-[100vh] "
             style={{
                 backgroundImage: `url(${image})`,
                 backgroundPosition: 'top center',
@@ -59,7 +59,7 @@ function ModalityCard({ title, href, image }: Modality) {
 
 export default function ModalitySiteUniUnica() {
     return (
-        <section className="relative -top-[60px]">
+        <section className="relative">
             <div className="mx-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
                 {modalities.map((modality, index) => (
                     <ModalityCard key={index} {...modality} />
