@@ -1,3 +1,7 @@
+import CursosPorModalidade from "@/components/courseCards/listCouse";
+
 export default function ModalitySegundaGraduacao() {
-    return <>Modalidade de Segunda Graduação</>
+    return <>
+        <CursosPorModalidade modality="segunda-graduacao"/>
+    </>
 }

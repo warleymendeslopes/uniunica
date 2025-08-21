@@ -3,6 +3,7 @@ import {BannerSite} from "@/types/banner";
 import BannerSiteUniUnica from "@/components/banner/page";
 import {useEffect} from "react";
 import {getAreaURL} from "@/services/api";
+import CursosPorModalidade from "@/components/courseCards/listCouse";
 
 export default  function ModalityPosGraduacao() {
     const bannerCentralizado: BannerSite = {
@@ -34,6 +35,7 @@ export default  function ModalityPosGraduacao() {
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
+            <CursosPorModalidade modality="pos-graduacao"/>
         </>
     )
 }
