@@ -1,4 +1,4 @@
-import CursosPorModalidade from "@/components/listingCourses/listCouse";
+import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
 
 export default function ModalitySegundaGraduacao() {
     return <>

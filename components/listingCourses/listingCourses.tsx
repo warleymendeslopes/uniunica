@@ -1,126 +1,81 @@
 'use client';
 import React from 'react';
-import Image from 'next/image';
 
-type RawCourse = {
-  _id?: string;
-  id?: string | number;
-  title?: string;
-  name?: string;
-  image?: string;
-  thumbnail?: string;
-  cover?: string;
-  objective?: string;
-  description?: string;
-  resume?: string;
-  about?: string;
-};
+export default function ListingCourse() {
 
-type Course = {
-  id: string;
-  name: string;
-  objective?: string;
-  thumb?: string;
-};
-
-type Props = {
-  alias: string;               // areaAlias recebido do pai
-  onBack?: () => void;         // opcional: voltar para a grade de áreas
-  page?: number;
-  perPage?: number;
-};
-
-const ENDPOINT = '/api/courses'; // sua API (proxy interno)
-
-export default function ListingCourse({ alias, onBack, page = 1, perPage = 8 }: Props) {
-  const [courses, setCourses] = React.useState<Course[]>([]);
-  const [loading, setLoading] = React.useState(false);
-  const [err, setErr] = React.useState('');
-
-  React.useEffect(() => {
-    if (!alias) return;
-    (async () => {
-      try {
-        setLoading(true);
-        setErr('');
-        const url = `${ENDPOINT}?area=${encodeURIComponent(alias)}&page=${page}&perPage=${perPage}`;
-        console.log('📡 [ListingCourse] buscando cursos com alias:', alias, '->', url);
-        const res = await fetch(url, { cache: 'no-store' });
-        console.log('🔎 [ListingCourse] status:', res.status);
-
-        const json = await res.json();
-        console.log('📦 [ListingCourse] payload:', json);
-
-        const raw: RawCourse[] =
-          json?.results ??
-          json?.data?.items ??
-          json?.items ??
-          (Array.isArray(json) ? json : []);
-
-        const normalized: Course[] = (raw || []).map((c, i) => ({
-          id: String(c._id ?? c.id ?? i),
-          name: (c.name ?? c.title ?? 'Curso').trim(),
-          objective: c.objective ?? c.description ?? c.resume ?? c.about ?? '',
-          thumb: c.thumbnail ?? c.image ?? c.cover ?? '',
-        }));
-
-        setCourses(normalized);
-      } catch (e) {
-        console.error('❌ [ListingCourse] erro ao carregar cursos:', e);
-        setErr('Não foi possível carregar os cursos desta área.');
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, [alias, page, perPage]);
-
-  if (!alias) return null;
+  const [selected, setSelected] = React.useState("TODOS");
+  const filtros = ["TODOS", "DESTAQUES", "LANÇAMENTO"];
 
   return (
-    <div className="mt-2">
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-lg font-semibold">
-          Cursos da área: <span className="font-normal">{alias}</span>
-        </h3>
-        {onBack && (
-          <button
-            onClick={onBack}
-            className="text-sm px-3 py-1 rounded border hover:bg-gray-50 transition"
-          >
-            ← Voltar às áreas
-          </button>
-        )}
-      </div>
+    <section className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6 font-poppins">
 
-      {loading && courses.length === 0 && <p>Carregando cursos…</p>}
-      {err && <p className="text-red-500 mb-2">{err}</p>}
-      {!loading && courses.length === 0 && !err && <p>Nenhum curso encontrado para esta área.</p>}
+      <input type='search' placeholder='Pesquise por um curso...' className='bg-neutral-600 p-3 rounded-lg outline-none w-full h-[55px]' />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {courses.map((c) => (
-          <div key={c.id} className="border rounded-lg overflow-hidden hover:shadow-md transition">
-            {c.thumb ? (
-              <div className="aspect-[16/9] relative bg-gray-100">
-                <Image
-                  src={c.thumb}
-                  alt={c.name}
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-            ) : null}
-            <div className="p-4">
-              <h4 className="font-semibold mb-2">{c.name}</h4>
-              {c.objective ? (
-                <p className="text-sm text-gray-600 line-clamp-4">{c.objective}</p>
-              ) : (
-                <p className="text-sm text-gray-400 italic">Sem descrição disponível.</p>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+     <div className="flex flex-row justify-center gap-3">
+      {filtros.map((filtro) => (
+        <button
+          key={filtro}
+          onClick={() => setSelected(filtro)}
+          className={`p-3 rounded-full border border-white transition 
+            ${selected === filtro ? "bg-green-500 border-none text-white" : "bg-transparent text-white"}
+          `}
+        >
+          {filtro}
+        </button>
+      ))}
     </div>
+
+      <div className="bg-[#0F0F0F] text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg">
+        <div className="flex-1 pr-6">
+          <p className="text-sm text-gray-300 mb-2">720 horas</p>
+          <h4 className="font-bold text-2xl text-[#0059ff] mb-4 uppercase">
+            A PSICOLOGIA E O ADOLESCENTE EM CONFLITO COM A LEI
+          </h4>
+          <p className="text-gray-300 text-base leading-relaxed max-w-2xl">
+            Integre teoria e prática para compreender e atuar nas Varas da Infância, da Juventude e
+            do Idoso, promovendo transformação e inclusão social.
+          </p>
+        </div>
+        <div className="mt-6 md:mt-0">
+          <button className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
+            CONHECER CURSO
+          </button>
+        </div>
+      </div>
+      <div className="bg-[#0F0F0F] text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg">
+        <div className="flex-1 pr-6">
+          <p className="text-sm text-gray-300 mb-2">720 horas</p>
+          <h4 className="font-bold text-2xl text-[#0059ff] mb-4 uppercase">
+            A PSICOLOGIA E O ADOLESCENTE EM CONFLITO COM A LEI
+          </h4>
+          <p className="text-gray-300 text-base leading-relaxed max-w-2xl">
+            Integre teoria e prática para compreender e atuar nas Varas da Infância, da Juventude e
+            do Idoso, promovendo transformação e inclusão social.
+          </p>
+        </div>
+        <div className="mt-6 md:mt-0">
+          <button className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
+            CONHECER CURSO
+          </button>
+        </div>
+      </div>
+      <div className="bg-[#0F0F0F] text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg">
+        <div className="flex-1 pr-6">
+          <p className="text-sm text-gray-300 mb-2">720 horas</p>
+          <h4 className="font-bold text-2xl text-[#0059ff] mb-4 uppercase">
+            A PSICOLOGIA E O ADOLESCENTE EM CONFLITO COM A LEI
+          </h4>
+          <p className="text-gray-300 text-base leading-relaxed max-w-2xl">
+            Integre teoria e prática para compreender e atuar nas Varas da Infância, da Juventude e
+            do Idoso, promovendo transformação e inclusão social.
+          </p>
+        </div>
+        <div className="mt-6 md:mt-0">
+          <button className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
+            CONHECER CURSO
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }

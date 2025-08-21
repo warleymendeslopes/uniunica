@@ -4,7 +4,7 @@ import BannerSiteUniUnica from "@/components/banner/page";
 import {useEffect, useState} from "react";
 import {getAreaURL} from "@/services/api";
 import {ResponseArea} from "@/types/list-area";
-import CursosPorModalidade from "@/components/listingCourses/listCouse";
+import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
 
 export default  function ModalityPosGraduacao() {
     const bannerCentralizado: BannerSite = {
@@ -18,7 +18,7 @@ export default  function ModalityPosGraduacao() {
             backgroundImage: '/fimEADdesktop.webp',
             openTitle: 'Pós-Graduação',
             title: `<b style="font-size: 5rem;">ONLINE</b>`,
-            subtitle: '<sapan style="padding: 6px 17px; background: #8f33ff;">Área de Educação <br/> </sapan> <p style=" margin-top: 10px;">Conquiste pontos e destaque-se em concursos públicos e designações com uma especialização reconhecida pelo MEC na área da Educação.</p>',
+            subtitle: '<sapan style="padding: 6px 17px; background: #6424b3;">Área de Educação <br/> </sapan> <p style=" margin-top: 10px;">Conquiste pontos e destaque-se em concursos públicos e designações com uma especialização reconhecida pelo MEC na área da Educação.</p>',
             button: true,
             buttonText: 'INSCREVA-SE ANTES QUE ACABE',
             onClickButton: () => console.log('Botão clicado!')

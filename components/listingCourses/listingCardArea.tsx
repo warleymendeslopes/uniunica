@@ -14,7 +14,7 @@ export default function CursosPorModalidade({area}: CursosPorModalidadeProps) {
       <h2 className="text-xl lg:text-2xl text-center py-16 font-bold uppercase font-krona mb-4">
         escolha sua área de estudos
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center text-center">
+      <div className="grid grid-cols-2 font-poppins sm:grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center text-center">
         {area.data.map((a, index) => (
             <button
                 key={index}
