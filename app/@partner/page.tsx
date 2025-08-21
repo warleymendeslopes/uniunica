@@ -2,7 +2,6 @@
 import BannerSiteUniUnica from "@/components/banner/page";
 import {BannerSite} from "@/types/banner";
 import ModalitySiteUniUnica from "@/components/banner/modalidades";
-import FooterSiteUniUnica from "@/components/footer/page";
 const bannerCentralizado: BannerSite = {
   configBanner: {
     col: 1,

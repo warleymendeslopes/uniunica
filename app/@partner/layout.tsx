@@ -1,5 +1,4 @@
 'use client';
-
 import {useEffect, useState} from 'react';
 import {usePartner} from "@/context/PartnerContext";
 import {Alert, Button} from "@heroui/react";
@@ -20,7 +19,6 @@ export default function InternoLayout({children, }: {children: React.ReactNode;}
             hsScript.src = '//js.hs-scripts.com/47678762.js';
             document.head.appendChild(hsScript);
         }
-
         if (typeof window !== 'undefined') {
             setIsLocalhost(window.location.hostname === 'localhost');
         }

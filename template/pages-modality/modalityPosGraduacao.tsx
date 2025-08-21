@@ -1,8 +1,9 @@
 'use client'
 import {BannerSite} from "@/types/banner";
 import BannerSiteUniUnica from "@/components/banner/page";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {getAreaURL} from "@/services/api";
+import {ResponseArea} from "@/types/list-area";
 
 export default  function ModalityPosGraduacao() {
     const bannerCentralizado: BannerSite = {
@@ -22,11 +23,15 @@ export default  function ModalityPosGraduacao() {
             onClickButton: () => console.log('Botão clicado!')
         },
     };
-
+    const [area, setArea] = useState<ResponseArea>();
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
+        setLoading(true)
         async function test() {
-            const res = await getAreaURL();
+            const res: ResponseArea = await getAreaURL();
+            setArea(res);
+            setLoading(false)
         }
         test();
     }, []);
@@ -34,6 +39,7 @@ export default  function ModalityPosGraduacao() {
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
+            {loading ? (<>Carregando informacoes da area</>): (<>Areas carregadas</>)}
         </>
     )
 }
