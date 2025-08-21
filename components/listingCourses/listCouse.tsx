@@ -8,7 +8,8 @@ interface CursosPorModalidadeProps {
 }
 export default function CursosPorModalidade({area}: CursosPorModalidadeProps) {
     const router = useRouter();
-    const pathname =  usePathname();
+    const pathname: string =  usePathname();
+
   return (
     <section className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 items-center justify-center flex flex-col">
       <h2 className="text-xl lg:text-2xl text-center py-16 font-bold uppercase font-krona mb-4">

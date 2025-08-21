@@ -25,7 +25,15 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({configBanner, co
         }
         return 'flex flex-col';
     };
-    const renderContent = (content: typeof content1, isSecondColumn = false) => {
+    const renderContent = (content: {
+        openTitle?: string;
+        title?: string;
+        subtitle?: string;
+        offer?: React.ReactNode;
+        button: boolean;
+        onClickButton?: () => void;
+        buttonText?: string
+    }, isSecondColumn = false) => {
         if (configBanner.skeleton) {
             return <BannerSkeleton />;
         }
@@ -37,10 +45,13 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({configBanner, co
                     </p>
                 )}
 
-                <h1
-                    className={`text-4xl  md:text-5xl lg:text-6xl xl:text-7xl font-bold`}
-                    dangerouslySetInnerHTML={{ __html: content.title }}
-                />
+                {content.title && (
+                    <h1
+                        className={`text-4xl  md:text-5xl lg:text-6xl xl:text-7xl font-bold`}
+                        dangerouslySetInnerHTML={{ __html: content.title }}
+                    />
+                )}
+
 
                 {content.subtitle && (
                     <p className={``}

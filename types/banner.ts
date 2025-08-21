@@ -19,7 +19,7 @@ export interface BannerSite {
   }
   content2?: {
     openTitle?: string
-    title: string
+    title?: string
     subtitle?: string
     offer?: ReactNode
     button: boolean

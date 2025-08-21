@@ -5,8 +5,11 @@ import {useEffect, useState} from "react";
 import {getAreaURL} from "@/services/api";
 import {ResponseArea} from "@/types/list-area";
 import CursosPorModalidade from "@/components/listingCourses/listCouse";
+import OfferPos from "@/components/offers/pos-graduacao";
 
 export default  function ModalityPosGraduacao() {
+    const [area, setArea] = useState<ResponseArea>();
+    const [loading, setLoading] = useState<boolean>(false);
     const bannerCentralizado: BannerSite = {
         configBanner: {
             col: 2,
@@ -16,25 +19,26 @@ export default  function ModalityPosGraduacao() {
         },
         content1: {
             backgroundImage: '/fimEADdesktop.webp',
-            openTitle: 'Pós-Graduação',
-            title: `<b style="font-size: 5rem;">ONLINE</b>`,
-            subtitle: '<sapan style="padding: 6px 17px; background: #8f33ff;">Área de Educação <br/> </sapan> <p style=" margin-top: 10px;">Conquiste pontos e destaque-se em concursos públicos e designações com uma especialização reconhecida pelo MEC na área da Educação.</p>',
+            title: `<div class="text-[5rem] text-center font-bold lg:text-[8rem]">O FIM <br/> DO EAD</div>`,
+            subtitle: '<div class=" bg-yellow-300 p-3 text-center text-black font-bold text-2xl "> PÓS GRADUAÇÃO</div>',
             button: true,
             buttonText: 'INSCREVA-SE ANTES QUE ACABE',
             onClickButton: () => console.log('Botão clicado!')
         },
+        content2: {
+            button: false,
+            offer: <OfferPos />
+        }
     };
-    const [area, setArea] = useState<ResponseArea>();
-    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         setLoading(true)
-        async function test() {
+        async function getApiAreas() {
             const res: ResponseArea = await getAreaURL();
             setArea(res);
             setLoading(false)
         }
-        test();
+        getApiAreas().then();
     }, []);
 
     return (
