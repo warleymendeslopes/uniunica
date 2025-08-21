@@ -1,8 +1,9 @@
 'use client'
 import {BannerSite} from "@/types/banner";
 import BannerSiteUniUnica from "@/components/banner/page";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {getAreaURL} from "@/services/api";
+import {ResponseArea} from "@/types/list-area";
 import CursosPorModalidade from "@/components/courseCards/listCouse";
 
 export default  function ModalityPosGraduacao() {
@@ -23,11 +24,15 @@ export default  function ModalityPosGraduacao() {
             onClickButton: () => console.log('Botão clicado!')
         },
     };
-
+    const [area, setArea] = useState<ResponseArea>();
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
+        setLoading(true)
         async function test() {
-            const res = await getAreaURL();
+            const res: ResponseArea = await getAreaURL();
+            setArea(res);
+            setLoading(false)
         }
         test();
     }, []);
@@ -36,6 +41,7 @@ export default  function ModalityPosGraduacao() {
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
             <CursosPorModalidade modality="pos-graduacao"/>
+            {loading ? (<>Carregando informacoes da area</>): (<>Areas carregadas</>)}
         </>
     )
 }

@@ -1,17 +1,25 @@
+/**
+ * Página responsável por exibir os cursos de uma modalidade específica.
+ *
+ * Ela utiliza o parâmetro (modality) passado na URL para verificar se a modalidade existe.
+ * Caso a modalidade não exista, retornamos um erro 404.
+ *
+ * Se a modalidade for válida, renderizamos a página correspondente.
+ *
+ * Observação: quando o acesso ocorre através de um parceiro, a modalidade de Graduação
+ * não é exibida na opção EaD.
+ *
+ * @param params - Parâmetros da rota, incluindo a modalidade.
+ * @constructor
+ */
+
 import { notFound } from 'next/navigation'
 import ModalityPosGraduacao from "@/template/pages-modality/modalityPosGraduacao";
 import ModalitySegundaGraduacao from "@/template/pages-modality/modalitySegundaGraduacao";
 import ModalityGraduacaoEAD from "@/template/pages-modality/modalityGraduacaoEAD";
 import ModalitySemipresenciais from "@/template/pages-modality/modalitySemipresenciais";
 import ModalityDisciplinaIsolada from "@/template/pages-modality/modalityDisciplinaIsolada";
-/**
- * Essa página é destinada à modalidade dos cursos. Ela pega o parâmetro (modality) que foi passado
- * e verifica se essa modalidade realmente existe. Se não existir, retornamos 404.
- * Se existir, renderizamos a página de acordo com a modalidade.
- * Como estamos dentro de uma condição de parceiro, não exibimos a graduação na modalidade EaD
- * @param params
- * @constructor
- */
+
 export default async function PageModality({params,}: {
     params: Promise<{ modality: string }>
 }) {

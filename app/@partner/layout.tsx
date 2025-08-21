@@ -1,26 +1,12 @@
 'use client';
-
-import { useEffect, useState } from 'react';
-import { usePartner } from "@/context/PartnerContext";
-import { Alert, Button } from "@heroui/react";
-import { clearCookiesAndRedirect } from "@/utils/clearCookiesAndRedirect";
+import {useEffect, useState} from 'react';
+import {usePartner} from "@/context/PartnerContext";
+import {Alert, Button} from "@heroui/react";
+import {clearCookiesAndRedirect} from "@/utils/clearCookiesAndRedirect";
 import AppHeader from "@/components/header/page";
 import FooterSiteUniUnica from "@/components/footer/page";
-import { Krona_One, Poppins } from "next/font/google";
 
-const krona = Krona_One({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-krona",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
-});
-
-export default function InternoLayout({ children, }: { children: React.ReactNode; }) {
+export default function InternoLayout({children, }: {children: React.ReactNode;}) {
     const { partnerData, loading } = usePartner();
     const [isLocalhost, setIsLocalhost] = useState(false);
 
@@ -33,18 +19,15 @@ export default function InternoLayout({ children, }: { children: React.ReactNode
             hsScript.src = '//js.hs-scripts.com/47678762.js';
             document.head.appendChild(hsScript);
         }
-
         if (typeof window !== 'undefined') {
             setIsLocalhost(window.location.hostname === 'localhost');
         }
     }, []);
 
-
-    
     return (
         <>
             <AppHeader />
-            <div className={`relative flex flex-col h-screen ${krona.variable} ${poppins.variable}`}>
+            <div className="relative flex flex-col h-screen">
                 <div className="fixed bottom-0 left-0 z-50 m-4">
                     {isLocalhost && (
                         <Alert
