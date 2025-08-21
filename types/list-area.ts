@@ -1,9 +1,10 @@
 interface Area {
     id: number;
-    name: string;
+    areaName: string;
     icon: string;
-    alias: string;
+    areaAlias: string;
     description: string;
+    miniature: string;
 }
 export interface ResponseArea {
     code: number;

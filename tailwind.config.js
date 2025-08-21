@@ -12,6 +12,7 @@ const config = {
       fontFamily: {
         sans: ["var(--font-sans)"],
         poppins: ['Poppins', 'sans-serif'],
+        krona: ['"Krona One"', 'sans-serif'],
         mono: ["var(--font-mono)"],
       },
     },

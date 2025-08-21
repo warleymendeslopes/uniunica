@@ -44,9 +44,8 @@ export default function InternoLayout({children, }: {children: React.ReactNode;}
                     )}
                 </div>
                 {children}
+                <FooterSiteUniUnica />
             </div>
-            <FooterSiteUniUnica />
-            
         </>
     );
 }

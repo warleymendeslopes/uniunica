@@ -4,6 +4,7 @@ import BannerSiteUniUnica from "@/components/banner/page";
 import {useEffect, useState} from "react";
 import {getAreaURL} from "@/services/api";
 import {ResponseArea} from "@/types/list-area";
+import CursosPorModalidade from "@/components/courseCards/listCouse";
 
 export default  function ModalityPosGraduacao() {
     const bannerCentralizado: BannerSite = {
@@ -39,7 +40,11 @@ export default  function ModalityPosGraduacao() {
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
-            {loading ? (<>Carregando informacoes da area</>): (<>Areas carregadas</>)}
+            {!loading && area ? (
+                <CursosPorModalidade area={area}/>
+            ): (
+                <>Carregando...</>
+            )}
         </>
     )
 }
