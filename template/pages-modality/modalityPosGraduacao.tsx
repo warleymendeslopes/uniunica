@@ -40,7 +40,11 @@ export default  function ModalityPosGraduacao() {
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
-            {loading ? (<>Carregando...</>): (<CursosPorModalidade modality="pos-graduacao"/>)}
+            {!loading && area ? (
+                <CursosPorModalidade area={area}/>
+            ): (
+                <>Carregando...</>
+            )}
         </>
     )
 }
