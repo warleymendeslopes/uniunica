@@ -27,7 +27,6 @@ export interface Course {
     campaignImage: string | null;
     alias: string;
     area: string;
-
     bestPrice: PaymentMethod | null;
     originalPrice: PaymentMethod | null;
     bestValueParcelMethod: ParcelMethod | null;

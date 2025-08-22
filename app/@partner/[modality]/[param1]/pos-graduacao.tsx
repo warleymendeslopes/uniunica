@@ -17,7 +17,6 @@ export default function ListCoursesPosGraduacao({area}: {area: string}) {
             setListCourse(listcourse)
             setLoading(true)
         }
-
         detailsCourse().catch()
     }, [area]);
 
