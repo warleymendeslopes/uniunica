@@ -14,7 +14,7 @@ import {notFound} from "next/navigation";
 import {CourseAreaResponse} from "@/types/detailsArea";
 import BannerSiteUniUnica from "@/components/banner/page";
 import {BannerSite} from "@/types/banner";
-import ListingCourse from "@/components/listingCourses/listingCourses";
+import ListCoursesPosGraduacao from "@/app/@partner/[modality]/[param1]/pos-graduacao";
 
 export default async function PageParams1({params,}: {
     params: Promise<{modality: string, param1: string }>
@@ -27,8 +27,14 @@ export default async function PageParams1({params,}: {
      * dessa area que foi passada no param1
      */
     if (modality == 'pos-graduacao') {
-      const details: CourseAreaResponse =   await detailsArea(param1, false)
-        if(details.data.length <= 0){
+        // Como estamos com o foco em melhoria de desempenho,
+        // na página vou colocar o banner para carregar
+        // de imediato, antes de chamar o componente,
+        // pois esse componente vai rodar do lado do cliente,
+        // o que pode atrasar um pouco o carregamento das
+        // informações.
+        const details: CourseAreaResponse =   await detailsArea(param1, false)
+        if( details.data.length <= 0){
             notFound()
         }
         const bannerCentralizado: BannerSite = {
@@ -47,11 +53,10 @@ export default async function PageParams1({params,}: {
                 buttonText: 'INSCREVA-SE ANTES QUE ACABE',
             },
         };
-
         return (
             <>
-                <BannerSiteUniUnica {...bannerCentralizado} />
-                <ListingCourse />
+            <BannerSiteUniUnica {...bannerCentralizado} />
+            <ListCoursesPosGraduacao area={param1} />
             </>
         )
     }

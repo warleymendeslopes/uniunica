@@ -1,7 +1,8 @@
 'use client';
 import React from 'react';
+import {CourseResponse} from "@/types/list-courses";
 
-export default function ListingCourse() {
+export default function ListingCourse({responseCourse}: {responseCourse?: CourseResponse} ) {
 
   const [selected, setSelected] = React.useState("TODOS");
   const filtros = ["TODOS", "DESTAQUES", "LANÇAMENTO"];
@@ -25,57 +26,26 @@ export default function ListingCourse() {
       ))}
     </div>
 
-      <div className="bg-[#0F0F0F] text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg">
-        <div className="flex-1 pr-6">
-          <p className="text-sm text-gray-300 mb-2">720 horas</p>
-          <h4 className="font-bold text-2xl text-[#0059ff] mb-4 uppercase">
-            A PSICOLOGIA E O ADOLESCENTE EM CONFLITO COM A LEI
-          </h4>
-          <p className="text-gray-300 text-base leading-relaxed max-w-2xl">
-            Integre teoria e prática para compreender e atuar nas Varas da Infância, da Juventude e
-            do Idoso, promovendo transformação e inclusão social.
-          </p>
-        </div>
-        <div className="mt-6 md:mt-0">
-          <button className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
-            CONHECER CURSO
-          </button>
-        </div>
-      </div>
-      <div className="bg-[#0F0F0F] text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg">
-        <div className="flex-1 pr-6">
-          <p className="text-sm text-gray-300 mb-2">720 horas</p>
-          <h4 className="font-bold text-2xl text-[#0059ff] mb-4 uppercase">
-            A PSICOLOGIA E O ADOLESCENTE EM CONFLITO COM A LEI
-          </h4>
-          <p className="text-gray-300 text-base leading-relaxed max-w-2xl">
-            Integre teoria e prática para compreender e atuar nas Varas da Infância, da Juventude e
-            do Idoso, promovendo transformação e inclusão social.
-          </p>
-        </div>
-        <div className="mt-6 md:mt-0">
-          <button className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
-            CONHECER CURSO
-          </button>
-        </div>
-      </div>
-      <div className="bg-[#0F0F0F] text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg">
-        <div className="flex-1 pr-6">
-          <p className="text-sm text-gray-300 mb-2">720 horas</p>
-          <h4 className="font-bold text-2xl text-[#0059ff] mb-4 uppercase">
-            A PSICOLOGIA E O ADOLESCENTE EM CONFLITO COM A LEI
-          </h4>
-          <p className="text-gray-300 text-base leading-relaxed max-w-2xl">
-            Integre teoria e prática para compreender e atuar nas Varas da Infância, da Juventude e
-            do Idoso, promovendo transformação e inclusão social.
-          </p>
-        </div>
-        <div className="mt-6 md:mt-0">
-          <button className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
-            CONHECER CURSO
-          </button>
-        </div>
-      </div>
+      {responseCourse!.data.map((courses, index) => (
+          <div key={index} className="bg-[#0F0F0F] text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg">
+            <div className="flex-1 pr-6">
+              <p className="text-sm text-gray-300 mb-2">{courses.workload} horas</p>
+              <h4 className="font-bold text-2xl text-[#0059ff] mb-4 uppercase">
+                {courses.name}
+              </h4>
+              <p className="text-gray-300 text-base leading-relaxed max-w-2xl">
+                {courses.objective ?? courses.description}
+              </p>
+            </div>
+            <div className="mt-6 md:mt-0">
+              <button className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
+                CONHECER CURSO
+              </button>
+            </div>
+          </div>
+      ))}
+
+
     </section>
   );
 }
