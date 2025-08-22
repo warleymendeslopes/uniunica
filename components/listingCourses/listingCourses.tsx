@@ -27,7 +27,7 @@ export default function ListingCourse({responseCourse}: {responseCourse?: Course
     </div>
 
       {responseCourse!.data.map((courses, index) => (
-          <div key={index} className="bg-[#0F0F0F] text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg">
+          <div key={index} className="bg-[#eaeaea] dark:bg-[#0F0F0F] dark:text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg">
             <div className="flex-1 pr-6">
               <p className="text-sm text-gray-300 mb-2">{courses.workload} horas</p>
               <h4 className="font-bold text-2xl text-[#0059ff] mb-4 uppercase">
@@ -44,7 +44,6 @@ export default function ListingCourse({responseCourse}: {responseCourse?: Course
             </div>
           </div>
       ))}
-
 
     </section>
   );

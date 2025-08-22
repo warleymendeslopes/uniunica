@@ -62,7 +62,7 @@ export async function detailsArea(area: string, searchother?: boolean) {
 
 
 export async function listCourses(
-    {modality, area, limite = 10, tag, searchother}: {
+    {modality, area, limite = 999999, tag, searchother}: {
         modality: string,
         area: string,
         limite?: number,
