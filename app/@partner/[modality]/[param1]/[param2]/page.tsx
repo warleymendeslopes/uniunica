@@ -59,9 +59,6 @@ export default async function PageParams2({params,}: {
     return (
         <>
            <BannerSiteUniUnica {...bannerCentralizado} />
-           {/*  pagina de modality: {modality} <br/>
-            Página de Param1: {param1}<br/>
-            Página de Param2: {param2} */}
             <PageCourse />
         </>
     )
