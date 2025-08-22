@@ -14,6 +14,7 @@ import {notFound} from "next/navigation";
 import {CourseAreaResponse} from "@/types/detailsArea";
 import BannerSiteUniUnica from "@/components/banner/page";
 import {BannerSite} from "@/types/banner";
+import PageCourse from "@/components/pageCourse/pageCourse";
 
 export default async function PageParams1({params,}: {
     params: Promise<{modality: string, param1: string }>
@@ -50,6 +51,7 @@ export default async function PageParams1({params,}: {
         return (
             <>
                 <BannerSiteUniUnica {...bannerCentralizado} />
+                <PageCourse />
                 Vamos exibir a pagina de area de posgraduacao
             </>
         )
