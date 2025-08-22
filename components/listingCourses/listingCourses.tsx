@@ -3,6 +3,7 @@ import type React from "react"
 import { useState, useMemo } from "react"
 import { Pagination } from "@heroui/react"
 import type { CourseResponse } from "@/types/list-courses"
+import {usePathname, useRouter} from "next/navigation";
 
 const normalizeText = (text: string): string => {
     return text
@@ -12,6 +13,8 @@ const normalizeText = (text: string): string => {
 }
 
 export default function ListingCourse({ responseCourse }: { responseCourse?: CourseResponse }) {
+    const router = useRouter();
+    const pathname: string =  usePathname();
     const [searchTerm, setSearchTerm] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
     const coursesPerPage = 10
@@ -73,7 +76,9 @@ export default function ListingCourse({ responseCourse }: { responseCourse?: Cou
                         </p>
                     </div>
                     <div className="mt-6 md:mt-0">
-                        <button className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
+                        <button
+                            onClick={() => router.push(`${pathname}/${course.alias}`)}
+                            className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
                             CONHECER CURSO
                         </button>
                     </div>
