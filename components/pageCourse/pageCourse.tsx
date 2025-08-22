@@ -152,7 +152,7 @@ export default function PageCourse() {
                                         <span aria-hidden>{r.icon}</span>
                                     </div>
                                     <h3 className="text-xl font-semibold mb-2">{r.title}</h3>
-                                    <p className="text-sm leading-relaxed text-white/80">{r.desc}</p>
+                                    <p className="text-sm leading-relaxed">{r.desc}</p>
                                 </div>
                             ))}
                         </div>
@@ -170,17 +170,17 @@ export default function PageCourse() {
                                             <div className="flex items-stretch gap-4">
                                                 <button
                                                     onClick={() => setOpen(isOpen ? null : idx)}
-                                                    className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 sm:px-6 py-4 text-left hover:border-[#8f33ff]/50 transition relative"
+                                                    className="flex-1 rounded-xl border light:border-black/10 light:bg-black/10 dark:border-white/10 dark:bg-white/5 px-4 sm:px-6 py-4 text-left hover:border-[#8f33ff]/50 transition relative"
                                                 >
                                                     <div className="flex items-center justify-between gap-4">
                                                         <p className="text-sm sm:text-base">
                                                             {m.titulo}
-                                                            <span className="text-white/60"> — </span>
+                                                            <span> — </span>
                                                             <span className="font-semibold">{m.horas} horas</span>
                                                         </p>
 
                                                         <ChevronDown
-                                                            className={`shrink-0 h-5 w-5 text-white/70 transition-transform ${isOpen ? 'rotate-180' : ''
+                                                            className={`shrink-0 h-5 w-5 transition-transform ${isOpen ? 'rotate-180' : ''
                                                                 }`}
                                                         />
                                                     </div>
@@ -189,7 +189,7 @@ export default function PageCourse() {
                                                             }`}
                                                     >
                                                         <div className="overflow-hidden">
-                                                            <p className="mt-3 text-sm text-white/80 leading-relaxed">
+                                                            <p className="mt-3 text-sm  leading-relaxed">
                                                                 {m.conteudo}
                                                             </p>
                                                         </div>
@@ -207,7 +207,7 @@ export default function PageCourse() {
                             Metodologia que te conduz ao próximo nível da carreira!
                         </h4>
                         <div className="relative">
-                            <span className="pointer-events-none absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-white/20 dark:bg-neutral-800 z-0" />
+                            <span className="pointer-events-none absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-black/20 dark:bg-neutral-800 z-0" />
                             <div className="flex flex-col gap-10">
                                 {items.map((it, idx) => {
                                     const left = idx % 2 === 0;
@@ -230,7 +230,7 @@ export default function PageCourse() {
                                                     left ? 'order-1 md:pr-6' : 'order-2 md:col-start-2 md:pl-6',
                                                 ].join(' ')}
                                             >
-                                                <div className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-4 transition hover:border-[#7a2cff]/50">
+                                                <div className="flex items-center gap-4 rounded-xl border light:border-black/20 light:bg-black/20 dark:border-white/10 dark:bg-white/5 backdrop-blur-sm p-4 transition hover:border-[#7a2cff]/50">
                                                     <div className="relative w-[157px] h-[209px] shrink-0 overflow-hidden rounded-lg">
                                                         <Image
                                                             src={it.img}
@@ -288,7 +288,7 @@ export default function PageCourse() {
                                 </div>
 
                                 <div className="px-6 py-7 font-poppins">
-                                    <p className="text-center tracking-wide text-3xl text-white/90">
+                                    <p className="text-center tracking-wide text-3xl">
                                         BOLSAS DE ATÉ
                                     </p>
                                     <p className="text-center text-[85px] leading-none font-extrabold my-2">
@@ -304,12 +304,12 @@ export default function PageCourse() {
 
                                     <div className="mt-6 text-center text-[13px]">
                                         <span className="text-green-400 font-semibold">{compradoresHoje}</span>{' '}
-                                        <span className="text-white/80">
+                                        <span>
                                             pessoas já compraram esse curso hoje
                                         </span>
                                     </div>
 
-                                    <p className="mt-8 text-center text-xs text-white/50">
+                                    <p className="mt-8 text-center text-xs">
                                         *Consulte condições
                                     </p>
                                 </div>
@@ -318,7 +318,7 @@ export default function PageCourse() {
                     </aside>
                 </div>
                 <div className="">
-                    <h2 className="text-3xl text-center mt-10 font-bold mb-6 text-white">
+                    <h2 className="text-3xl text-center mt-10 font-bold mb-6 font-krona">
                         Os alunos de{" "}
                         <span className="uppercase">NOME DO CURSO</span>{" "}
                         avaliaram esse curso em:
@@ -336,7 +336,7 @@ export default function PageCourse() {
                             <FaStar />
                             <FaStarHalfAlt />
                         </div>
-                        <p className="text-lg text-white/80">
+                        <p className="text-lg">
                             20.000 alunos avaliaram esse curso
                         </p>
                     </div>
