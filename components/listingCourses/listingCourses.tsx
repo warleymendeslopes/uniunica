@@ -1,50 +1,102 @@
-'use client';
-import React from 'react';
-import {CourseResponse} from "@/types/list-courses";
+"use client"
+import type React from "react"
+import { useState, useMemo } from "react"
+import { Pagination } from "@heroui/react"
+import type { CourseResponse } from "@/types/list-courses"
 
-export default function ListingCourse({responseCourse}: {responseCourse?: CourseResponse} ) {
+const normalizeText = (text: string): string => {
+    return text
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+}
 
-  const [selected, setSelected] = React.useState("TODOS");
-  const filtros = ["TODOS", "DESTAQUES", "LANÇAMENTO"];
+export default function ListingCourse({ responseCourse }: { responseCourse?: CourseResponse }) {
+    const [searchTerm, setSearchTerm] = useState("")
+    const [currentPage, setCurrentPage] = useState(1)
+    const coursesPerPage = 10
 
-  return (
-    <section className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6 font-poppins">
+    const filteredCourses = useMemo(() => {
+        if (!responseCourse?.data) return []
 
-      <input type='search' placeholder='Pesquise por um curso...' className='bg-neutral-600 p-3 rounded-lg outline-none w-full h-[55px]' />
+        if (!searchTerm.trim()) return responseCourse.data
 
-     <div className="flex flex-row justify-center gap-3">
-      {filtros.map((filtro) => (
-        <button
-          key={filtro}
-          onClick={() => setSelected(filtro)}
-          className={`p-3 rounded-full border border-white transition 
-            ${selected === filtro ? "bg-green-500 border-none text-white" : "bg-transparent text-white"}
-          `}
-        >
-          {filtro}
-        </button>
-      ))}
-    </div>
+        const normalizedSearchTerm = normalizeText(searchTerm.trim())
+        const searchRegex = new RegExp(normalizedSearchTerm.split(" ").join("|"), "i")
 
-      {responseCourse!.data.map((courses, index) => (
-          <div key={index} className="bg-[#eaeaea] dark:bg-[#0F0F0F] dark:text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg">
-            <div className="flex-1 pr-6">
-              <p className="text-sm text-gray-300 mb-2">{courses.workload} horas</p>
-              <h4 className="font-bold text-2xl text-[#0059ff] mb-4 uppercase">
-                {courses.name}
-              </h4>
-              <p className="text-gray-300 text-base leading-relaxed max-w-2xl">
-                {courses.objective ?? courses.description}
-              </p>
-            </div>
-            <div className="mt-6 md:mt-0">
-              <button className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
-                CONHECER CURSO
-              </button>
-            </div>
-          </div>
-      ))}
+        return responseCourse.data.filter((course) => {
+            const normalizedName = normalizeText(course.name)
+            const nameMatch = searchRegex.test(normalizedName)
+            const workloadMatch = course.workload?.toString().includes(searchTerm.trim()) || false
+            return nameMatch || workloadMatch
+        })
+    }, [responseCourse?.data, searchTerm])
 
-    </section>
-  );
+    const totalPages = Math.ceil(filteredCourses.length / coursesPerPage)
+    const startIndex = (currentPage - 1) * coursesPerPage
+    const endIndex = startIndex + coursesPerPage
+    const currentCourses = filteredCourses.slice(startIndex, endIndex)
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value)
+        setCurrentPage(1)
+    }
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page)
+    }
+
+    return (
+        <section className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6 font-poppins">
+            <input
+                type="search"
+                placeholder="Pesquise por nome do curso ou carga horária..."
+                value={searchTerm}
+                onChange={handleSearchChange}
+                className="dark:bg-[#2a2a2a] p-3 rounded-lg outline-none w-full h-[55px]"
+            />
+
+            {searchTerm && (
+                <p className="text-sm text-gray-600 dark:text-gray-400">{filteredCourses.length} curso(s) encontrado(s)</p>
+            )}
+
+            {currentCourses.map((course, index) => (
+                <div
+                    key={startIndex + index}
+                    className="bg-[#eaeaea] dark:bg-[#2a2a2a] dark:text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg"
+                >
+                    <div className="flex-1 pr-6">
+                        <p className="text-sm dark:text-gray-300 font-bold mb-2">{course.workload || 0} horas</p>
+                        <h4 className="font-bold text-[1.3rem] lg:text-2xl text-[#0059ff] mb-4 uppercase">{course.name}</h4>
+                        <p className="dark:text-gray-300 text-base text-justify leading-relaxed max-w-2xl">
+                            {course.objective ?? course.description}
+                        </p>
+                    </div>
+                    <div className="mt-6 md:mt-0">
+                        <button className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
+                            CONHECER CURSO
+                        </button>
+                    </div>
+                </div>
+            ))}
+
+            {totalPages > 1 && (
+                <div className="flex justify-center mt-8">
+                    <Pagination
+                        loop
+                        showControls
+                        color="primary"
+                        page={currentPage}
+                        total={totalPages}
+                        onChange={handlePageChange}
+                    />
+                </div>
+            )}
+            {filteredCourses.length === 0 && searchTerm && (
+                <div className="text-center py-8">
+                    <p className="text-gray-600 dark:text-gray-400">Nenhum curso encontrado para "{searchTerm}"</p>
+                </div>
+            )}
+        </section>
+    )
 }
