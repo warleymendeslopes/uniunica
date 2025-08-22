@@ -218,7 +218,7 @@ export default function PageCourse() {
                                         >
                                             <span
                                                 className={[
-                                                    'absolute top-1/2 -translate-y-1/2 h-4 w-4 rounded-full bg-[#7a2cff] shadow-[0_0_0_4px_rgba(122,44,255,0.25)] z-10',
+                                                    'absolute hidden lg:flex top-1/2 -translate-y-1/2 h-4 w-4 rounded-full bg-[#7a2cff] shadow-[0_0_0_4px_rgba(122,44,255,0.25)] z-10',
                                                     left
                                                         ? 'left-[calc(50%-20px)]'
                                                         : 'left-[calc(50%+5px)]',
