@@ -4,7 +4,7 @@ import BannerSiteUniUnica from "@/components/banner/page";
 import {useEffect, useState} from "react";
 import {getAreaURL} from "@/services/api";
 import {ResponseArea} from "@/types/list-area";
-import CursosPorModalidade from "@/components/listingCourses/listCouse";
+import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
 import OfferPos from "@/components/offers/pos-graduacao";
 
 export default  function ModalityPosGraduacao() {

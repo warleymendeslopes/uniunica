@@ -14,6 +14,7 @@ import {notFound} from "next/navigation";
 import {CourseAreaResponse} from "@/types/detailsArea";
 import BannerSiteUniUnica from "@/components/banner/page";
 import {BannerSite} from "@/types/banner";
+import ListCoursesPosGraduacao from "@/app/@partner/[modality]/[param1]/pos-graduacao";
 
 export default async function PageParams1({params,}: {
     params: Promise<{modality: string, param1: string }>
@@ -26,8 +27,14 @@ export default async function PageParams1({params,}: {
      * dessa area que foi passada no param1
      */
     if (modality == 'pos-graduacao') {
-      const details: CourseAreaResponse =   await detailsArea(param1, false)
-        if(details.data.length <= 0){
+        // Como estamos com o foco em melhoria de desempenho,
+        // na página vou colocar o banner para carregar
+        // de imediato, antes de chamar o componente,
+        // pois esse componente vai rodar do lado do cliente,
+        // o que pode atrasar um pouco o carregamento das
+        // informações.
+        const details: CourseAreaResponse =   await detailsArea(param1, false)
+        if( details.data.length <= 0){
             notFound()
         }
         const bannerCentralizado: BannerSite = {
@@ -41,16 +48,15 @@ export default async function PageParams1({params,}: {
                 backgroundImage: '/fimEADdesktop.webp',
                 openTitle: 'Pós-Graduação',
                 title: `<b style="font-size: 5rem;">ONLINE</b>`,
-                subtitle: `<sapan style="padding: 6px 17px; background: #8f33ff;">Área de ${param1} <br/> </sapan> <p style=" margin-top: 10px;">Conquiste pontos e destaque-se em concursos públicos e designações com uma especialização reconhecida pelo MEC na área da Educação.</p>`,
+                subtitle: `<sapan style="padding: 6px 17px; background: #6424b3;">Área de ${param1} <br/> </sapan> <p style=" margin-top: 10px;">Conquiste pontos e destaque-se em concursos públicos e designações com uma especialização reconhecida pelo MEC na área da Educação.</p>`,
                 button: true,
                 buttonText: 'INSCREVA-SE ANTES QUE ACABE',
             },
         };
-
         return (
             <>
-                <BannerSiteUniUnica {...bannerCentralizado} />
-                Vamos exibir a pagina de area de posgraduacao
+            <BannerSiteUniUnica {...bannerCentralizado} />
+            <ListCoursesPosGraduacao area={param1} />
             </>
         )
     }

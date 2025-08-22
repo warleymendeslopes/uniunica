@@ -12,7 +12,7 @@ const bannerCentralizado: BannerSite = {
   content1: {
     backgroundImage: '/fimEADdesktop.webp',
     title: `<b style="font-size: 5rem;">O FIM <br/> DO EAD</b>`,
-    subtitle: '<sapan style="padding: 6px 17px; background: #8f33ff;">ENTENDA O QUE VAI ACONTECER </sapan>',
+    subtitle: '<sapan style="padding: 6px 17px; background: #6424b3;">ENTENDA O QUE VAI ACONTECER </sapan>',
     button: true,
     buttonText: 'INSCREVA-SE ANTES QUE ACABE',
     onClickButton: () => console.log('Botão clicado!')

@@ -1,126 +1,102 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
+"use client"
+import type React from "react"
+import { useState, useMemo } from "react"
+import { Pagination } from "@heroui/react"
+import type { CourseResponse } from "@/types/list-courses"
 
-type RawCourse = {
-  _id?: string;
-  id?: string | number;
-  title?: string;
-  name?: string;
-  image?: string;
-  thumbnail?: string;
-  cover?: string;
-  objective?: string;
-  description?: string;
-  resume?: string;
-  about?: string;
-};
+const normalizeText = (text: string): string => {
+    return text
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+}
 
-type Course = {
-  id: string;
-  name: string;
-  objective?: string;
-  thumb?: string;
-};
+export default function ListingCourse({ responseCourse }: { responseCourse?: CourseResponse }) {
+    const [searchTerm, setSearchTerm] = useState("")
+    const [currentPage, setCurrentPage] = useState(1)
+    const coursesPerPage = 10
 
-type Props = {
-  alias: string;               // areaAlias recebido do pai
-  onBack?: () => void;         // opcional: voltar para a grade de áreas
-  page?: number;
-  perPage?: number;
-};
+    const filteredCourses = useMemo(() => {
+        if (!responseCourse?.data) return []
 
-const ENDPOINT = '/api/courses'; // sua API (proxy interno)
+        if (!searchTerm.trim()) return responseCourse.data
 
-export default function ListingCourse({ alias, onBack, page = 1, perPage = 8 }: Props) {
-  const [courses, setCourses] = React.useState<Course[]>([]);
-  const [loading, setLoading] = React.useState(false);
-  const [err, setErr] = React.useState('');
+        const normalizedSearchTerm = normalizeText(searchTerm.trim())
+        const searchRegex = new RegExp(normalizedSearchTerm.split(" ").join("|"), "i")
 
-  React.useEffect(() => {
-    if (!alias) return;
-    (async () => {
-      try {
-        setLoading(true);
-        setErr('');
-        const url = `${ENDPOINT}?area=${encodeURIComponent(alias)}&page=${page}&perPage=${perPage}`;
-        console.log('📡 [ListingCourse] buscando cursos com alias:', alias, '->', url);
-        const res = await fetch(url, { cache: 'no-store' });
-        console.log('🔎 [ListingCourse] status:', res.status);
+        return responseCourse.data.filter((course) => {
+            const normalizedName = normalizeText(course.name)
+            const nameMatch = searchRegex.test(normalizedName)
+            const workloadMatch = course.workload?.toString().includes(searchTerm.trim()) || false
+            return nameMatch || workloadMatch
+        })
+    }, [responseCourse?.data, searchTerm])
 
-        const json = await res.json();
-        console.log('📦 [ListingCourse] payload:', json);
+    const totalPages = Math.ceil(filteredCourses.length / coursesPerPage)
+    const startIndex = (currentPage - 1) * coursesPerPage
+    const endIndex = startIndex + coursesPerPage
+    const currentCourses = filteredCourses.slice(startIndex, endIndex)
 
-        const raw: RawCourse[] =
-          json?.results ??
-          json?.data?.items ??
-          json?.items ??
-          (Array.isArray(json) ? json : []);
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value)
+        setCurrentPage(1)
+    }
 
-        const normalized: Course[] = (raw || []).map((c, i) => ({
-          id: String(c._id ?? c.id ?? i),
-          name: (c.name ?? c.title ?? 'Curso').trim(),
-          objective: c.objective ?? c.description ?? c.resume ?? c.about ?? '',
-          thumb: c.thumbnail ?? c.image ?? c.cover ?? '',
-        }));
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page)
+    }
 
-        setCourses(normalized);
-      } catch (e) {
-        console.error('❌ [ListingCourse] erro ao carregar cursos:', e);
-        setErr('Não foi possível carregar os cursos desta área.');
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, [alias, page, perPage]);
+    return (
+        <section className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6 font-poppins">
+            <input
+                type="search"
+                placeholder="Pesquise por nome do curso ou carga horária..."
+                value={searchTerm}
+                onChange={handleSearchChange}
+                className="dark:bg-[#2a2a2a] p-3 rounded-lg outline-none w-full h-[55px]"
+            />
 
-  if (!alias) return null;
+            {searchTerm && (
+                <p className="text-sm text-gray-600 dark:text-gray-400">{filteredCourses.length} curso(s) encontrado(s)</p>
+            )}
 
-  return (
-    <div className="mt-2">
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-lg font-semibold">
-          Cursos da área: <span className="font-normal">{alias}</span>
-        </h3>
-        {onBack && (
-          <button
-            onClick={onBack}
-            className="text-sm px-3 py-1 rounded border hover:bg-gray-50 transition"
-          >
-            ← Voltar às áreas
-          </button>
-        )}
-      </div>
+            {currentCourses.map((course, index) => (
+                <div
+                    key={startIndex + index}
+                    className="bg-[#eaeaea] dark:bg-[#2a2a2a] dark:text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg"
+                >
+                    <div className="flex-1 pr-6">
+                        <p className="text-sm dark:text-gray-300 font-bold mb-2">{course.workload || 0} horas</p>
+                        <h4 className="font-bold text-[1.3rem] lg:text-2xl text-[#0059ff] mb-4 uppercase">{course.name}</h4>
+                        <p className="dark:text-gray-300 text-base text-justify leading-relaxed max-w-2xl">
+                            {course.objective ?? course.description}
+                        </p>
+                    </div>
+                    <div className="mt-6 md:mt-0">
+                        <button className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
+                            CONHECER CURSO
+                        </button>
+                    </div>
+                </div>
+            ))}
 
-      {loading && courses.length === 0 && <p>Carregando cursos…</p>}
-      {err && <p className="text-red-500 mb-2">{err}</p>}
-      {!loading && courses.length === 0 && !err && <p>Nenhum curso encontrado para esta área.</p>}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {courses.map((c) => (
-          <div key={c.id} className="border rounded-lg overflow-hidden hover:shadow-md transition">
-            {c.thumb ? (
-              <div className="aspect-[16/9] relative bg-gray-100">
-                <Image
-                  src={c.thumb}
-                  alt={c.name}
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-            ) : null}
-            <div className="p-4">
-              <h4 className="font-semibold mb-2">{c.name}</h4>
-              {c.objective ? (
-                <p className="text-sm text-gray-600 line-clamp-4">{c.objective}</p>
-              ) : (
-                <p className="text-sm text-gray-400 italic">Sem descrição disponível.</p>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+            {totalPages > 1 && (
+                <div className="flex justify-center mt-8">
+                    <Pagination
+                        loop
+                        showControls
+                        color="primary"
+                        page={currentPage}
+                        total={totalPages}
+                        onChange={handlePageChange}
+                    />
+                </div>
+            )}
+            {filteredCourses.length === 0 && searchTerm && (
+                <div className="text-center py-8">
+                    <p className="text-gray-600 dark:text-gray-400">Nenhum curso encontrado para "{searchTerm}"</p>
+                </div>
+            )}
+        </section>
+    )
 }

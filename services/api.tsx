@@ -1,5 +1,7 @@
 import {ResponseArea} from "@/types/list-area";
 import {CourseAreaResponse} from "@/types/detailsArea";
+import {CourseResponse} from "@/types/list-courses";
+
 const revalidate = 3600; // 1 hora
 
 
@@ -28,8 +30,7 @@ export async function getAreaURL() {
  */
 export async function validatePartner(partnerId: string): Promise<boolean> {
     const validPartners = ['1026', '2423', '3000']
-    const isValid: boolean = validPartners.includes(partnerId);
-    return isValid
+    return validPartners.includes(partnerId)
 }
 
 /**
@@ -57,4 +58,35 @@ export async function detailsArea(area: string, searchother?: boolean) {
         console.error(`Erro ao tentar consultar detalhe a area ${area}`, error);
         throw error;
     }
+}
+
+
+export async function listCourses(
+    {modality, area, limite = 999999, tag, searchother}: {
+        modality: string,
+        area: string,
+        limite?: number,
+        tag?: string,
+        searchother?: boolean
+    },
+) {
+    const certifier = 'Centro Universitário Única'
+    let url: string = `https://api-lyratec.institutoprominas.com.br/v2/courses/${modality}?area=${area}&limit=${limite}&certifiers=${certifier}`;
+    if (searchother) {
+        url += `&searchother=true`;
+    }
+    if(tag){
+        url += `&tags=${tag}`;
+    }
+    try {
+        const response = await fetch(url, {
+            next: { revalidate },
+        });
+        const data: CourseResponse = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Erro ao buscar a listagem de cursos da modalidade de ${modality} na area de  ${area}`, error);
+        throw error;
+    }
+
 }
