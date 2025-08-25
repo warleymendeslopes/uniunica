@@ -11,6 +11,8 @@
  */
 
 import BannerSiteUniUnica from "@/components/banner/page"
+import Testimonials from "@/components/depoiments/depoiments"
+import Depoimentos from "@/components/depoiments/depoiments"
 import PageCourse from "@/components/pageCourse/pageCourse"
 import { detailsArea } from "@/services/api"
 import { BannerSite } from "@/types/banner"
@@ -63,6 +65,7 @@ export default async function PageParams2({params,}: {
             Página de Param1: {param1}<br/>
             Página de Param2: {param2} */}
             <PageCourse />
+        <Testimonials />
         </>
     )
 }}
