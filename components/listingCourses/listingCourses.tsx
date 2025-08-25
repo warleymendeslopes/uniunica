@@ -58,7 +58,6 @@ export default function ListingCourse({ responseCourse }: { responseCourse?: Cou
                 onChange={handleSearchChange}
                 className="dark:bg-[#2a2a2a] p-3 rounded-lg outline-none w-full h-[55px]"
             />
-
             {searchTerm && (
                 <p className="text-sm text-gray-600 dark:text-gray-400">{filteredCourses.length} curso(s) encontrado(s)</p>
             )}
