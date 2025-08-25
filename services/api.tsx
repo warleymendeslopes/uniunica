@@ -1,6 +1,7 @@
 import {ResponseArea} from "@/types/list-area";
 import {CourseAreaResponse} from "@/types/detailsArea";
 import {CourseResponse} from "@/types/list-courses";
+import {CourseDetailResponse} from "@/types/detailsCourse";
 
 const revalidate = 3600; // 1 hora
 
@@ -90,3 +91,22 @@ export async function listCourses(
     }
 
 }
+
+
+export async function detailsCourse(course: string, modality: string, searchother?: boolean) {
+    let url: string = `https://api-lyratec.institutoprominas.com.br/v2/courses/detail/${modality}/${course}`;
+    if (searchother) {
+        url += `/?searchother=true`;
+    }
+    try {
+        const response = await fetch(url, {
+            next: { revalidate },
+        });
+        const data: CourseDetailResponse = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Erro ao tentar consultar detalhe a curso ${course}`, error);
+        throw error;
+    }
+}
+
