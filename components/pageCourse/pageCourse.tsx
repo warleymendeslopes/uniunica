@@ -1,6 +1,5 @@
 "use client"
-import { useState, useEffect, useMemo, lazy, Suspense } from "react"
-import { ChevronDown } from "lucide-react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import { FaRegClock } from "react-icons/fa"
 import Image from "next/image"
 import { FaStar, FaStarHalfAlt } from "react-icons/fa"
@@ -8,35 +7,6 @@ import {CourseDetailResponse} from "@/types/detailsCourse";
 import CourseProgram from "@/components/course program /courseProgram";
 import Curriculum from "@/components/curriculum/curriculum";
 const CountdownTimer = lazy(() => import("@/components/countdownTimer/countdownTImer"))
-
-
-const modulosData = [
-    {
-        titulo: "Fundamentos da Psicologia Jurídica",
-        horas: 80,
-        conteudo: "Conceitos, histórico, áreas de atuação, perícias psicológicas e mediação de conflitos.",
-    },
-    {
-        titulo: "Psicologia Jurídica nas Varas da Infância, Juventude e Idoso",
-        horas: 80,
-        conteudo: "Medidas protetivas, escuta especializada, rede de proteção e políticas públicas.",
-    },
-    {
-        titulo: "Neuropsicologia: Infância e Adolescência",
-        horas: 80,
-        conteudo: "Desenvolvimento, funções executivas, avaliação e intervenções baseadas em evidências.",
-    },
-    {
-        titulo: "Transtornos Psiquiátricos na Criança e no Adolescente",
-        horas: 80,
-        conteudo: "Classificações, sinais e sintomas, condução ética e articulação multiprofissional.",
-    },
-    {
-        titulo: "A Neurociência e os Sentidos na Infância e na Adolescência",
-        horas: 80,
-        conteudo: "Mecanismos sensoriais, plasticidade neural e implicações educacionais/clinicas.",
-    },
-]
 
 type Item = {
     img: string
@@ -73,57 +43,7 @@ const items: Item[] = [
     },
 ]
 
-const ModuloItem = ({
-                        modulo,
-                        index,
-                        isOpen,
-                        onToggle,
-                    }: {
-    modulo: (typeof modulosData)[0]
-    index: number
-    isOpen: boolean
-    onToggle: () => void
-}) => (
-    <div className="group">
-        <div className="flex items-stretch gap-4">
-            <button
-                onClick={onToggle}
-                className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 sm:px-6 py-4 text-left hover:border-[#8f33ff]/50 transition-all duration-300 relative focus:outline-none focus:ring-2 focus:ring-[#8f33ff]/50"
-                aria-expanded={isOpen}
-                aria-controls={`modulo-content-${index}`}
-                id={`modulo-button-${index}`}
-            >
-                <div className="flex items-center justify-between gap-4">
-                    <p className="text-sm sm:text-base">
-                        {modulo.titulo}
-                        <span className="text-white/60"> — </span>
-                        <span className="font-semibold">{modulo.horas} horas</span>
-                    </p>
-
-                    <ChevronDown
-                        className={`shrink-0 h-5 w-5 text-white/70 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                        aria-hidden="true"
-                    />
-                </div>
-                <div
-                    id={`modulo-content-${index}`}
-                    className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
-                        isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    }`}
-                    aria-labelledby={`modulo-button-${index}`}
-                >
-                    <div className="overflow-hidden">
-                        <p className="mt-3 text-sm text-white/80 leading-relaxed">{modulo.conteudo}</p>
-                    </div>
-                </div>
-                <div className="absolute left-0 right-0 -bottom-px h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-            </button>
-        </div>
-    </div>
-)
-
 export default function PageCourse({course}: {course: CourseDetailResponse}) {
-    const [open, setOpen] = useState<number | null>(null)
     const [compradoresHoje, setCompradoresHoje] = useState<number>(0)
 
     useEffect(() => {
@@ -131,19 +51,6 @@ export default function PageCourse({course}: {course: CourseDetailResponse}) {
         setCompradoresHoje(randomNumber)
     }, [])
 
-    const moduloItems = useMemo(
-        () =>
-            modulosData.map((m, idx) => (
-                <ModuloItem
-                    key={idx}
-                    modulo={m}
-                    index={idx}
-                    isOpen={open === idx}
-                    onToggle={() => setOpen(open === idx ? null : idx)}
-                />
-            )),
-        [open],
-    )
 
     return (
         <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
@@ -156,12 +63,6 @@ export default function PageCourse({course}: {course: CourseDetailResponse}) {
                     <CourseProgram course={course} />
                     <Curriculum disciplines={course.data.disciplines} />
 
-                    {/*<>/!*pode ser um componenete separado *!/*/}
-                    {/*    <div aria-labelledby="modulos-title">*/}
-                    {/*        <h2 className="text-2xl sm:text-[28px] text-left font-krona font-extrabold mb-6">Módulos de Aprendizagem</h2>*/}
-                    {/*        <div className="space-y-5" role="region" aria-label="Lista de módulos do curso">{moduloItems}</div>*/}
-                    {/*    </div>*/}
-                    {/*</>*/}
                     <section aria-labelledby="metodologia-title">
                         <h2 id="metodologia-title" className="text-center text-2xl sm:text-3xl font-krona font-extrabold mb-10">
                             Metodologia que te conduz ao próximo nível da carreira!

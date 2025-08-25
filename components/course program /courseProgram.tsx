@@ -15,7 +15,7 @@ export default function CourseProgram({course}: {course: CourseDetailResponse}) 
                         <h3 className="text-xl font-semibold mb-2">
                             Pré-requisito
                         </h3>
-                        <p className="text-sm leading-relaxed text-white/80">
+                        <p className="text-sm leading-relaxed">
                             Graduação em qualquer área para nível de conhecimento.
                             Em casos de atuação na área e registro no conselho
                             profissional, a formação deverá ser específica.
@@ -31,7 +31,7 @@ export default function CourseProgram({course}: {course: CourseDetailResponse}) 
                         <h3 className="text-xl font-semibold mb-2">
                             {course.data.workload} Horas
                         </h3>
-                        <p className="text-sm leading-relaxed text-white/80">De carga horária que contempla vídeoaulas inovadoras e materiais didáticos exclusivos.</p>
+                        <p className="text-sm leading-relaxed">De carga horária que contempla vídeoaulas inovadoras e materiais didáticos exclusivos.</p>
                     </div>
                 </div>
             </div>
