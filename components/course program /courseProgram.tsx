@@ -3,7 +3,6 @@ import {CourseDetailResponse} from "@/types/detailsCourse";
 
 export default function CourseProgram({course}: {course: CourseDetailResponse}) {
     return (
-        <>
             <div aria-labelledby="requisitos-title">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div
@@ -36,6 +35,5 @@ export default function CourseProgram({course}: {course: CourseDetailResponse}) 
                     </div>
                 </div>
             </div>
-        </>
     )
 }
