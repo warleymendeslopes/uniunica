@@ -21,8 +21,8 @@ export default function Curriculum({disciplines}: {disciplines: Discipline[]}) {
                   <UndrawHappy width={300} height={300} />
                   <span className={`font-300 text-xl`}>OPS.. Esse curso não tem nenhuma disciplina cadastrada.</span>
               </div>
-          ): (<>
-                  <div className="space-y-4">
+          ): (
+              <div className="space-y-4">
                       {disciplines.map((discipline, index) => (
                           <div key={index} className="flex items-center gap-4 relative">
                               <div className="flex-shrink-0">
@@ -35,7 +35,7 @@ export default function Curriculum({disciplines}: {disciplines: Discipline[]}) {
                                   </div>
                               </div>
                               <div
-                                  className={`absolute left-[15%] w-[3%] h-[1px] bg-[#6424b3] ${
+                                  className={`absolute left-[20%] w-[6.3%] h-[1px] bg-[#6424b3] lg:w-[3%] lg:left-[15%] ${
                                       openAccordion === index ? "hidden md:block" : ""
                                   }`}
                               ></div>
@@ -46,11 +46,9 @@ export default function Curriculum({disciplines}: {disciplines: Discipline[]}) {
                                       selectedKeys={openAccordion === index ? new Set([index.toString()]) : new Set()}
                                       onSelectionChange={handleAccordionChange}
                                       itemClasses={{
-                                          base: "bg-black border-1 border-[#6424b3] rounded-lg",
-                                          title: "text-white font-semibold text-sm lg:text-lg ",
-                                          trigger: "px-6 py-4 hover:bg-gray-900 transition-colors",
-                                          content: "px-6 pb-4 text-gray-300",
-                                          indicator: "text-blue-500",
+                                          base: "border-1 border-[#6424b3] rounded-lg",
+                                          title: "font-semibold text-sm lg:text-lg ",
+                                          trigger: "cursor-pointer",
                                       }}
                                   >
                                       <AccordionItem key={index} title={discipline.name}>
@@ -66,8 +64,7 @@ export default function Curriculum({disciplines}: {disciplines: Discipline[]}) {
                               </div>
                           </div>
                       ))}
-                  </div>
-              </>
+              </div>
           )}
 
       </div>
