@@ -1,6 +1,24 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
+  form: [
+    {
+      partner: {
+        geral: "sdgasdgasgdsdgasdg",
+        "pos-graduacao": "sdgasdgasgdsdgasdg",
+        graduacao: "sdgasdgasgdsdgasdg",
+        "segunda-graduacao": "asdgasdg",
+        "disciplina-isolada": "asdgasdg",
+      },
+      internal: {
+        geral: "sdgasdgasgdsdgasdg",
+        "pos-graduacao": "sdgasdgasgdsdgasdg",
+        graduacao: "sdgasdgasgdsdgasdg",
+        "segunda-graduacao": "asdgasdg",
+        "disciplina-isolada": "asdgasdg",
+      }
+    }
+  ],
   name: "Centro Universitário UniÚnica",
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
