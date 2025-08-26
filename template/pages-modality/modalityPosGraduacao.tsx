@@ -15,7 +15,8 @@ export default  function ModalityPosGraduacao() {
             col: 2,
             position: 'start',
             skeleton: false,
-            titleFont: 'poppins'
+            titleFont: 'poppins',
+            ButtonPosition: 'center'
         },
         content1: {
             backgroundImage: '/fimEADdesktop.webp',

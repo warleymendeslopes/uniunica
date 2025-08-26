@@ -93,7 +93,7 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({configBanner, co
                 )}
 
                 {content.hubspot?.active && (
-                    <div className={`flex content-center justify-center`}>
+                    <div className={`flex content-center justify-${configBanner.ButtonPosition ? configBanner.ButtonPosition : 'start'}`}>
                         {/* Form aparece apenas no mobile */}
                         <HubSpotForm
                             className="block lg:hidden bg-[#101827] text-white p-6 content-form"

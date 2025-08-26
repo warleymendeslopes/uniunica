@@ -7,7 +7,8 @@ const bannerCentralizado: BannerSite = {
     col: 1,
     position: 'center',
     skeleton: false,
-    titleFont: 'poppins'
+    titleFont: 'poppins',
+    ButtonPosition: 'center'
   },
   content1: {
     backgroundImage: '/fimEADdesktop.webp',

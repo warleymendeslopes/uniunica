@@ -6,6 +6,7 @@ export interface BannerSite {
     position: 'center' | 'start' | 'end'; // centro, ao lado esquerdo, ao lado direito
     skeleton: boolean // para ver se deve aplicar um skeleton no banner
     titleFont?: string // classe CSS da fonte para os títulos (ex: 'font-poppins')
+    ButtonPosition?: 'center' | 'start' | 'end'; // centro, ao lado esquerdo, ao lado direito
   }
   content1: {
     backgroundImage?: string
