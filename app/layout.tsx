@@ -42,6 +42,7 @@ const COOKIE_KEY = 'partnerData';
 const ENCRYPTION_SECRET = 'chave-secreta-segura';
 
 import { Krona_One, Poppins } from "next/font/google";
+import Script from "next/script";
 
 export const krona = Krona_One({
     subsets: ["latin"],
@@ -83,7 +84,12 @@ export default async function RootLayout({
         case 'partner':
             return (
                 <html suppressHydrationWarning lang="en">
-                    <head />
+                <head>
+                    <Script
+                        src="https://js.hsforms.net/forms/embed/v2.js"
+                        strategy="beforeInteractive"
+                    />
+                </head>
                     <body
                         className={clsx(
                             "min-h-screen text-foreground bg-background font-sans antialiased",
