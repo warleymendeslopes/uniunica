@@ -65,19 +65,22 @@ export async function detailsArea(area: string, searchother?: boolean) {
 export async function listCourses(
     {modality, area, limite = 999999, tag, searchother}: {
         modality: string,
-        area: string,
+        area?: string,
         limite?: number,
         tag?: string,
         searchother?: boolean
     },
 ) {
     const certifier = 'Centro Universitário Única'
-    let url: string = `https://api-lyratec.institutoprominas.com.br/v2/courses/${modality}?area=${area}&limit=${limite}&certifiers=${certifier}`;
+    let url: string = `https://api-lyratec.institutoprominas.com.br/v2/courses/${modality}?limit=${limite}&certifiers=${certifier}`;
     if (searchother) {
         url += `&searchother=true`;
     }
     if(tag){
         url += `&tags=${tag}`;
+    }
+    if(area){
+        url += `&area=${area}`;
     }
     try {
         const response = await fetch(url, {

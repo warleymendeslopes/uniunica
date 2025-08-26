@@ -9,7 +9,7 @@
  * @param params - Parâmetros da rota, incluindo a modalidade.
  * @constructor
  */
-import {detailsArea} from "@/services/api";
+import {detailsArea, detailsCourse} from "@/services/api";
 import {notFound} from "next/navigation";
 import {CourseAreaResponse} from "@/types/detailsArea";
 import BannerSiteUniUnica from "@/components/banner/page";
@@ -18,6 +18,9 @@ import ListCoursesPosGraduacao from "@/app/@partner/[modality]/[param1]/pos-grad
 import DualMarquee from "@/components/dualSlider/dualSlider";
 import VideoPromoSection from "@/components/videoMarket/videoMarket";
 import Testimonials from "@/components/depoiments/depoiments";
+import {CourseDetailResponse} from "@/types/detailsCourse";
+import PageCourse from "@/components/pageCourse/pageCourse";
+import FaqTabs from "@/components/faq/faq";
 
 export default async function PageParams1({params,}: {
     params: Promise<{modality: string, param1: string }>
@@ -71,11 +74,36 @@ export default async function PageParams1({params,}: {
         )
     }
 
+    const course: CourseDetailResponse = await detailsCourse(param1, modality, true)
+
+console.log('===>', course)
+    const bannerCentralizado: BannerSite = {
+        configBanner: {
+            col: 2,
+            position: 'start',
+            skeleton: false,
+            titleFont: 'poppins'
+        },
+        content1: {
+            backgroundImage: '/fimEADdesktop.webp',
+            openTitle: `${course.data.type}`,
+            title: `<b style="font-size: 5rem;">ONLINE</b>`,
+            subtitle: `<span class="p-4 font-bold bg-[#6424b3] mt-3 text-lg">Curso de ${course.data.name} <br/> </span> <p style="margin-top: 20px;">${course.data.objective}</p>`,
+            button: false,
+            hubspot: {
+                active: true,
+                idform: "07ed6974-53d8-49b1-8d6c-1f30efdb3c06",
+                title: "Você ganhou um SUPERCUPOM válido por 30 minutos!"
+            }
+        },
+    };
 
     return (
         <>
-            pagina de modality; {modality} <br />
-            Página de param1: {param1}
+            <BannerSiteUniUnica {...bannerCentralizado} />
+            <PageCourse course={course} />
+            <Testimonials />
+            <FaqTabs modality={modality} />
         </>
     )
 }
