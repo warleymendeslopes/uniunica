@@ -18,6 +18,7 @@ import { BannerSite } from "@/types/banner"
 import { CourseAreaResponse } from "@/types/detailsArea"
 import { notFound } from "next/navigation"
 import {CourseDetailResponse} from "@/types/detailsCourse";
+import FaqTabs from "@/components/faq/faq"
 
 export default async function PageParams2({params,}: {
     params: Promise<{ modality: string, param1: string, param2: string }>
@@ -40,7 +41,7 @@ export default async function PageParams2({params,}: {
                     backgroundImage: '/fimEADdesktop.webp',
                     openTitle: 'Pós-Graduação',
                     title: `<b style="font-size: 5rem;">ONLINE</b>`,
-                    subtitle: `<sapan class="p-4 font-bold bg-[#6424b3] text-lg">Curso de ${course.data.name} <br/> </sapan> <p style=" margin-top: 10px;">${course.data.objective}</p>`,
+                    subtitle: `<span class="p-4 font-bold bg-[#6424b3] mt-3 text-lg">Curso de ${course.data.name} <br/> </span> <p style="margin-top: 20px;">${course.data.objective}</p>`,
                     button: false,
                     hubspot: {
                         active: true,
@@ -56,6 +57,7 @@ export default async function PageParams2({params,}: {
            <BannerSiteUniUnica {...bannerCentralizado} />
             <PageCourse course={course} />
             <Testimonials />
+            <FaqTabs modality={modality} />
         </>
     )
 }}
