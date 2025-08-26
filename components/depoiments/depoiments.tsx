@@ -5,6 +5,7 @@ import { Card, CardBody, CardFooter } from "@heroui/card";
 import { Avatar } from "@heroui/avatar";
 import { Button } from "@heroui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ScrollShadow } from "@heroui/react";
 
 type Testimonial = {
   quote: string;
@@ -76,33 +77,33 @@ export default function Testimonials({
   }, []);
 
   const scrollByCard = (dir: "left" | "right") => {
-  const el = scrollerRef.current;
-  if (!el) return;
+    const el = scrollerRef.current;
+    if (!el) return;
 
-  const firstCard = el.querySelector<HTMLElement>("[data-card]");
-  const styles = getComputedStyle(el);
-  const gap = parseFloat(styles.columnGap || styles.gap || "24") || 24;
-  const cardW = firstCard?.clientWidth ?? 320;
-  const delta = (cardW + gap) * (dir === "left" ? -1 : 1);
+    const firstCard = el.querySelector<HTMLElement>("[data-card]");
+    const styles = getComputedStyle(el);
+    const gap = parseFloat(styles.columnGap || styles.gap || "24") || 24;
+    const cardW = firstCard?.clientWidth ?? 320;
+    const delta = (cardW + gap) * (dir === "left" ? -1 : 1);
 
-  const tol = 2;
+    const tol = 2;
 
-  if (dir === "right") {
-    if (el.scrollLeft >= el.scrollWidth - el.clientWidth - tol) {
-      el.scrollTo({ left: 0, behavior: "smooth" });
-      return;
+    if (dir === "right") {
+      if (el.scrollLeft >= el.scrollWidth - el.clientWidth - tol) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+        return;
+      }
     }
-  }
 
-  if (dir === "left") {
-    if (el.scrollLeft <= tol) {
-      el.scrollTo({ left: el.scrollWidth, behavior: "smooth" });
-      return;
+    if (dir === "left") {
+      if (el.scrollLeft <= tol) {
+        el.scrollTo({ left: el.scrollWidth, behavior: "smooth" });
+        return;
+      }
     }
-  }
 
-  el.scrollTo({ left: el.scrollLeft + delta, behavior: "smooth" });
-};
+    el.scrollTo({ left: el.scrollLeft + delta, behavior: "smooth" });
+  };
 
 
   const showArrows = alwaysShowArrows || canLeft || canRight;
@@ -113,7 +114,6 @@ export default function Testimonials({
         <h2 className="text-center text-xl lg:text-3xl font-krona font-bold mb-10 text-white">
           Quem faz a escolha certa não se arrepende
         </h2>
-   
         <div className="relative">
           {showArrows && (
             <>
@@ -121,17 +121,24 @@ export default function Testimonials({
                 isIconOnly
                 radius="full"
                 variant="flat"
-                className="absolute lg:-left-20 -left-5 top-1/2 -translate-y-1/2 z-10 bg-white/80"
+                className={`absolute lg:-left-20 -left-5 top-1/2 -translate-y-1/2 z-20 bg-white/80
+                  transition-all duration-300
+                  ${canLeft ? "opacity-100 scale-100" : "opacity-0 scale-90"}
+                  ${alwaysShowArrows ? "opacity-100 scale-100" : ""}`}
                 onPress={() => scrollByCard("left")}
                 isDisabled={!canLeft && !alwaysShowArrows}
               >
                 <ChevronLeft className="h-5 w-5 text-black" />
               </Button>
+
               <Button
                 isIconOnly
                 radius="full"
                 variant="flat"
-                className="absolute lg:-right-20 -right-5 top-1/2 -translate-y-1/2 z-10 bg-white/80"
+                className={`absolute lg:-right-20 -right-5 top-1/2 -translate-y-1/2 z-20 bg-white/80
+                  transition-all duration-300
+                  ${canRight ? "opacity-100 scale-100" : "opacity-0 scale-90"}
+                  ${alwaysShowArrows ? "opacity-100 scale-100" : ""}`}
                 onPress={() => scrollByCard("right")}
                 isDisabled={!canRight && !alwaysShowArrows}
               >
@@ -140,11 +147,15 @@ export default function Testimonials({
             </>
           )}
 
-          <div
+          <ScrollShadow
             ref={scrollerRef}
+            orientation="horizontal"
             className="flex flex-nowrap items-stretch gap-6 pb-4 pe-2
-                       overflow-x-auto scroll-smooth snap-x snap-mandatory
-                       [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+             overflow-x-auto scroll-smooth snap-x snap-mandatory
+             [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden
+             [--tw-shadow-color:theme(colors.white/50)]
+             [transition:box-shadow_200ms_ease]"
+            style={{ WebkitOverflowScrolling: "touch" }}
           >
             {items.map((t, i) => (
               <Card
@@ -152,8 +163,10 @@ export default function Testimonials({
                 data-card
                 isBlurred
                 className="snap-start shrink-0 w-[300px] md:w-[360px] lg:w-[420px] h-[280px]
-                           text-white flex flex-col justify-between rounded-xl
-                           shadow-none bg-white/10"
+                 text-white flex flex-col justify-between rounded-xl bg-white/10
+                 shadow-none backdrop-blur
+                 transition-transform duration-300 ease-out
+                 hover:-translate-y-0.5 active:translate-y-0"
               >
                 <CardBody>
                   <p className="text-[15px] leading-relaxed">"{t.quote}"</p>
@@ -167,7 +180,7 @@ export default function Testimonials({
                 </CardFooter>
               </Card>
             ))}
-          </div>
+          </ScrollShadow>
         </div>
       </div>
     </section>
