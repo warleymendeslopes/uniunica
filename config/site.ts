@@ -4,14 +4,14 @@ export const siteConfig = {
   form: [
     {
       partner: {
-        geral: "sdgasdgasgdsdgasdg",
+        geral: "07ed6974-53d8-49b1-8d6c-1f30efdb3c06",
         "pos-graduacao": "sdgasdgasgdsdgasdg",
         graduacao: "sdgasdgasgdsdgasdg",
         "segunda-graduacao": "asdgasdg",
         "disciplina-isolada": "asdgasdg",
       },
       internal: {
-        geral: "sdgasdgasgdsdgasdg",
+        geral: "07ed6974-53d8-49b1-8d6c-1f30efd",
         "pos-graduacao": "sdgasdgasgdsdgasdg",
         graduacao: "sdgasdgasgdsdgasdg",
         "segunda-graduacao": "asdgasdg",

@@ -9,7 +9,7 @@ export default function Home() {
             {/* Primeiro formulário */}
             <div className="max-w-2xl mx-auto">
                 <h2 className="text-xl font-semibold mb-4">Formulário de Contato</h2>
-                <HubSpotForm formId="07ed6974-53d8-49b1-8d6c-1f30efdb3c06" />
+                <HubSpotForm />
             </div>
 
             {/* Segundo formulário (mesmo ID para testar) */}
