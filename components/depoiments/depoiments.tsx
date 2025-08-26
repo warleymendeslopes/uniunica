@@ -5,7 +5,6 @@ import { Card, CardBody, CardFooter } from "@heroui/card";
 import { Avatar } from "@heroui/avatar";
 import { Button } from "@heroui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Accordion, AccordionItem } from "@heroui/react";
 
 type Testimonial = {
   quote: string;
