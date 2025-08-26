@@ -101,10 +101,9 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({configBanner, co
 
                         <button
                             onClick={onOpen}
-                         className="hidden lg:flex animate-pulseGlobal relative items-center justify-center bg-gradient-to-r from-yellow-500 to-yellow-300 text-black font-bold text-base rounded-full px-5 py-3 shadow-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl
+                         className="hidden lg:flex animate-pulse relative items-center justify-center bg-gradient-to-r from-yellow-500 to-yellow-300 text-black font-bold text-base rounded-full px-5 py-3 shadow-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl
                         w-full max-w-xs sm:max-w-none sm:w-10/12 lg:w-auto cursor-pointer">
-                            <span className="mr-[50px]">Enviar</span>
-                            {/*Enviar Enviar Enviar Enviar*/}
+                            <span className="mr-[50px]">INSCREVA-SE ANTES QUE ACABE</span>
                             <div className="absolute right-0 h-full aspect-square bg-yellow-500 rounded-full shadow-inner z-0"></div>
                         </button>
 
