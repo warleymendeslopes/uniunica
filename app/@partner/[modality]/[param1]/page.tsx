@@ -15,6 +15,9 @@ import {CourseAreaResponse} from "@/types/detailsArea";
 import BannerSiteUniUnica from "@/components/banner/page";
 import {BannerSite} from "@/types/banner";
 import ListCoursesPosGraduacao from "@/app/@partner/[modality]/[param1]/pos-graduacao";
+import DualMarquee from "@/components/dualSlider/dualSlider";
+import VideoPromoSection from "@/components/videoMarket/videoMarket";
+import Testimonials from "@/components/depoiments/depoiments";
 
 export default async function PageParams1({params,}: {
     params: Promise<{modality: string, param1: string }>
@@ -61,6 +64,9 @@ export default async function PageParams1({params,}: {
             <>
             <BannerSiteUniUnica {...bannerCentralizado} />
             <ListCoursesPosGraduacao area={param1} />
+            <DualMarquee />
+            <VideoPromoSection />
+            <Testimonials />
             </>
         )
     }
