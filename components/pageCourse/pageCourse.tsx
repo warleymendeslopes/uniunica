@@ -45,7 +45,6 @@ export default function PageCourse({course}: {course: CourseDetailResponse}) {
         const randomNumber = Math.floor(Math.random() * (129 - 50 + 1)) + 50
         setCompradoresHoje(randomNumber)
     }, [])
-    console.log('dados do curso aqui , ', course)
     return (
         <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
             <header className="mb-10">
