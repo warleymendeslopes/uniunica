@@ -21,9 +21,13 @@ export default  function ModalityPosGraduacao() {
             backgroundImage: '/fimEADdesktop.webp',
             title: `<div class="text-[5rem] text-center font-bold lg:text-[8rem]">O FIM <br/> DO EAD</div>`,
             subtitle: '<div class=" bg-yellow-300 p-3 text-center text-black font-bold text-2xl "> PÓS GRADUAÇÃO</div>',
-            button: true,
-            buttonText: 'INSCREVA-SE ANTES QUE ACABE',
-            onClickButton: () => console.log('Botão clicado!')
+            button: false,
+            hubspot: {
+                active: true,
+                idform: "07ed6974-53d8-49b1-8d6c-1f30efdb3c06",
+                title: "Você ganhou um SUPERCUPOM válido por 30 minutos!"
+            }
+
         },
         content2: {
             button: false,

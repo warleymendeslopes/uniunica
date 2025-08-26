@@ -1,3 +1,4 @@
+'use client'
 import { BannerSite } from "@/types/banner";
 import { ArrowDown } from 'lucide-react';
 import BannerSkeleton from "@/template/banner-skeleton";
@@ -109,8 +110,6 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({configBanner, co
 
                         <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="xl">
                             <ModalContent className={`bg-[#101827] text-white p-6 content-form`}>
-                                {(onClose) => (
-                                    <>
                                         <ModalHeader className="flex flex-col gap-1 text-center font-bold text-2xl">{content.hubspot!.title}</ModalHeader>
                                         <ModalBody>
                                             <HubSpotForm
@@ -118,8 +117,6 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({configBanner, co
                                                 formId={content.hubspot!.idform}
                                             />
                                         </ModalBody>
-                                    </>
-                                )}
                             </ModalContent>
                         </Modal>
                     </div>
