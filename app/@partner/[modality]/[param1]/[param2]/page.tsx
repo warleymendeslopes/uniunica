@@ -42,8 +42,12 @@ export default async function PageParams2({params,}: {
                     openTitle: 'Pós-Graduação',
                     title: `<b style="font-size: 5rem;">ONLINE</b>`,
                     subtitle: `<span class="p-4 font-bold bg-[#6424b3] mt-3 text-lg">Curso de ${course.data.name} <br/> </span> <p style="margin-top: 20px;">${course.data.objective}</p>`,
-                    button: true,
-                    buttonText: 'INSCREVA-SE ANTES QUE ACABE',
+                    button: false,
+                    hubspot: {
+                        active: true,
+                        idform: "07ed6974-53d8-49b1-8d6c-1f30efdb3c06",
+                        title: "Você ganhou um SUPERCUPOM válido por 30 minutos!"
+                    }
                 },
             };
 

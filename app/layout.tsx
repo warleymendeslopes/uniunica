@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@heroui/link";
 import clsx from "clsx";
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
@@ -85,10 +84,7 @@ export default async function RootLayout({
             return (
                 <html suppressHydrationWarning lang="en">
                 <head>
-                    <Script
-                        src="https://js.hsforms.net/forms/embed/v2.js"
-                        strategy="beforeInteractive"
-                    />
+                    <Script src="https://js.hsforms.net/forms/embed/v2.js" strategy="afterInteractive" />
                 </head>
                     <body
                         className={clsx(
@@ -108,7 +104,9 @@ export default async function RootLayout({
         case 'internal':
             return (
                 <html suppressHydrationWarning lang="pt-br">
-                    <head />
+                <head>
+                    <Script src="https://js.hsforms.net/forms/embed/v2.js" strategy="afterInteractive" />
+                </head>
                     <body
                         className={clsx(
                             "min-h-screen text-foreground bg-background font-sans antialiased",

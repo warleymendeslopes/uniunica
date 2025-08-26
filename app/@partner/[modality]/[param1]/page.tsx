@@ -49,8 +49,12 @@ export default async function PageParams1({params,}: {
                 openTitle: 'Pós-Graduação',
                 title: `<b style="font-size: 5rem;">ONLINE</b>`,
                 subtitle: `<sapan style="padding: 6px 17px; background: #6424b3;">Área de ${param1} <br/> </sapan> <p style=" margin-top: 10px;">Conquiste pontos e destaque-se em concursos públicos e designações com uma especialização reconhecida pelo MEC na área da Educação.</p>`,
-                button: true,
-                buttonText: 'INSCREVA-SE ANTES QUE ACABE',
+                button: false,
+                hubspot: {
+                    active: true,
+                    idform: "07ed6974-53d8-49b1-8d6c-1f30efdb3c06",
+                    title: "Você ganhou um SUPERCUPOM válido por 30 minutos!"
+                }
             },
         };
         return (
