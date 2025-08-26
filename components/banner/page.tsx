@@ -4,6 +4,8 @@ import BannerSkeleton from "@/template/banner-skeleton";
 import GridUniUnica from "@/template/grid";
 import {poppins} from "@/config/fonts";
 import React from "react";
+import HubSpotForm from "@/components/hubSpot/form";
+import {Modal, ModalBody, ModalContent, ModalHeader, useDisclosure} from "@heroui/react";
 
 interface BannerSiteUniUnicaProps extends BannerSite {}
 
@@ -32,11 +34,18 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({configBanner, co
         offer?: React.ReactNode;
         button: boolean;
         onClickButton?: () => void;
-        buttonText?: string
+        buttonText?: string;
+        hubspot?: {
+            active: boolean
+            idform: string
+            title: string
+        }
     }, isSecondColumn = false) => {
+        const {isOpen, onOpen, onOpenChange} = useDisclosure();
         if (configBanner.skeleton) {
             return <BannerSkeleton />;
         }
+
         return (
             <div className={`space-y-4 text-white ${isSecondColumn ? 'lg:text-right' : ''} ${poppins.className}`}>
                 {content.openTitle && (
@@ -78,6 +87,43 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({configBanner, co
                     >
                         {content.buttonText}
                     </button>
+
+
+                )}
+
+                {content.hubspot?.active && (
+                    <div className={`flex content-center justify-center`}>
+                        {/* Form aparece apenas no mobile */}
+                        <HubSpotForm
+                            className="block lg:hidden bg-[#101827] text-white p-6 content-form"
+                            formId={content.hubspot.idform}
+                        />
+
+                        <button
+                            onClick={onOpen}
+                         className="hidden lg:flex animate-pulseGlobal relative items-center justify-center bg-gradient-to-r from-yellow-500 to-yellow-300 text-black font-bold text-base rounded-full px-5 py-3 shadow-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl
+                        w-full max-w-xs sm:max-w-none sm:w-10/12 lg:w-auto cursor-pointer">
+                            <span className="mr-[50px]">Enviar</span>
+                            {/*Enviar Enviar Enviar Enviar*/}
+                            <div className="absolute right-0 h-full aspect-square bg-yellow-500 rounded-full shadow-inner z-0"></div>
+                        </button>
+
+                        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="xl">
+                            <ModalContent className={`bg-[#101827] text-white p-6 content-form`}>
+                                {(onClose) => (
+                                    <>
+                                        <ModalHeader className="flex flex-col gap-1 text-center font-bold text-2xl">{content.hubspot!.title}</ModalHeader>
+                                        <ModalBody>
+                                            <HubSpotForm
+                                                className=""
+                                                formId={content.hubspot!.idform}
+                                            />
+                                        </ModalBody>
+                                    </>
+                                )}
+                            </ModalContent>
+                        </Modal>
+                    </div>
                 )}
             </div>
         );

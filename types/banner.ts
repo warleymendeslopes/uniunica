@@ -16,6 +16,11 @@ export interface BannerSite {
     button: boolean // se vai ter o botao ou nao
     onClickButton?: () => void // funcao que o botao vai executar caso exista
     buttonText?: string // texto do botão
+    hubspot?: {
+      active: boolean
+      idform: string
+      title: string
+    }
   }
   content2?: {
     openTitle?: string
@@ -25,5 +30,10 @@ export interface BannerSite {
     button: boolean
     onClickButton?: () => void
     buttonText?: string
+    hubspot?: {
+      active: boolean
+      idform: string
+      title: string
+    }
   }
 }
