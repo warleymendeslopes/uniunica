@@ -2,27 +2,17 @@
 import {Discipline} from "@/types/detailsCourse";
 import UndrawHappy from "@/illustrations/undraw_happy";
 import {Accordion, AccordionItem} from "@heroui/react";
-import {useMemo, useState} from "react";
+import {useState} from "react";
 
-/* normaliza modalidade para slug */
-const toKey = (v?: string) =>
-  (v || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
 
 export default function Curriculum({
   disciplines,
-  modality, // <- nova (opcional)
+  modality,
 }: {
   disciplines: Discipline[];
   modality?: string;
 }) {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
-
-  const isGraduacao = useMemo(() => toKey(modality) === "graduacao", [modality]);
 
   const handleAccordionChange = (keys: any) => {
     const openKey = Array.from(keys)[0];
@@ -36,12 +26,10 @@ export default function Curriculum({
         Módulos de Aprendizagem
       </h2>
 
-      {isGraduacao && (
+      {modality === 'graduacao' && (
         <div className="mb-6 rounded-lg bg-[#6424b3] font-poppins px-4 py-3">
           <p className="text-sm text-white">
            As disciplinas podem ser alteradas a qualquer momento, e a ordem em que estão apresentadas no site não reflete, de forma rígida, a sequência em que serão cursadas.*
-
-
           </p>
         </div>
       )}
@@ -88,7 +76,7 @@ export default function Curriculum({
                   <AccordionItem key={index} title={discipline.name}>
                     <div className="md:hidden mb-3 px-3 py-2 bg-[#6424b3]/20 rounded-lg border border-[#6424b3]/30">
                       <span className="text-[#6424b3] font-semibold text-sm">
-                        📚 Módulo {index + 1}
+                        Módulo {index + 1}
                       </span>
                     </div>
                     <div
