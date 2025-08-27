@@ -1,6 +1,8 @@
-export type SiteConfig = typeof siteConfig;
 
-export const siteConfig = {
+
+import {SiteConfig} from "@/types/siteConfig";
+
+export const siteConfig: SiteConfig = {
   form: [
     {
       partner: {
@@ -16,66 +18,57 @@ export const siteConfig = {
         graduacao: "sdgasdgasgdsdgasdg",
         "segunda-graduacao": "asdgasdg",
         "disciplina-isolada": "asdgasdg",
-      }
-    }
+      },
+    },
   ],
+  slidePage: {
+    "pos-graduacao": {
+      slideTop: [
+        { kind: "text", small: "Certificado digital", big: "EM 24H" },
+        { kind: "image", src: "/dualSlide/dualslide1.png", alt: "Campus" },
+        { kind: "text", small: "Especialistas ganham +", big: "de 5 MIL" },
+        { kind: "image", src: "/dualSlide/dualslide2.png", alt: "Laboratório" },
+      ],
+      slideBottom: [
+        { kind: "image", src: "/dualSlide/dualslide3.png", alt: "Mercado" },
+        { kind: "text", small: "Cursos 100% ONLINE", big: "e tecnologia de cinema" },
+        { kind: "image", src: "/dualSlide/dualslide1.png", alt: "Edição" },
+        { kind: "text", small: "28 anos de", big: "TRADIÇÃO" },
+      ],
+    },
+    graduacao: {
+      slideTop: [
+        { kind: "text", small: "Certificado digital", big: "EM 24H" },
+        { kind: "image", src: "/dualSlide/dualslide1.png", alt: "Campus" },
+        { kind: "text", small: "Especialistas ganham +", big: "de 5 MIL" },
+        { kind: "image", src: "/dualSlide/dualslide2.png", alt: "Laboratório" },
+      ],
+      slideBottom: [
+        { kind: "image", src: "/dualSlide/dualslide3.png", alt: "Mercado" },
+        { kind: "text", small: "Cursos 100% ONLINE", big: "e tecnologia de cinema" },
+        { kind: "image", src: "/dualSlide/dualslide1.png", alt: "Edição" },
+        { kind: "text", small: "28 anos de", big: "TRADIÇÃO" },
+      ],
+    },
+  },
   name: "Centro Universitário UniÚnica",
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
-      href: "/about",
-    },
+    { label: "Home", href: "/" },
+    { label: "Docs", href: "/docs" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Blog", href: "/blog" },
+    { label: "About", href: "/about" },
   ],
   navMenuItems: [
-    {
-      label: "Profile",
-      href: "/profile",
-    },
-    {
-      label: "Dashboard",
-      href: "/dashboard",
-    },
-    {
-      label: "Projects",
-      href: "/projects",
-    },
-    {
-      label: "Team",
-      href: "/team",
-    },
-    {
-      label: "Calendar",
-      href: "/calendar",
-    },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
-    },
+    { label: "Profile", href: "/profile" },
+    { label: "Dashboard", href: "/dashboard" },
+    { label: "Projects", href: "/projects" },
+    { label: "Team", href: "/team" },
+    { label: "Calendar", href: "/calendar" },
+    { label: "Settings", href: "/settings" },
+    { label: "Help & Feedback", href: "/help-feedback" },
+    { label: "Logout", href: "/logout" },
   ],
   links: {
     github: "https://github.com/heroui-inc/heroui",
