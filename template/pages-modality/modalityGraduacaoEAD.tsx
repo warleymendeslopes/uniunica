@@ -3,7 +3,7 @@ import {BannerSite} from "@/types/banner";
 import OfferPos from "@/components/offers/pos-graduacao";
 import BannerSiteUniUnica from "@/components/banner/page";
 import {useEffect, useState} from "react";
-import {CourseResponse} from "@/types/list-courses";
+import {Course, CourseResponse} from "@/types/list-courses";
 import {listCourses} from "@/services/api";
 import {notFound} from "next/navigation";
 import ListingCourse from "@/components/listingCourses/listingCourses";
@@ -11,6 +11,8 @@ import Testimonials from "@/components/depoiments/depoiments";
 import FaqTabs from "@/components/faq/faq";
 import DualMarquee from "@/components/dualSlider/dualSlider";
 import TimeLineSG from "@/components/time line/timeLineSG";
+import { List } from "@/types/listCards";
+import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
 
 export default function ModalityGraduacaoEAD() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -54,11 +56,19 @@ export default function ModalityGraduacaoEAD() {
         detailsCourse().catch()
     }, []);
 
+       const curses: List[] = listcourse?.data.map((item: Course) => ({
+            link:  `graduacao/${item.alias}`,
+            img: item.photo_miniature ?? item.photo ?? 'skdgsdg',
+            name: item.name ?? "",
+            cta:  "Inscreva-se",
+            title: "Escolha seu curso e comece sua jornada",
+        })) ?? [];
+
     return <>
         <BannerSiteUniUnica {...bannerCentralizado} />
         {loading ? (
             <>
-                {listcourse && listcourse.data.length <= 0 ? notFound() : <ListingCourse responseCourse={listcourse} modality={"graduacao"}/> }
+                {listcourse && listcourse.data.length <= 0 ? notFound() :  <CursosPorModalidade list={curses} /> }
             </>
         ): (
             <>

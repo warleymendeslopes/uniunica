@@ -1,17 +1,16 @@
 'use client'
-import {BannerSite} from "@/types/banner";
+import { BannerSite } from "@/types/banner";
 import OfferPos from "@/components/offers/pos-graduacao";
 import BannerSiteUniUnica from "@/components/banner/page";
-import {useEffect, useState} from "react";
-import {Course, CourseResponse} from "@/types/list-courses";
-import {listCourses} from "@/services/api";
-import ListingCourse from "@/components/listingCourses/listingCourses";
+import { useEffect, useState } from "react";
+import { Course, CourseResponse } from "@/types/list-courses";
+import { listCourses } from "@/services/api";
 import Testimonials from "@/components/depoiments/depoiments";
 import FaqTabs from "@/components/faq/faq";
 import DualMarquee from "@/components/dualSlider/dualSlider";
 import TimeLineSG from "@/components/time line/timeLineSG";
 import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
-import {CursosPorModalidadeProps, List} from "@/types/listCards";
+import { List } from "@/types/listCards";
 
 export default function ModalitySegundaGraduacao() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -43,7 +42,7 @@ export default function ModalitySegundaGraduacao() {
     };
 
     useEffect(() => {
-        async function detailsCourse(){
+        async function detailsCourse() {
             const listcourse: CourseResponse = await listCourses({
                 modality: 'segunda-graduacao',
                 searchother: true
@@ -58,30 +57,28 @@ export default function ModalitySegundaGraduacao() {
 
 
     const curses: List[] = listcourse?.data.map((item: Course) => ({
-        link:  `segunda-graduacao/${item.alias}`,
+        link: `segunda-graduacao/${item.alias}`,
         img: item.photo_miniature ?? item.photo ?? 'skdgsdg',
         name: item.name ?? "",
-        cta:  "Inscreva-se",
+        cta: "Inscreva-se",
+        title: "Escolha seu curso e comece sua jornada"
     })) ?? [];
 
     return <>
         <BannerSiteUniUnica {...bannerCentralizado} />
         {loading ? (
             <>
-                {/*{listcourse && listcourse.data.length <= 0 ? notFound() : <ListingCourse responseCourse={listcourse} modality={"segunda-graduacao"}/> }*/}
-
-
                 <CursosPorModalidade list={curses} />
             </>
-        ): (
+        ) : (
             <>
                 carregando...
             </>
         )
         }
-                    <DualMarquee />
-                    <TimeLineSG modality={"segunda-graduacao"} />
-                    <Testimonials />
-                    <FaqTabs modality={'segunda-graduacao'} />
+        <DualMarquee />
+        <TimeLineSG modality={"segunda-graduacao"} />
+        <Testimonials />
+        <FaqTabs modality={'segunda-graduacao'} />
     </>
 }

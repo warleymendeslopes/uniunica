@@ -58,7 +58,7 @@ export default  function ModalityPosGraduacao() {
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
             {!loading && area ? (
-                <CursosPorModalidade list={curses}/>
+                <CursosPorModalidade list={curses} showPagination={false} showSearch={false} coursesPerPage={12}/>
             ): (
                 <>Carregando...</>
             )}

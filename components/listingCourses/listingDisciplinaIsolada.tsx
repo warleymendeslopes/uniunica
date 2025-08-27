@@ -3,7 +3,7 @@ import type React from "react"
 import { useState, useMemo } from "react"
 import { Pagination } from "@heroui/react"
 import type { CourseResponse } from "@/types/list-courses"
-import {usePathname, useRouter} from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const normalizeText = (text: string): string => {
     return text
@@ -12,9 +12,9 @@ const normalizeText = (text: string): string => {
         .toLowerCase()
 }
 
-export default function ListingCourse({ responseCourse }: { responseCourse?: CourseResponse }) {
+export default function ListingCourseDI({ responseCourse }: { responseCourse?: CourseResponse }) {
     const router = useRouter();
-    const pathname: string =  usePathname();
+    const pathname: string = usePathname();
     const [searchTerm, setSearchTerm] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
     const coursesPerPage = 10
@@ -62,27 +62,30 @@ export default function ListingCourse({ responseCourse }: { responseCourse?: Cou
                 <p className="text-sm text-gray-600 dark:text-gray-400">{filteredCourses.length} curso(s) encontrado(s)</p>
             )}
 
-            {currentCourses.map((course, index) => (
-                <div
-                    key={startIndex + index}
-                    className="bg-[#eaeaea] dark:bg-[#2a2a2a] dark:text-white rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between shadow-lg"
-                >
-                    <div className="flex-1 pr-6">
-                        <p className="text-sm dark:text-gray-300 font-bold mb-2">{course.workload || 0} horas</p>
-                        <h4 className="font-bold text-[1.3rem] lg:text-2xl text-[#0059ff] mb-4 uppercase">{course.name}</h4>
-                        <p className="dark:text-gray-300 text-base text-justify leading-relaxed max-w-2xl">
-                            {course.objective ?? course.description}
-                        </p>
-                    </div>
-                    <div className="mt-6 md:mt-0">
-                        <button
-                            onClick={() => router.push(`${pathname}/${course.alias}`)}
-                            className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
-                            CONHECER CURSO
-                        </button>
-                    </div>
-                </div>
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-poppins">
+                {currentCourses.map((course: any, index: number) => (
+                    <button
+                        key={course?.alias ?? index}
+                        /* quando o formulário estiver pronto, adicionar modal */
+                        /* onClick={() => router.push(`${pathname}/${course.alias}`)} */
+                        className="w-full text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7c3aed]/50 rounded-xl"
+                        title={course.name}
+                    >
+                        <div
+                            className={[
+                                "w-full rounded-xl",
+                                "bg-gray-100 text-neutral-900 border border-neutral-200 hover:bg-gray-200",
+                                "dark:bg-neutral-900 dark:text-white dark:border-white/10 dark:hover:bg-neutral-800/70",
+                                "px-5 py-4 md:px-6 md:py-5 transition-colors min-h-[88px] md:min-h-[96px] flex items-center",
+                            ].join(" ")}
+                        >
+                            <p className="font-semibold uppercase leading-snug text-sm md:text-base line-clamp-3">
+                                {course.name}
+                            </p>
+                        </div>
+                    </button>
+                ))}
+            </div>
 
             {totalPages > 1 && (
                 <div className="flex justify-center mt-8">

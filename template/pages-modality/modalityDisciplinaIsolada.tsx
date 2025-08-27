@@ -11,6 +11,7 @@ import Testimonials from "@/components/depoiments/depoiments";
 import FaqTabs from "@/components/faq/faq";
 import DualMarquee from "@/components/dualSlider/dualSlider";
 import TimeLineSG from "@/components/time line/timeLineSG";
+import ListingCourseDI from "@/components/listingCourses/listingDisciplinaIsolada";
 
 export default function ModalityDisciplinaIsolada() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -56,7 +57,7 @@ export default function ModalityDisciplinaIsolada() {
         <BannerSiteUniUnica {...bannerCentralizado} />
         {loading ? (
             <>
-                {listcourse && listcourse.data.length <= 0 ? notFound() : <ListingCourse responseCourse={listcourse} modality={"disciplina-isolada"}/> }
+                {listcourse && listcourse.data.length <= 0 ? notFound() : <ListingCourseDI responseCourse={listcourse}/> }
             </>
         ): (
             <>
