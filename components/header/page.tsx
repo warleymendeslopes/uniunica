@@ -72,23 +72,23 @@ export default function AppHeader() {
 
                 <NavbarContent className="hidden sm:flex gap-25" justify="center">
                     <NavbarItem>
-                        <Link color="foreground" href="#">
+                        <Link color="foreground" href="/graduacao">
                             Graduação
                         </Link>
                     </NavbarItem>
                     <NavbarItem isActive>
-                        <Link color="foreground" href="#">
+                        <Link color="foreground" href="/segunda-graduacao">
                             Segunda Graduação
                         </Link>
                     </NavbarItem>
                     <NavbarItem>
-                        <Link color="foreground" href="#">
+                        <Link color="foreground" href="/pos-graduacao">
                             Pós-Graduação
                         </Link>
                     </NavbarItem>
 
                     <NavbarItem>
-                        <Link color="foreground" href="#">
+                        <Link color="foreground" href="/disciplina-isolada">
                             Disciplina Isolada
                         </Link>
                     </NavbarItem>

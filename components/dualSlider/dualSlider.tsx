@@ -112,7 +112,7 @@ function renderSlide(s: Slide) {
     );
   }
   return (
-    <div className="text-center font-poppins h-full w-full bg-neutral-900 grid place-content-center px-8">
+    <div className="text-center font-poppins h-full w-full dark:bg-neutral-900 light:bg-gray-500 grid place-content-center px-8">
       <p className="text-white/90 text-base md:text-xl lg:text-2xl mb-1">{s.small}</p>
       <p className="text-4xl font-extrabold leading-none bg-gradient-to-r from-[#7c3aed] to-[#0ea5ff] bg-clip-text text-transparent">
         {s.big}

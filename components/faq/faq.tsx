@@ -139,7 +139,7 @@ export default function FaqTabs({ modality }: Props) {
     );
 
     return (
-        <section className="w-full bg-neutral-900  py-10 font-poppins">
+        <section className="w-full   py-10 font-poppins">
             <div className="mx-auto max-w-7xl px-6">
                 <h2 className="text-xl text-center lg:text-start lg:text-3xl font-bold font-krona mb-6">Perguntas Frequentes</h2>
 
@@ -150,7 +150,7 @@ export default function FaqTabs({ modality }: Props) {
                                 key={`${key}-${t.title}`}
                                 onClick={() => setActive(i)}
                                 className={`flex-1 text-center py-2 text-lg transition-colors duration-200
-                           ${i === active ? "text-[#7c3aed] font-semibold" : "text-neutral-300 hover:text-white"}`}
+                           ${i === active ? "text-[#7c3aed] font-semibold" : "cursor-pointer"}`}
                             >
                                 {t.title}
                             </button>
@@ -189,7 +189,7 @@ function FaqRow({ item }: { item: FaqItem }) {
                 <button
                     onClick={() => setOpen((v) => !v)}
                     aria-expanded={open}
-                    className="flex-1 text-left text-lg leading-snug hover:text-white/90 transition-colors"
+                    className="flex-1 text-left text-lg leading-snug  transition-colors"
                 >
                     {item.q}
                 </button>
@@ -209,7 +209,7 @@ function FaqRow({ item }: { item: FaqItem }) {
                 className={`overflow-hidden transition-all duration-400 ease-out
                     ${open ? "max-h-96 opacity-100 mt-3" : "max-h-0 opacity-0"}`}
             >
-                <p className="text-neutral-300 leading-relaxed">{item.a}</p>
+                <p className=" leading-relaxed">{item.a}</p>
             </div>
         </div>
     );

@@ -27,7 +27,7 @@ export default async function PageModality({params,}: {
     const validModalities: string[] = [
         'pos-graduacao',
         'segunda-graduacao',
-        'graduacao-ead',
+        'graduacao',
         'semipresenciais',
         'disciplina-isolada'
     ]
@@ -40,7 +40,7 @@ export default async function PageModality({params,}: {
             return <ModalityPosGraduacao />
         case 'segunda-graduacao':
             return <ModalitySegundaGraduacao />
-        case 'graduacao-ead':
+        case 'graduacao':
             return <ModalityGraduacaoEAD />
         case 'semipresenciais':
             return <ModalitySemipresenciais />

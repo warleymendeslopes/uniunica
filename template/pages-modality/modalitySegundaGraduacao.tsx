@@ -7,6 +7,10 @@ import {CourseResponse} from "@/types/list-courses";
 import {listCourses} from "@/services/api";
 import {notFound} from "next/navigation";
 import ListingCourse from "@/components/listingCourses/listingCourses";
+import Testimonials from "@/components/depoiments/depoiments";
+import FaqTabs from "@/components/faq/faq";
+import DualMarquee from "@/components/dualSlider/dualSlider";
+import TimeLineSG from "@/components/time line/timeLineSG";
 
 export default function ModalitySegundaGraduacao() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -22,7 +26,7 @@ export default function ModalitySegundaGraduacao() {
         content1: {
             backgroundImage: '/fimEADdesktop.webp',
             title: `<div class="text-[5rem] text-center font-bold lg:text-[8rem]">O FIM <br/> DO EAD</div>`,
-            subtitle: '<div class=" bg-yellow-300 p-3 text-center text-black font-bold text-2xl "> Segunda Graduacao</div>',
+            subtitle: '<div class=" bg-yellow-300 p-3 text-center text-black font-bold text-2xl ">Segunda Graduacao</div>',
             button: false,
             hubspot: {
                 active: true,
@@ -36,6 +40,7 @@ export default function ModalitySegundaGraduacao() {
             offer: <OfferPos />
         }
     };
+
     useEffect(() => {
         async function detailsCourse(){
             const listcourse: CourseResponse = await listCourses({
@@ -52,7 +57,7 @@ export default function ModalitySegundaGraduacao() {
         <BannerSiteUniUnica {...bannerCentralizado} />
         {loading ? (
             <>
-                {listcourse && listcourse.data.length <= 0 ? notFound() : <ListingCourse responseCourse={listcourse} /> }
+                {listcourse && listcourse.data.length <= 0 ? notFound() : <ListingCourse responseCourse={listcourse} modality={"segunda-graduacao"}/> }
             </>
         ): (
             <>
@@ -60,5 +65,9 @@ export default function ModalitySegundaGraduacao() {
             </>
         )
         }
+                    <DualMarquee />
+                    <TimeLineSG modality={"segunda-graduacao"} />
+                    <Testimonials />
+                    <FaqTabs modality={'segunda-graduacao'} />
     </>
 }

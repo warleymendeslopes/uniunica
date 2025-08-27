@@ -31,12 +31,12 @@ export default function CursosPorModalidade({area}: CursosPorModalidadeProps) {
                     className="object-cover"
                     unoptimized
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t dark:from-black/70 dark:via-black/30 from-white/70 via-white/30 to-transparent" />
                 <div className="absolute -left-3 bottom-0 lg:left-0 w-full p-3 font-krona flex flex-col items-center justify-center text-center">
-                  <p className="text-white uppercase mb-3 text-xs lg:text-base drop-shadow-md">
+                  <p className="uppercase mb-3 text-xs lg:text-base drop-shadow-md">
                     {a.areaName}
                   </p>
-                  <span className="uppercase rounded-lg text-[10px] lg:text-base border-1 p-2 mb-3">
+                  <span className="uppercase  rounded-lg text-[10px] lg:text-base border-1 p-2 mb-3">
                       ESCOLHER CURSO
                   </span>
                 </div>

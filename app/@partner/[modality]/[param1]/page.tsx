@@ -76,7 +76,7 @@ export default async function PageParams1({params,}: {
 
     const course: CourseDetailResponse = await detailsCourse(param1, modality, true)
 
-console.log('===>', course)
+
     const bannerCentralizado: BannerSite = {
         configBanner: {
             col: 2,
@@ -101,7 +101,7 @@ console.log('===>', course)
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
-            <PageCourse course={course} />
+            <PageCourse course={course} modality={modality}/>
             <Testimonials />
             <FaqTabs modality={modality} />
         </>
