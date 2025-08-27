@@ -3,9 +3,11 @@ import {BannerSite} from "@/types/banner";
 import BannerSiteUniUnica from "@/components/banner/page";
 import {useEffect, useState} from "react";
 import {getAreaURL} from "@/services/api";
-import {ResponseArea} from "@/types/list-area";
+import {Area, ResponseArea} from "@/types/list-area";
 import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
 import OfferPos from "@/components/offers/pos-graduacao";
+import {List} from "@/types/listCards";
+import {Course} from "@/types/list-courses";
 
 export default  function ModalityPosGraduacao() {
     const [area, setArea] = useState<ResponseArea>();
@@ -46,11 +48,17 @@ export default  function ModalityPosGraduacao() {
         getApiAreas().then();
     }, []);
 
+    const curses: List[] = area?.data.map((item: Area) => ({
+        link:  `pos-graduacao/${item.areaAlias}`,
+        img: item.miniature,
+        name: item.areaName ?? "",
+    })) ?? [];
+
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
             {!loading && area ? (
-                <CursosPorModalidade area={area}/>
+                <CursosPorModalidade list={curses}/>
             ): (
                 <>Carregando...</>
             )}

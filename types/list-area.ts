@@ -1,4 +1,4 @@
-interface Area {
+export interface Area {
     id: number;
     areaName: string;
     icon: string;
