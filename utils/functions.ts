@@ -51,3 +51,15 @@ export function getStableRandom(
 
     return newValue
 }
+
+/**
+ * Função que recebe uma string qualquer e remove todos os caracteres especiais e acentuação,
+ * transformando essa string em um slug.
+ * @param text
+ */
+export function normalizeText(text: string): string {
+    return text
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+}

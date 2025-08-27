@@ -2,30 +2,17 @@
 import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { CursosPorModalidadeProps } from "@/types/listCards";
 import { Pagination } from '@heroui/react';
-
-const normalizeText = (text: string): string => {
-  return text
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-};
-
-type Props = CursosPorModalidadeProps & {
-  showSearch?: boolean;
-  showPagination?: boolean;
-  coursesPerPage?: number;
-};
+import {CursosPorModalidadeProps} from "@/types/listCards";
+import {normalizeText} from "@/utils/functions";
 
 export default function CursosPorModalidade({
   list,
   showSearch = true,
   showPagination = true,
   coursesPerPage = 8,
-}: Props) {
+}: CursosPorModalidadeProps) {
   const router = useRouter();
-
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 

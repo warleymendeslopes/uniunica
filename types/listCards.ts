@@ -7,4 +7,7 @@ export interface List{
 }
 export interface CursosPorModalidadeProps {
     list: List[];
+    showSearch?: boolean;
+    showPagination?: boolean;
+    coursesPerPage?: number;
 }
