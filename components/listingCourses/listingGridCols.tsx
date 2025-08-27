@@ -1,44 +1,20 @@
 "use client"
 import type React from "react"
-import { useState, useMemo } from "react"
+import { useState } from "react"
 import { Pagination } from "@heroui/react"
-import type { CourseResponse } from "@/types/list-courses"
-import { usePathname, useRouter } from "next/navigation";
+import type {Course, CourseResponse} from "@/types/list-courses"
+import {useFilteredCourses} from "@/hooks/useFilteredCourses";
 
-const normalizeText = (text: string): string => {
-    return text
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-}
 
 export default function ListingCourseDI({ responseCourse }: { responseCourse?: CourseResponse }) {
-    const router = useRouter();
-    const pathname: string = usePathname();
     const [searchTerm, setSearchTerm] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
     const coursesPerPage = 10
-
-    const filteredCourses = useMemo(() => {
-        if (!responseCourse?.data) return []
-
-        if (!searchTerm.trim()) return responseCourse.data
-
-        const normalizedSearchTerm = normalizeText(searchTerm.trim())
-        const searchRegex = new RegExp(normalizedSearchTerm.split(" ").join("|"), "i")
-
-        return responseCourse.data.filter((course) => {
-            const normalizedName = normalizeText(course.name)
-            const nameMatch = searchRegex.test(normalizedName)
-            const workloadMatch = course.workload?.toString().includes(searchTerm.trim()) || false
-            return nameMatch || workloadMatch
-        })
-    }, [responseCourse?.data, searchTerm])
-
-    const totalPages = Math.ceil(filteredCourses.length / coursesPerPage)
-    const startIndex = (currentPage - 1) * coursesPerPage
-    const endIndex = startIndex + coursesPerPage
-    const currentCourses = filteredCourses.slice(startIndex, endIndex)
+    const filteredCourses: Course[] = useFilteredCourses(responseCourse, searchTerm);
+    const totalPages: number = Math.ceil(filteredCourses.length / coursesPerPage)
+    const startIndex: number = (currentPage - 1) * coursesPerPage
+    const endIndex: number = startIndex + coursesPerPage
+    const currentCourses: Course[] = filteredCourses.slice(startIndex, endIndex)
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value)
@@ -66,8 +42,6 @@ export default function ListingCourseDI({ responseCourse }: { responseCourse?: C
                 {currentCourses.map((course: any, index: number) => (
                     <button
                         key={course?.alias ?? index}
-                        /* quando o formulário estiver pronto, adicionar modal */
-                        /* onClick={() => router.push(`${pathname}/${course.alias}`)} */
                         className="w-full text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7c3aed]/50 rounded-xl"
                         title={course.name}
                     >
