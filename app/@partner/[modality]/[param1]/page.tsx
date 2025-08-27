@@ -76,7 +76,9 @@ export default async function PageParams1({params,}: {
 
     const course: CourseDetailResponse = await detailsCourse(param1, modality, true)
 
-console.log('===>', course)
+    if(!course.data){
+        notFound();
+    }
     const bannerCentralizado: BannerSite = {
         configBanner: {
             col: 2,

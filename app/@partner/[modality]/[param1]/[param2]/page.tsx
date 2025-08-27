@@ -41,7 +41,7 @@ export default async function PageParams2({params,}: {
                     backgroundImage: '/fimEADdesktop.webp',
                     openTitle: 'Pós-Graduação',
                     title: `<b style="font-size: 5rem;">ONLINE</b>`,
-                    subtitle: `<span class="p-4 font-bold bg-[#6424b3] mt-3 text-lg">Curso de ${course.data.name} <br/> </span> <p style="margin-top: 20px;">${course.data.objective}</p>`,
+                    subtitle: `<span class="p-4 font-bold  mt-3 text-lg">Curso de ${course.data.name} <br/> </span> <p style="margin-top: 20px;">${course.data.objective}</p>`,
                     button: false,
                     hubspot: {
                         active: true,
