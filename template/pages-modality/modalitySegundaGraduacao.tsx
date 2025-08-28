@@ -8,9 +8,10 @@ import { listCourses } from "@/services/api";
 import Testimonials from "@/components/depoiments/depoiments";
 import FaqTabs from "@/components/faq/faq";
 import DualMarquee from "@/components/dualSlider/dualSlider";
-import TimeLineSG from "@/components/time line/timeLineSG";
+import TimeLineSG from "@/components/videoMarket/listingMarketingSG";
 import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
 import { List } from "@/types/listCards";
+import ListingSG from "@/components/videoMarket/listingMarketingSG";
 
 export default function ModalitySegundaGraduacao() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -77,7 +78,7 @@ export default function ModalitySegundaGraduacao() {
         )
         }
         <DualMarquee />
-        <TimeLineSG modality={"segunda-graduacao"} />
+        <ListingSG modality={"segunda-graduacao"} />
         <Testimonials />
         <FaqTabs modality={'segunda-graduacao'} />
     </>

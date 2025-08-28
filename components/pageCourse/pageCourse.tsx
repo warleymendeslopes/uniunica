@@ -6,7 +6,7 @@ import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { CourseDetailResponse } from "@/types/detailsCourse";
 import CourseProgram from "@/components/course program /courseProgram";
 import Curriculum from "@/components/curriculum/curriculum";
-import TimeLine from "@/components/time line/timeLine";
+import TimeLine from "@/components/timeLIne/timeLine";
 import { Item } from "@/types/timeLine";
 const CountdownTimer = lazy(() => import("@/components/countdownTimer/countdownTImer"));
 

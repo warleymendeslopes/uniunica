@@ -32,13 +32,33 @@ interface Links {
     sponsor: string;
 }
 
+
+type ProgramFeatureItem = {
+  title: string;
+  text: string;
+  image: string;
+};
+
+type ProgramFeatureCategory = {
+  heading: string;
+  items: ProgramFeatureItem[];
+};
+
+type ProgramFeatures = {
+  "segunda-graduacao": ProgramFeatureCategory;
+  "disciplina-isolada": ProgramFeatureCategory;
+  graduacao: ProgramFeatureCategory;
+};
+
+
 // tipagem principal
 export interface SiteConfig {
     form: FormConfig[];
     slidePage: {
         "pos-graduacao": SlideConfig;
         "graduacao": SlideConfig;
-    };
+    }
+    ProgramFeatures: ProgramFeatures;
     name: string;
     description: string;
     navItems: NavItem[];

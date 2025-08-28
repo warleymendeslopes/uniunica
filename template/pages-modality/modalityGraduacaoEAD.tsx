@@ -10,9 +10,9 @@ import ListingCourse from "@/components/listingCourses/listingCourses";
 import Testimonials from "@/components/depoiments/depoiments";
 import FaqTabs from "@/components/faq/faq";
 import DualMarquee from "@/components/dualSlider/dualSlider";
-import TimeLineSG from "@/components/time line/timeLineSG";
 import { List } from "@/types/listCards";
 import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
+import ListingSG from "@/components/videoMarket/listingMarketingSG";
 
 export default function ModalityGraduacaoEAD() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -77,7 +77,7 @@ export default function ModalityGraduacaoEAD() {
         )
         }
                     <DualMarquee />
-                    <TimeLineSG modality={"graduacao"} />
+                    <ListingSG modality={"graduacao"} />
                     <Testimonials />
                     <FaqTabs modality={'segunda-graduacao'} />
     </>

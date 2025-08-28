@@ -10,8 +10,8 @@ import ListingCourse from "@/components/listingCourses/listingCourses";
 import Testimonials from "@/components/depoiments/depoiments";
 import FaqTabs from "@/components/faq/faq";
 import DualMarquee from "@/components/dualSlider/dualSlider";
-import TimeLineSG from "@/components/time line/timeLineSG";
 import ListingCourseDI from "@/components/listingCourses/listingDisciplinaIsolada";
+import ListingSG from "@/components/videoMarket/listingMarketingSG";
 
 export default function ModalityDisciplinaIsolada() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -66,7 +66,7 @@ export default function ModalityDisciplinaIsolada() {
         )
         }
                     <DualMarquee />
-                    <TimeLineSG modality="disciplina-isolada" />
+                    <ListingSG modality="disciplina-isolada" />
                     <Testimonials />
                     <FaqTabs modality={'disciplina-isolada'} />
     </>
