@@ -39,7 +39,7 @@ type ProgramFeatureItem = {
   image: string;
 };
 
-type ProgramFeatureCategory = {
+export type ProgramFeatureCategory = {
   heading: string;
   items: ProgramFeatureItem[];
 };

@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
     },
   ],
   ProgramFeatures:{
-        "segunda-graduacao": {
+    "segunda-graduacao": {
     heading: "Com uma Segunda Graduação, você sai na frente no mercado",
     items: [
       {
@@ -46,62 +46,62 @@ export const siteConfig: SiteConfig = {
         image: "/capa-video/timeLineSG/segundagraduacao4.webp",
       },
     ],
-  },
-  "disciplina-isolada": {
-    heading: "Por que fazer uma Disciplina Isolada?",
-    items: [
-      {
-        title: "Destrave pendências do seu curso",
-        text: "Se o seu diploma é o que está faltando para dar o pontapé inicial na sua carreira, as Disciplinas Isoladas são a solução...",
-        image: "/capa-video/timeLineSG/segundagraduacao1.webp",
-      },
-      {
-        title: "Conclusão rápida",
-        text: "Tem pressa e quer começar a sua carreira logo? Isso não é um problema! Os nossos cursos são rápidos...",
-        image: "/capa-video/timeLineSG/segundagraduacao2.webp",
-      },
-      {
-        title: "Turbine sua grade curricular e seu currículo",
-        text: "Adicionando uma disciplina que não está em seu plano de estudo, você adquire um novo conhecimento...",
-        image: "/capa-video/timeLineSG/segundagraduacao3.webp",
-      },
-      {
-        title: "Está em dúvida sobre qual carreira seguir?",
-        text: "Com uma Disciplina Isolada você pode conhecer um pouco mais sobre a profissão antes de decidir em qual Graduação ingressar...",
-        image: "/capa-video/timeLineSG/segundagraduacao4.webp",
-      },
-      {
-        title: "Garantia de qualidade com o certificado reconhecido pelo MEC",
-        text: "No Centro Universitário Uniúnica você tem a certeza que está adquirindo um curso de qualidade...",
-        image: "/capa-video/timeLineSG/segundagraduacao5.webp",
-      },
-    ],
-  },
-  "graduacao": {
-    heading: "Com uma Graduação, você sai na frente no mercado",
-    items: [
-      {
-        title: "Não fique desempregado!",
-        text: "Pesquisa da Associação Brasileira de Mantenedoras de Ensino Superior (Abmes) mostra que 69% dos graduados...",
-        image: "/capa-video/timeLineSG/segundagraduacao1.webp",
-      },
-      {
-        title: "Tá cansado de não conseguir pagar as contas?",
-        text: "Segundo a Fundação Getúlio Vargas, confirmando dados do IBGE, a Graduação traz um crescimento financeiro de 144%...",
-        image: "/capa-video/timeLineSG/segundagraduacao2.webp",
-      },
-      {
-        title: "Por que uma faculdade de nota máxima faz a diferença?",
-        text: "De acordo com Escolas para Executivos e Negócios, o nome da instituição influencia e, em determinados casos, é determinante...",
-        image: "/capa-video/timeLineSG/segundagraduacao3.webp",
-      },
-      {
-        title: "Conselhos profissionais",
-        text: "Se gradue com quem possui vínculos com importantes conselhos profissionais, como: CREA, CONFEA, CREF, OAB, CFP, COREN...",
-        image: "/capa-video/timeLineSG/segundagraduacao4.webp",
-      },
-    ],
-  },
+    },
+    "disciplina-isolada": {
+      heading: "Por que fazer uma Disciplina Isolada?",
+      items: [
+        {
+          title: "Destrave pendências do seu curso",
+          text: "Se o seu diploma é o que está faltando para dar o pontapé inicial na sua carreira, as Disciplinas Isoladas são a solução...",
+          image: "/capa-video/timeLineSG/segundagraduacao1.webp",
+        },
+        {
+          title: "Conclusão rápida",
+          text: "Tem pressa e quer começar a sua carreira logo? Isso não é um problema! Os nossos cursos são rápidos...",
+          image: "/capa-video/timeLineSG/segundagraduacao2.webp",
+        },
+        {
+          title: "Turbine sua grade curricular e seu currículo",
+          text: "Adicionando uma disciplina que não está em seu plano de estudo, você adquire um novo conhecimento...",
+          image: "/capa-video/timeLineSG/segundagraduacao3.webp",
+        },
+        {
+          title: "Está em dúvida sobre qual carreira seguir?",
+          text: "Com uma Disciplina Isolada você pode conhecer um pouco mais sobre a profissão antes de decidir em qual Graduação ingressar...",
+          image: "/capa-video/timeLineSG/segundagraduacao4.webp",
+        },
+        {
+          title: "Garantia de qualidade com o certificado reconhecido pelo MEC",
+          text: "No Centro Universitário Uniúnica você tem a certeza que está adquirindo um curso de qualidade...",
+          image: "/capa-video/timeLineSG/segundagraduacao5.webp",
+        },
+      ],
+    },
+    "graduacao": {
+      heading: "Com uma Graduação, você sai na frente no mercado",
+      items: [
+        {
+          title: "Não fique desempregado!",
+          text: "Pesquisa da Associação Brasileira de Mantenedoras de Ensino Superior (Abmes) mostra que 69% dos graduados...",
+          image: "/capa-video/timeLineSG/segundagraduacao1.webp",
+        },
+        {
+          title: "Tá cansado de não conseguir pagar as contas?",
+          text: "Segundo a Fundação Getúlio Vargas, confirmando dados do IBGE, a Graduação traz um crescimento financeiro de 144%...",
+          image: "/capa-video/timeLineSG/segundagraduacao2.webp",
+        },
+        {
+          title: "Por que uma faculdade de nota máxima faz a diferença?",
+          text: "De acordo com Escolas para Executivos e Negócios, o nome da instituição influencia e, em determinados casos, é determinante...",
+          image: "/capa-video/timeLineSG/segundagraduacao3.webp",
+        },
+        {
+          title: "Conselhos profissionais",
+          text: "Se gradue com quem possui vínculos com importantes conselhos profissionais, como: CREA, CONFEA, CREF, OAB, CFP, COREN...",
+          image: "/capa-video/timeLineSG/segundagraduacao4.webp",
+        },
+      ],
+    },
   },
   slidePage: {
     "pos-graduacao": {

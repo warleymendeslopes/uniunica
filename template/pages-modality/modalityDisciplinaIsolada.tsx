@@ -9,7 +9,7 @@ import {notFound} from "next/navigation";
 import Testimonials from "@/components/depoiments/depoiments";
 import FaqTabs from "@/components/faq/faq";
 import DualMarquee from "@/components/dualSlider/dualSlider";
-import ListingSG from "@/components/videoMarket/listingMarketingSG";
+import ListingSG from "@/components/videoMarket/listingMarketing";
 import ListingCourseDI from "@/components/listingCourses/listingGridCols";
 
 

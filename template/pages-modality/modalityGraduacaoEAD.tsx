@@ -6,13 +6,12 @@ import {useEffect, useState} from "react";
 import {Course, CourseResponse} from "@/types/list-courses";
 import {listCourses} from "@/services/api";
 import {notFound} from "next/navigation";
-import ListingCourse from "@/components/listingCourses/listingCourses";
 import Testimonials from "@/components/depoiments/depoiments";
 import FaqTabs from "@/components/faq/faq";
 import DualMarquee from "@/components/dualSlider/dualSlider";
 import { List } from "@/types/listCards";
 import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
-import ListingSG from "@/components/videoMarket/listingMarketingSG";
+import ListingSG from "@/components/videoMarket/listingMarketing";
 
 export default function ModalityGraduacaoEAD() {
     const [loading, setLoading] = useState<boolean>(false);
