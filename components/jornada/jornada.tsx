@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import {ReactNode, useEffect, useState} from "react";
 export default function Jornada() {
-  const [squaresUp, setSquaresUp] = useState<JSX.Element[]>([]);
-  const [squaresDown, setSquaresDown] = useState<JSX.Element[]>([]);
+  const [squaresUp, setSquaresUp] = useState<ReactNode[]>([]);
+  const [squaresDown, setSquaresDown] = useState<ReactNode[]>([]);
 
   const createSquare = (direction: "up" | "down", count: number) => {
     const top: number = Math.random() * 100;
