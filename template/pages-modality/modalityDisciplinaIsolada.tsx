@@ -6,12 +6,16 @@ import {useEffect, useState} from "react";
 import {CourseResponse} from "@/types/list-courses";
 import {listCourses} from "@/services/api";
 import {notFound} from "next/navigation";
-import ListingCourse from "@/components/listingCourses/listingCourses";
 import Testimonials from "@/components/depoiments/depoiments";
 import FaqTabs from "@/components/faq/faq";
 import DualMarquee from "@/components/dualSlider/dualSlider";
+<<<<<<< HEAD
 import ListingCourseDI from "@/components/listingCourses/listingDisciplinaIsolada";
 import ListingSG from "@/components/videoMarket/listingMarketingSG";
+=======
+import TimeLineSG from "@/components/time line/timeLineSG";
+import ListingCourseDI from "@/components/listingCourses/listingGridCols";
+>>>>>>> db53ed1c1191318aa9a9ac6e58e1e6f022f5cf69
 
 export default function ModalityDisciplinaIsolada() {
     const [loading, setLoading] = useState<boolean>(false);

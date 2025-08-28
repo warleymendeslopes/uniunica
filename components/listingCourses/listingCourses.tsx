@@ -1,47 +1,25 @@
 "use client"
 import type React from "react"
-import { useState, useMemo } from "react"
+import { useState } from "react"
 import { Pagination } from "@heroui/react"
 import type { CourseResponse } from "@/types/list-courses"
 import {usePathname, useRouter} from "next/navigation";
-
-const normalizeText = (text: string): string => {
-    return text
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-}
+import {useFilteredCourses} from "@/hooks/useFilteredCourses";
 
 export default function ListingCourse({ responseCourse }: { responseCourse?: CourseResponse }) {
     const router = useRouter();
     const pathname: string =  usePathname();
-    const [searchTerm, setSearchTerm] = useState("")
+    const [search, setSearch] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
     const coursesPerPage = 10
-
-    const filteredCourses = useMemo(() => {
-        if (!responseCourse?.data) return []
-
-        if (!searchTerm.trim()) return responseCourse.data
-
-        const normalizedSearchTerm = normalizeText(searchTerm.trim())
-        const searchRegex = new RegExp(normalizedSearchTerm.split(" ").join("|"), "i")
-
-        return responseCourse.data.filter((course) => {
-            const normalizedName = normalizeText(course.name)
-            const nameMatch = searchRegex.test(normalizedName)
-            const workloadMatch = course.workload?.toString().includes(searchTerm.trim()) || false
-            return nameMatch || workloadMatch
-        })
-    }, [responseCourse?.data, searchTerm])
-
+    const filteredCourses = useFilteredCourses(responseCourse, search);
     const totalPages = Math.ceil(filteredCourses.length / coursesPerPage)
     const startIndex = (currentPage - 1) * coursesPerPage
     const endIndex = startIndex + coursesPerPage
     const currentCourses = filteredCourses.slice(startIndex, endIndex)
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(e.target.value)
+        setSearch(e.target.value)
         setCurrentPage(1)
     }
 
@@ -54,11 +32,11 @@ export default function ListingCourse({ responseCourse }: { responseCourse?: Cou
             <input
                 type="search"
                 placeholder="Pesquise por nome do curso ou carga horária..."
-                value={searchTerm}
+                value={search}
                 onChange={handleSearchChange}
                 className="dark:bg-[#2a2a2a] p-3 rounded-lg outline-none w-full h-[55px]"
             />
-            {searchTerm && (
+            {search && (
                 <p className="text-sm text-gray-600 dark:text-gray-400">{filteredCourses.length} curso(s) encontrado(s)</p>
             )}
 
@@ -96,9 +74,9 @@ export default function ListingCourse({ responseCourse }: { responseCourse?: Cou
                     />
                 </div>
             )}
-            {filteredCourses.length === 0 && searchTerm && (
+            {filteredCourses.length === 0 && search && (
                 <div className="text-center py-8">
-                    <p className="text-gray-600 dark:text-gray-400">Nenhum curso encontrado para "{searchTerm}"</p>
+                    <p className="text-gray-600 dark:text-gray-400">Nenhum curso encontrado para "{search}"</p>
                 </div>
             )}
         </section>
