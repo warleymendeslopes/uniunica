@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FaqCategory, FaqModality } from "@/types/faq";
-import { notFound } from "next/navigation";
+import {FaqCategory, FaqItem} from "@/types/faq";
 import FaqRow from "./template/faqRow";
 
 const FAQ: Record<string, FaqCategory[]> = {
@@ -107,14 +106,14 @@ const FAQ: Record<string, FaqCategory[]> = {
     ],
 };
 
-export default function FaqTabs({ modality }: FaqModality) {
-  const categories = modality ? FAQ[modality] : undefined;
+export default function FaqTabs({ modality }: {modality: string}) {
+  const categories: FaqCategory[] | undefined = modality ? FAQ[modality] : undefined;
 
-  if (!categories) return notFound();
+  if (!categories) return;
 
   const [active, setActive] = useState(0);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const total = categories.length;
+  const total: number = categories.length;
 
   return (
     <section className="w-full py-10 font-poppins">
@@ -125,17 +124,17 @@ export default function FaqTabs({ modality }: FaqModality) {
 
         <div className="relative">
           <div className="flex items-center gap-4 mb-3">
-            {categories.map((t, i) => (
+            {categories.map((faq: FaqCategory, index: number) => (
               <button
-                key={t.title}
+                key={index}
                 onClick={() => {
-                  setActive(i);
+                  setActive(index);
                   setOpenIndex(null);
                 }}
                 className={`flex-1 text-center py-2 text-lg transition-colors duration-200
-                  ${i === active ? "text-[#7c3aed] font-semibold" : "cursor-pointer"}`}
+                  ${index === active ? "text-[#7c3aed] font-semibold" : "cursor-pointer"}`}
               >
-                {t.title}
+                {faq.title}
               </button>
             ))}
           </div>
@@ -153,13 +152,13 @@ export default function FaqTabs({ modality }: FaqModality) {
         </div>
 
         <div className="mt-10 space-y-6">
-          {categories[active].items.map((item, idx) => (
+          {categories[active].items.map((item: FaqItem, index: number) => (
             <FaqRow
-              key={`${categories[active].title}-${idx}`}
+              key={index}
               item={item}
-              isOpen={openIndex === idx}
+              isOpen={openIndex === index}
               onToggle={() =>
-                setOpenIndex(openIndex === idx ? null : idx)
+                setOpenIndex(openIndex === index ? null : index)
               }
             />
           ))}

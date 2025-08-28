@@ -19,10 +19,8 @@ import DualMarquee from "@/components/dualSlider/dualSlider";
 import VideoPromoSection from "@/components/videoMarket/videoMarket";
 import Testimonials from "@/components/depoiments/depoiments";
 import {CourseDetailResponse} from "@/types/detailsCourse";
-import PageCourse from "@/components/pageCourse/pageCourse";
 import FaqTabs from "@/components/faq/faq";
-import { Verification } from "next/dist/lib/metadata/types/metadata-types";
-import { VerifyModality } from "@/types/siteConfig";
+import PageCourse from "@/template/page-courses/pageCourse";
 
 export default async function PageParams1({params,}: {
     params: Promise<{modality: string, param1: string }>

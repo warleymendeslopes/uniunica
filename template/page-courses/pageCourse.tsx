@@ -1,15 +1,14 @@
 "use client";
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { FaRegClock, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import Image from "next/image";
 import Curriculum from "@/components/curriculum/curriculum";
-import CourseProgram from "../course program /courseProgram";
-import TimeLine from "../timeLIne/timeLine";
-import CountdownTimer from "../countdownTimer/countdownTImer";
 import { siteConfig } from "@/config/site";
 import { PageCourseProps } from "@/types/pageCourse";
 import { VerifyModality } from "@/types/siteConfig";
-
+import CourseProgram from "@/components/course program /courseProgram";
+import TimeLine from "@/components/timeLIne/timeLine";
+import CountdownTimer from "@/components/countdownTimer/countdownTImer";
 
 
 export default function PageCourse({ course, modality }: PageCourseProps) {
