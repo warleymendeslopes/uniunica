@@ -55,7 +55,7 @@ export default function ListingCourse({ responseCourse }: { responseCourse?: Cou
                     <div className="mt-6 md:mt-0">
                         <button
                             onClick={() => router.push(`${pathname}/${course.alias}`)}
-                            className="bg-gradient-to-r to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
+                            className="bg-gradient-to-r cursor-pointer to-yellow-400 from-orange-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition">
                             CONHECER CURSO
                         </button>
                     </div>

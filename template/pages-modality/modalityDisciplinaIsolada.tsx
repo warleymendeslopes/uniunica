@@ -11,6 +11,7 @@ import FaqTabs from "@/components/faq/faq";
 import DualMarquee from "@/components/dualSlider/dualSlider";
 import ListingSG from "@/components/videoMarket/listingMarketing";
 import ListingCourseDI from "@/components/listingCourses/listingGridCols";
+import Jornada from "@/components/jornada/jornada";
 
 
 export default function ModalityDisciplinaIsolada() {
@@ -22,7 +23,7 @@ export default function ModalityDisciplinaIsolada() {
             position: 'start',
             skeleton: false,
             titleFont: 'poppins',
-            ButtonPosition: 'center'
+            ButtonPosition: 'start'
         },
         content1: {
             backgroundImage: '/fimEADdesktop.webp',
@@ -55,6 +56,7 @@ export default function ModalityDisciplinaIsolada() {
 
     return <>
         <BannerSiteUniUnica {...bannerCentralizado} />
+        <Jornada />
         {loading ? (
             <>
                 {listcourse && listcourse.data.length <= 0 ? notFound() : <ListingCourseDI responseCourse={listcourse}/> }

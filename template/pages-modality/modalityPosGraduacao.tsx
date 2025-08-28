@@ -7,6 +7,13 @@ import {Area, ResponseArea} from "@/types/list-area";
 import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
 import OfferPos from "@/components/offers/pos-graduacao";
 import {List} from "@/types/listCards";
+import { ListVideo } from "lucide-react";
+import VideoPromoSection from "@/components/videoMarket/videoMarket";
+import DualMarquee from "@/components/dualSlider/dualSlider";
+import Testimonials from "@/components/depoiments/depoiments";
+import FaqRow from "@/components/faq/template/faqRow";
+import FaqTabs from "@/components/faq/faq";
+import Jornada from "@/components/jornada/jornada";
 
 export default  function ModalityPosGraduacao() {
     const [area, setArea] = useState<ResponseArea>();
@@ -17,7 +24,7 @@ export default  function ModalityPosGraduacao() {
             position: 'start',
             skeleton: false,
             titleFont: 'poppins',
-            ButtonPosition: 'center'
+            ButtonPosition: 'start'
         },
         content1: {
             backgroundImage: '/fimEADdesktop.webp',
@@ -56,11 +63,16 @@ export default  function ModalityPosGraduacao() {
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
+            <Jornada />
             {!loading && area ? (
                 <CursosPorModalidade list={curses} showPagination={false} showSearch={false} coursesPerPage={12}/>
             ): (
                 <>Carregando...</>
             )}
+            <DualMarquee />
+            <VideoPromoSection />
+            <Testimonials />
+            <FaqTabs modality="pos-graduacao" />
         </>
     )
 }
