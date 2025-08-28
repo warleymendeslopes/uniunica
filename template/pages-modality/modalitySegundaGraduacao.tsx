@@ -1,12 +1,16 @@
 'use client'
-import {BannerSite} from "@/types/banner";
+import { BannerSite } from "@/types/banner";
 import OfferPos from "@/components/offers/pos-graduacao";
 import BannerSiteUniUnica from "@/components/banner/page";
-import {useEffect, useState} from "react";
-import {CourseResponse} from "@/types/list-courses";
-import {listCourses} from "@/services/api";
-import {notFound} from "next/navigation";
-import ListingCourse from "@/components/listingCourses/listingCourses";
+import { useEffect, useState } from "react";
+import { Course, CourseResponse } from "@/types/list-courses";
+import { listCourses } from "@/services/api";
+import Testimonials from "@/components/depoiments/depoiments";
+import FaqTabs from "@/components/faq/faq";
+import DualMarquee from "@/components/dualSlider/dualSlider";
+import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
+import { List } from "@/types/listCards";
+import ListingSG from "@/components/videoMarket/listingMarketing";
 
 export default function ModalitySegundaGraduacao() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -22,7 +26,7 @@ export default function ModalitySegundaGraduacao() {
         content1: {
             backgroundImage: '/fimEADdesktop.webp',
             title: `<div class="text-[5rem] text-center font-bold lg:text-[8rem]">O FIM <br/> DO EAD</div>`,
-            subtitle: '<div class=" bg-yellow-300 p-3 text-center text-black font-bold text-2xl "> Segunda Graduacao</div>',
+            subtitle: '<div class=" bg-yellow-300 p-3 text-center text-black font-bold text-2xl ">Segunda Graduacao</div>',
             button: false,
             hubspot: {
                 active: true,
@@ -36,8 +40,9 @@ export default function ModalitySegundaGraduacao() {
             offer: <OfferPos />
         }
     };
+
     useEffect(() => {
-        async function detailsCourse(){
+        async function detailsCourse() {
             const listcourse: CourseResponse = await listCourses({
                 modality: 'segunda-graduacao',
                 searchother: true
@@ -48,17 +53,32 @@ export default function ModalitySegundaGraduacao() {
         detailsCourse().catch()
     }, []);
 
+
+
+
+    const curses: List[] = listcourse?.data.map((item: Course) => ({
+        link: `segunda-graduacao/${item.alias}`,
+        img: item.photo_miniature ?? item.photo ?? 'skdgsdg',
+        name: item.name ?? "",
+        cta: "Inscreva-se",
+        title: "Escolha seu curso e comece sua jornada"
+    })) ?? [];
+
     return <>
         <BannerSiteUniUnica {...bannerCentralizado} />
         {loading ? (
             <>
-                {listcourse && listcourse.data.length <= 0 ? notFound() : <ListingCourse responseCourse={listcourse} /> }
+                <CursosPorModalidade list={curses} />
             </>
-        ): (
+        ) : (
             <>
                 carregando...
             </>
         )
         }
+        <DualMarquee />
+        <ListingSG modality={"segunda-graduacao"} />
+        <Testimonials />
+        <FaqTabs modality={'segunda-graduacao'} />
     </>
 }

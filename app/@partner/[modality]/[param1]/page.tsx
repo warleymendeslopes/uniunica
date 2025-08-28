@@ -19,8 +19,8 @@ import DualMarquee from "@/components/dualSlider/dualSlider";
 import VideoPromoSection from "@/components/videoMarket/videoMarket";
 import Testimonials from "@/components/depoiments/depoiments";
 import {CourseDetailResponse} from "@/types/detailsCourse";
-import PageCourse from "@/components/pageCourse/pageCourse";
 import FaqTabs from "@/components/faq/faq";
+import PageCourse from "@/template/page-courses/pageCourse";
 
 export default async function PageParams1({params,}: {
     params: Promise<{modality: string, param1: string }>
@@ -76,9 +76,11 @@ export default async function PageParams1({params,}: {
 
     const course: CourseDetailResponse = await detailsCourse(param1, modality, true)
 
+
     if(!course.data){
         notFound();
     }
+
     const bannerCentralizado: BannerSite = {
         configBanner: {
             col: 2,
@@ -103,7 +105,7 @@ export default async function PageParams1({params,}: {
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
-            <PageCourse course={course} />
+            <PageCourse course={course} modality={modality} /> 
             <Testimonials />
             <FaqTabs modality={modality} />
         </>

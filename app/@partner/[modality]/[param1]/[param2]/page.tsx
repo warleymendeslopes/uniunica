@@ -12,13 +12,13 @@
 
 import BannerSiteUniUnica from "@/components/banner/page"
 import Testimonials from "@/components/depoiments/depoiments"
-import PageCourse from "@/components/pageCourse/pageCourse"
 import {detailsArea, detailsCourse} from "@/services/api"
 import { BannerSite } from "@/types/banner"
 import { CourseAreaResponse } from "@/types/detailsArea"
 import { notFound } from "next/navigation"
 import {CourseDetailResponse} from "@/types/detailsCourse";
 import FaqTabs from "@/components/faq/faq"
+import PageCourse from "@/template/page-courses/pageCourse";
 
 export default async function PageParams2({params,}: {
     params: Promise<{ modality: string, param1: string, param2: string }>
@@ -54,8 +54,8 @@ export default async function PageParams2({params,}: {
 
     return (
         <>
-           <BannerSiteUniUnica {...bannerCentralizado} />
-            <PageCourse course={course} />
+            <BannerSiteUniUnica {...bannerCentralizado} />
+            <PageCourse course={course} modality={modality}/>
             <Testimonials />
             <FaqTabs modality={modality} />
         </>
