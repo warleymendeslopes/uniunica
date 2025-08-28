@@ -1,42 +1,23 @@
 "use client";
 import { useState, useEffect, lazy, Suspense } from "react";
-import { FaRegClock } from "react-icons/fa";
+import { FaRegClock, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import Image from "next/image";
-import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { CourseDetailResponse } from "@/types/detailsCourse";
-import CourseProgram from "@/components/course program /courseProgram";
 import Curriculum from "@/components/curriculum/curriculum";
-import TimeLine from "@/components/timeLIne/timeLine";
+import CourseProgram from "../course program /courseProgram";
+import TimeLine from "../timeLIne/timeLine";
 import { Item } from "@/types/timeLine";
-const CountdownTimer = lazy(() => import("@/components/countdownTimer/countdownTImer"));
+import CountdownTimer from "../countdownTimer/countdownTImer";
+import { VerifyModality, PaginacaoCurso } from "@/types/pageCourse";
 
-/* ---------- helpers ---------- */
-type ModalityKey = "pos-graduacao" | "graduacao" | "segunda-graduacao" | "disciplina-isolada";
-const toKey = (v?: string) =>
-  (v || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-
-const resolveModality = (m?: string): ModalityKey => {
-  const k = toKey(m || "pos-graduacao");
-  return (["pos-graduacao", "graduacao", "segunda-graduacao", "disciplina-isolada"] as const).includes(
-    k as ModalityKey
-  )
-    ? (k as ModalityKey)
-    : "pos-graduacao";
-};
-
-const HEADINGS: Record<ModalityKey, string> = {
+const titles: Record<VerifyModality, string> = {
   "pos-graduacao": "Com uma Pós, você sai na frente no mercado",
   "graduacao": "Profissionais graduados ganham salários 144% maiores",
   "segunda-graduacao": "Faça uma transição de carreira ou saia na frente em concursos e designações",
   "disciplina-isolada": "Com Disciplina Isolada, você acelera sua evolução",
 };
 
-const GRAPHS: Record<ModalityKey, { src: string; alt: string }> = {
+const graficos: Record<VerifyModality, { src: string; alt: string }> = {
   "pos-graduacao": {
     src: "/graficos/grafico-pos.webp",
     alt: "Gráfico mostrando vantagens de ter uma pós-graduação no mercado de trabalho",
@@ -55,7 +36,6 @@ const GRAPHS: Record<ModalityKey, { src: string; alt: string }> = {
   },
 };
 
-/* ---------- conteúdo metodologia (só para pós) ---------- */
 const items: Item[] = [
   { img: "/metodologia/metodologia-1.webp", alt: "Guiado pelos melhores!", title: "Quem vai te ajudar nessa jornada" },
   { img: "/metodologia/metodologia-2.webp", alt: "Flexível", title: "Estude de qualquer lugar a qualquer hora" },
@@ -64,17 +44,14 @@ const items: Item[] = [
   { img: "/metodologia/metodologia-5.webp", alt: "Onde estudar", title: "Saiba onde você vai estudar" },
 ];
 
-type Props = {
-  course: CourseDetailResponse;
-  modality?: string; // opcional
-};
 
-export default function PageCourse({ course, modality }: Props) {
-  const mkey = resolveModality(modality);
-  const isPos = mkey === "pos-graduacao";
 
+export default function PageCourse({ course, modality }: PaginacaoCurso) {
   const [compradoresHoje, setCompradoresHoje] = useState<number>(0);
-  useEffect(() => setCompradoresHoje(Math.floor(Math.random() * (129 - 50 + 1)) + 50), []);
+
+  useEffect(() => {
+    setCompradoresHoje(Math.floor(Math.random() * (129 - 50 + 1)) + 50);
+  }, []);
 
   return (
     <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
@@ -85,24 +62,28 @@ export default function PageCourse({ course, modality }: Props) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div className="lg:col-span-8 space-y-10">
           <CourseProgram course={course} />
-          <Curriculum disciplines={course.data.disciplines} modality={modality}/>
-          {isPos && <TimeLine items={items} />}
-          <section aria-labelledby="mercado-title">
-            <h2
-              id="mercado-title"
-              className="text-center text-2xl sm:text-3xl font-krona font-extrabold mb-10"
-            >
-              {HEADINGS[mkey]}
-            </h2>
-            <Image
-              src={GRAPHS[mkey].src}
-              alt={GRAPHS[mkey].alt}
-              width={780}
-              height={620}
-              className="w-full h-auto"
-              loading="lazy"
-            />
-          </section>
+          <Curriculum disciplines={course.data.disciplines} modality={modality} />
+
+          {modality === "pos-graduacao" && <TimeLine items={items} />}
+
+          {modality && (
+            <section aria-labelledby="mercado-title">
+              <h2
+                id="mercado-title"
+                className="text-center text-2xl sm:text-3xl font-krona font-extrabold mb-10"
+              >
+                {titles[modality]}
+              </h2>
+              <Image
+                src={graficos[modality].src}
+                alt={graficos[modality].alt}
+                width={780}
+                height={620}
+                className="w-full h-auto"
+                loading="lazy"
+              />
+            </section>
+          )}
         </div>
 
         <aside className="lg:col-span-4" aria-label="Informações de matrícula">
@@ -133,17 +114,16 @@ export default function PageCourse({ course, modality }: Props) {
                   <span className="text-green-400 font-semibold" aria-label={`${compradoresHoje} pessoas`}>
                     {compradoresHoje}
                   </span>{" "}
-                  <span className="">pessoas já compraram esse curso hoje</span>
+                  <span>pessoas já compraram esse curso hoje</span>
                 </div>
-                <p className="mt-8 text-center text-xs ">*Consulte condições</p>
+                <p className="mt-8 text-center text-xs">*Consulte condições</p>
               </div>
             </div>
           </div>
         </aside>
       </div>
 
-      {/* Avaliações — EXIBE SÓ EM PÓS-GRADUAÇÃO */}
-      {isPos && (
+      {modality === "pos-graduacao" && (
         <section aria-labelledby="avaliacoes-title" className="mt-10">
           <h2 id="avaliacoes-title" className="text-3xl text-center font-bold mb-6 text-white">
             Os alunos de <span className="uppercase">{course?.data?.name ?? "este curso"}</span> avaliaram esse curso em:
@@ -159,11 +139,11 @@ export default function PageCourse({ course, modality }: Props) {
                 role="img"
                 aria-label="4.5 estrelas de 5"
               >
-                <FaStar aria-hidden="true" />
-                <FaStar aria-hidden="true" />
-                <FaStar aria-hidden="true" />
-                <FaStar aria-hidden="true" />
-                <FaStarHalfAlt aria-hidden="true" />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStarHalfAlt />
               </div>
               <p className="text-lg text-white/80">20.000 alunos avaliaram esse curso</p>
             </div>
