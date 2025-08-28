@@ -2,61 +2,34 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { FaRegClock, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import Image from "next/image";
-import { CourseDetailResponse } from "@/types/detailsCourse";
 import Curriculum from "@/components/curriculum/curriculum";
 import CourseProgram from "../course program /courseProgram";
 import TimeLine from "../timeLIne/timeLine";
-import { Item } from "@/types/timeLine";
 import CountdownTimer from "../countdownTimer/countdownTImer";
-import { VerifyModality, PaginacaoCurso } from "@/types/pageCourse";
-
-const titles: Record<VerifyModality, string> = {
-  "pos-graduacao": "Com uma Pós, você sai na frente no mercado",
-  "graduacao": "Profissionais graduados ganham salários 144% maiores",
-  "segunda-graduacao": "Faça uma transição de carreira ou saia na frente em concursos e designações",
-  "disciplina-isolada": "Com Disciplina Isolada, você acelera sua evolução",
-};
-
-const graficos: Record<VerifyModality, { src: string; alt: string }> = {
-  "pos-graduacao": {
-    src: "/graficos/grafico-pos.webp",
-    alt: "Gráfico mostrando vantagens de ter uma pós-graduação no mercado de trabalho",
-  },
-  "graduacao": {
-    src: "/graficos/graficoG.webp",
-    alt: "Gráfico mostrando vantagens de ter uma graduação no mercado de trabalho",
-  },
-  "segunda-graduacao": {
-    src: "/graficos/graficoSG.webp",
-    alt: "Gráfico mostrando vantagens de ter uma segunda graduação no mercado de trabalho",
-  },
-  "disciplina-isolada": {
-    src: "/graficos/grafico-disciplina.webp",
-    alt: "Gráfico mostrando progresso com disciplina isolada",
-  },
-};
-
-const items: Item[] = [
-  { img: "/metodologia/metodologia-1.webp", alt: "Guiado pelos melhores!", title: "Quem vai te ajudar nessa jornada" },
-  { img: "/metodologia/metodologia-2.webp", alt: "Flexível", title: "Estude de qualquer lugar a qualquer hora" },
-  { img: "/metodologia/metodologia-3.webp", alt: "Como funciona", title: "Como funciona a Pós-Graduação" },
-  { img: "/metodologia/metodologia-4.webp", alt: "Tradição", title: "Estude em uma faculdade com 27 anos de tradição" },
-  { img: "/metodologia/metodologia-5.webp", alt: "Onde estudar", title: "Saiba onde você vai estudar" },
-];
+import { siteConfig } from "@/config/site";
+import { PageCourseProps } from "@/types/pageCourse";
+import { VerifyModality } from "@/types/siteConfig";
 
 
 
-export default function PageCourse({ course, modality }: PaginacaoCurso) {
+export default function PageCourse({ course, modality }: PageCourseProps) {
   const [compradoresHoje, setCompradoresHoje] = useState<number>(0);
 
   useEffect(() => {
     setCompradoresHoje(Math.floor(Math.random() * (129 - 50 + 1)) + 50);
   }, []);
 
+const { titles, graficos, items } = siteConfig.pageCourse;
+
+const safeModality = modality as VerifyModality;
+
+
   return (
     <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
       <header className="mb-10">
-        <h1 className="text-3xl sm:text-4xl font-krona font-bold text-left">Programa de Curso</h1>
+        <h1 className="text-3xl sm:text-4xl font-krona font-bold text-left">
+          Programa de Curso
+        </h1>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -66,24 +39,22 @@ export default function PageCourse({ course, modality }: PaginacaoCurso) {
 
           {modality === "pos-graduacao" && <TimeLine items={items} />}
 
-          {modality && (
-            <section aria-labelledby="mercado-title">
-              <h2
-                id="mercado-title"
-                className="text-center text-2xl sm:text-3xl font-krona font-extrabold mb-10"
-              >
-                {titles[modality]}
-              </h2>
-              <Image
-                src={graficos[modality].src}
-                alt={graficos[modality].alt}
-                width={780}
-                height={620}
-                className="w-full h-auto"
-                loading="lazy"
-              />
-            </section>
-          )}
+          <section aria-labelledby="mercado-title">
+            <h2
+              id="mercado-title"
+              className="text-center text-2xl sm:text-3xl font-krona font-extrabold mb-10"
+            >
+              {titles[safeModality]}
+            </h2>
+            <Image
+              src={graficos[safeModality].src}
+              alt={graficos[safeModality].alt}
+              width={780}
+              height={620}
+              className="w-full h-auto"
+              loading="lazy"
+            />
+          </section>
         </div>
 
         <aside className="lg:col-span-4" aria-label="Informações de matrícula">

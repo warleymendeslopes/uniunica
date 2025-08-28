@@ -133,6 +133,39 @@ export const siteConfig: SiteConfig = {
       ],
     },
   },
+  pageCourse: {
+    titles: {
+      "pos-graduacao": "Com uma Pós, você sai na frente no mercado",
+      graduacao: "Profissionais graduados ganham salários 144% maiores",
+      "segunda-graduacao": "Faça uma transição de carreira ou saia na frente em concursos e designações",
+      "disciplina-isolada": "Com Disciplina Isolada, você acelera sua evolução",
+    },
+    graficos: {
+      "pos-graduacao": {
+        src: "/graficos/grafico-pos.webp",
+        alt: "Gráfico mostrando vantagens de ter uma pós-graduação no mercado de trabalho",
+      },
+      graduacao: {
+        src: "/graficos/graficoG.webp",
+        alt: "Gráfico mostrando vantagens de ter uma graduação no mercado de trabalho",
+      },
+      "segunda-graduacao": {
+        src: "/graficos/graficoSG.webp",
+        alt: "Gráfico mostrando vantagens de ter uma segunda graduação no mercado de trabalho",
+      },
+      "disciplina-isolada": {
+        src: "/graficos/grafico-disciplina.webp",
+        alt: "Gráfico mostrando progresso com disciplina isolada",
+      },
+    },
+    items: [
+      { img: "/metodologia/metodologia-1.webp", alt: "Guiado pelos melhores!", title: "Quem vai te ajudar nessa jornada" },
+      { img: "/metodologia/metodologia-2.webp", alt: "Flexível", title: "Estude de qualquer lugar a qualquer hora" },
+      { img: "/metodologia/metodologia-3.webp", alt: "Como funciona", title: "Como funciona a Pós-Graduação" },
+      { img: "/metodologia/metodologia-4.webp", alt: "Tradição", title: "Estude em uma faculdade com 27 anos de tradição" },
+      { img: "/metodologia/metodologia-5.webp", alt: "Onde estudar", title: "Saiba onde você vai estudar" },
+    ],
+  },
   name: "Centro Universitário UniÚnica",
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [

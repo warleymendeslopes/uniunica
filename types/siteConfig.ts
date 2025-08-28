@@ -50,6 +50,28 @@ type ProgramFeatures = {
   graduacao: ProgramFeatureCategory;
 };
 
+export type VerifyModality =
+  | "pos-graduacao"
+  | "graduacao"
+  | "segunda-graduacao"
+  | "disciplina-isolada";
+
+export type PageCourse = {
+    titles: Record<VerifyModality, string>;
+  graficos: Record<
+    VerifyModality,
+    {
+      src: string;
+      alt: string;
+    }
+  >;
+  items: Array<{
+    img: string;
+    alt: string;
+    title: string;
+  }>;
+};
+
 
 // tipagem principal
 export interface SiteConfig {
@@ -59,6 +81,7 @@ export interface SiteConfig {
         "graduacao": SlideConfig;
     }
     ProgramFeatures: ProgramFeatures;
+    pageCourse: PageCourse;
     name: string;
     description: string;
     navItems: NavItem[];

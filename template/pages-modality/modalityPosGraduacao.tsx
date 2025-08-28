@@ -7,7 +7,6 @@ import {Area, ResponseArea} from "@/types/list-area";
 import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
 import OfferPos from "@/components/offers/pos-graduacao";
 import {List} from "@/types/listCards";
-import {Course} from "@/types/list-courses";
 
 export default  function ModalityPosGraduacao() {
     const [area, setArea] = useState<ResponseArea>();
