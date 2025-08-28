@@ -21,6 +21,8 @@ import Testimonials from "@/components/depoiments/depoiments";
 import {CourseDetailResponse} from "@/types/detailsCourse";
 import PageCourse from "@/components/pageCourse/pageCourse";
 import FaqTabs from "@/components/faq/faq";
+import { Verification } from "next/dist/lib/metadata/types/metadata-types";
+import { VerifyModality } from "@/types/siteConfig";
 
 export default async function PageParams1({params,}: {
     params: Promise<{modality: string, param1: string }>
@@ -105,7 +107,7 @@ export default async function PageParams1({params,}: {
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
-            <PageCourse course={course} modality={modality}/>
+            <PageCourse course={course} modality={modality} /> 
             <Testimonials />
             <FaqTabs modality={modality} />
         </>

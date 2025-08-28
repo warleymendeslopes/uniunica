@@ -1,8 +1,7 @@
 import { CourseDetailResponse } from "./detailsCourse";
+import { VerifyModality } from "./siteConfig";
 
-export type VerifyModality = "pos-graduacao" | "graduacao" | "segunda-graduacao" | "disciplina-isolada";
-
-export type PaginacaoCurso = {
+export type PageCourseProps = {
   course: CourseDetailResponse;
-  modality?: VerifyModality;
+  modality?: VerifyModality | string;
 };
