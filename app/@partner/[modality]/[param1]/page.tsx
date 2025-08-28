@@ -21,6 +21,7 @@ import Testimonials from "@/components/depoiments/depoiments";
 import {CourseDetailResponse} from "@/types/detailsCourse";
 import FaqTabs from "@/components/faq/faq";
 import PageCourse from "@/template/page-courses/pageCourse";
+import Jornada from "@/components/jornada/jornada";
 
 export default async function PageParams1({params,}: {
     params: Promise<{modality: string, param1: string }>
@@ -48,7 +49,8 @@ export default async function PageParams1({params,}: {
                 col: 2,
                 position: 'start',
                 skeleton: false,
-                titleFont: 'poppins'
+                titleFont: 'poppins',
+                ButtonPosition: "start",
             },
             content1: {
                 backgroundImage: '/fimEADdesktop.webp',
@@ -66,6 +68,7 @@ export default async function PageParams1({params,}: {
         return (
             <>
             <BannerSiteUniUnica {...bannerCentralizado} />
+            <Jornada />
             <ListCoursesPosGraduacao area={param1} />
             <DualMarquee />
             <VideoPromoSection />
@@ -105,6 +108,7 @@ export default async function PageParams1({params,}: {
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
+            
             <PageCourse course={course} modality={modality} /> 
             <Testimonials />
             <FaqTabs modality={modality} />

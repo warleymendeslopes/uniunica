@@ -12,6 +12,7 @@ import DualMarquee from "@/components/dualSlider/dualSlider";
 import { List } from "@/types/listCards";
 import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
 import ListingSG from "@/components/videoMarket/listingMarketing";
+import Jornada from "@/components/jornada/jornada";
 
 export default function ModalityGraduacaoEAD() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -22,7 +23,7 @@ export default function ModalityGraduacaoEAD() {
             position: 'start',
             skeleton: false,
             titleFont: 'poppins',
-            ButtonPosition: 'center'
+            ButtonPosition: 'start'
         },
         content1: {
             backgroundImage: '/fimEADdesktop.webp',
@@ -65,6 +66,7 @@ export default function ModalityGraduacaoEAD() {
 
     return <>
         <BannerSiteUniUnica {...bannerCentralizado} />
+        <Jornada />
         {loading ? (
             <>
                 {listcourse && listcourse.data.length <= 0 ? notFound() :  <CursosPorModalidade list={curses} /> }

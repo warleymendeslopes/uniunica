@@ -22,11 +22,11 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({
     const getPositionClasses = () => {
         switch (configBanner.position) {
             case "start":
-                return "justify-start text-left"
+                return "justify-start text-left items-start"
             case "end":
                 return "justify-end text-right"
             default:
-                return "justify-center text-center"
+                return "justify-start text-start"
         }
     }
 
@@ -42,7 +42,7 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({
 
         return (
             <div
-                className={`flex content-center justify-${configBanner.ButtonPosition ? configBanner.ButtonPosition : "start"}`}
+                className={`flex items-${configBanner.ButtonPosition ? configBanner.ButtonPosition : "start"} justify-${configBanner.ButtonPosition ? configBanner.ButtonPosition : "start"}`}
             >
                 {/* Form aparece apenas no mobile */}
                 <HubSpotForm
@@ -162,7 +162,7 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({
                     </div>
 
                     {hubspotPosition === "bottom" && hubspotContent && (
-                        <div className="mt-12 flex justify-center">{renderHubSpotForm(hubspotContent)}</div>
+                        <div className={`mt-12 flex justify-${configBanner.ButtonPosition ? configBanner.ButtonPosition : "start"}`}>{renderHubSpotForm(hubspotContent)}</div>
                     )}
                 </div>
         </section>

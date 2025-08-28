@@ -19,6 +19,7 @@ import { notFound } from "next/navigation"
 import {CourseDetailResponse} from "@/types/detailsCourse";
 import FaqTabs from "@/components/faq/faq"
 import PageCourse from "@/template/page-courses/pageCourse";
+import Jornada from "@/components/jornada/jornada"
 
 export default async function PageParams2({params,}: {
     params: Promise<{ modality: string, param1: string, param2: string }>
@@ -35,13 +36,14 @@ export default async function PageParams2({params,}: {
                     col: 2,
                     position: 'start',
                     skeleton: false,
-                    titleFont: 'poppins'
+                    titleFont: 'poppins',
+                    ButtonPosition: 'start',
                 },
                 content1: {
                     backgroundImage: '/fimEADdesktop.webp',
                     openTitle: 'Pós-Graduação',
                     title: `<b style="font-size: 5rem;">ONLINE</b>`,
-                    subtitle: `<span class="p-4 font-bold  mt-3 text-lg">Curso de ${course.data.name} <br/> </span> <p style="margin-top: 20px;">${course.data.objective}</p>`,
+                    subtitle: `<span class="font-bold  mt-3 text-lg">Curso de ${course.data.name} <br/> </span> <p style="margin-top: 20px;">${course.data.objective}</p>`,
                     button: false,
                     hubspot: {
                         active: true,
@@ -55,6 +57,7 @@ export default async function PageParams2({params,}: {
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
+            <Jornada />
             <PageCourse course={course} modality={modality}/>
             <Testimonials />
             <FaqTabs modality={modality} />

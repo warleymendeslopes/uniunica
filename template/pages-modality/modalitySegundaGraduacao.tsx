@@ -11,6 +11,7 @@ import DualMarquee from "@/components/dualSlider/dualSlider";
 import CursosPorModalidade from "@/components/listingCourses/listingCardArea";
 import { List } from "@/types/listCards";
 import ListingSG from "@/components/videoMarket/listingMarketing";
+import Jornada from "@/components/jornada/jornada";
 
 export default function ModalitySegundaGraduacao() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -21,7 +22,7 @@ export default function ModalitySegundaGraduacao() {
             position: 'start',
             skeleton: false,
             titleFont: 'poppins',
-            ButtonPosition: 'center'
+            ButtonPosition: 'start'
         },
         content1: {
             backgroundImage: '/fimEADdesktop.webp',
@@ -66,6 +67,7 @@ export default function ModalitySegundaGraduacao() {
 
     return <>
         <BannerSiteUniUnica {...bannerCentralizado} />
+        <Jornada />
         {loading ? (
             <>
                 <CursosPorModalidade list={curses} />
@@ -76,6 +78,7 @@ export default function ModalitySegundaGraduacao() {
             </>
         )
         }
+      
         <DualMarquee />
         <ListingSG modality={"segunda-graduacao"} />
         <Testimonials />
