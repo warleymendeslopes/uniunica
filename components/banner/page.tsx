@@ -52,7 +52,7 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({
 
                 <button
                     onClick={onOpen}
-                    className="hidden lg:flex animate-pulse relative items-center justify-center bg-gradient-to-r from-yellow-500 to-yellow-300 text-black font-bold text-base rounded-full px-5 py-3 shadow-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl
+                    className="hidden lg:flex animate-pulse relative items-center bg-gradient-to-r from-yellow-500 to-yellow-300 text-black font-bold text-base rounded-full px-5 py-3 shadow-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl
                     w-full max-w-xs sm:max-w-none sm:w-10/12 lg:w-auto cursor-pointer"
                 >
                     <span className="mr-[50px]">INSCREVA-SE ANTES QUE ACABE</span>
@@ -162,7 +162,7 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({
                     </div>
 
                     {hubspotPosition === "bottom" && hubspotContent && (
-                        <div className={`mt-12 flex justify-${configBanner.ButtonPosition ? configBanner.ButtonPosition : "start"}`}>{renderHubSpotForm(hubspotContent)}</div>
+                        <div className={`mt-12 lg:ml-[130px] flex justify-${configBanner.ButtonPosition ? configBanner.ButtonPosition : "start"}`}>{renderHubSpotForm(hubspotContent)}</div>
                     )}
                 </div>
         </section>

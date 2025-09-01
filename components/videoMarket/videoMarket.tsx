@@ -79,7 +79,7 @@ function VideoCard({ title, image, alt, href, onClick, cta = "Ver Vídeo" }: Car
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/0" />
       </div>
 
-      <div className="font-poppins pointer-events-none absolute cursor-pointer inset-x-0 bottom-5 md:bottom-6 px-5 text-center space-y-2">
+      <div className="text-white font-poppins pointer-events-none absolute cursor-pointer inset-x-0 bottom-5 md:bottom-6 px-5 text-center space-y-2">
         <p className="text-lg leading-snug">
           {title}
         </p>
