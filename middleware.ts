@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
         res.headers.set('x-user-site-type', 'partner')
         res.headers.set('x-partner-id', partnerId)
     } else {
-        res.headers.set('x-user-site-type', 'internal')
+        res.headers.set('x-user-site-type', 'intern')
     }
 
     return res

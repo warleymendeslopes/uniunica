@@ -4,14 +4,12 @@ import clsx from "clsx";
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import { Navbar } from "@/components/navbar";
 import { cookies, headers } from "next/headers";
 import { ReactNode } from "react";
 import { PartnerProvider } from "@/context/PartnerContext";
 import CryptoJS from "crypto-js";
 import type { PartnerInfo } from "@/types/PartnerInfo";
 import { SetAgencyParam } from "@/app/SetAgencyParam";
-import FooterSiteUniUnica from "@/components/footer/page";
 
 export const metadata: Metadata = {
     title: {
@@ -42,6 +40,7 @@ const ENCRYPTION_SECRET = 'chave-secreta-segura';
 
 import { Krona_One, Poppins } from "next/font/google";
 import Script from "next/script";
+import InternoLayout from "./@intern/layout";
 
 export const krona = Krona_One({
     subsets: ["latin"],
@@ -56,14 +55,14 @@ export const poppins = Poppins({
 });
 
 export default async function RootLayout({
-    children,
+    intern,
     partner
 }: RootLayoutProps) {
     const cookieStore = await cookies();
     const encrypted = cookieStore.get(COOKIE_KEY)?.value;
 
     const headersList = await headers();
-    let siteType = headersList.get("x-user-site-type") || "internal";
+    let siteType = headersList.get("x-user-site-type") || "intern";
     let codSite = headersList.get("x-partner-id") || "";
 
 
@@ -79,13 +78,18 @@ export default async function RootLayout({
         }
     }
 
+    // 🔥 quando mudar para intern, apaga o cookie partnerData
+    if (siteType === "intern" && encrypted) {
+        cookieStore.set(COOKIE_KEY, "", { path: "/", maxAge: 0 });
+    }
+
     switch (siteType) {
         case 'partner':
             return (
                 <html suppressHydrationWarning lang="en">
-                <head>
-                    <Script src="https://js.hsforms.net/forms/embed/v2.js" strategy="afterInteractive" />
-                </head>
+                    <head>
+                        <Script src="https://js.hsforms.net/forms/embed/v2.js" strategy="afterInteractive" />
+                    </head>
                     <body
                         className={clsx(
                             "min-h-screen text-foreground bg-background font-sans antialiased",
@@ -101,12 +105,12 @@ export default async function RootLayout({
                     </body>
                 </html>
             );
-        case 'internal':
+        case "intern":
             return (
                 <html suppressHydrationWarning lang="pt-br">
-                <head>
-                    <Script src="https://js.hsforms.net/forms/embed/v2.js" strategy="afterInteractive" />
-                </head>
+                    <head>
+                        <Script src="https://js.hsforms.net/forms/embed/v2.js" strategy="afterInteractive" />
+                    </head>
                     <body
                         className={clsx(
                             "min-h-screen text-foreground bg-background font-sans antialiased",
@@ -114,25 +118,12 @@ export default async function RootLayout({
                         )}
                     >
                         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-                            <div className="relative flex flex-col h-screen">
-                                <Navbar />
-                                <main className={`${krona.variable} ${poppins.variable} container mx-auto max-w-7xl pt-16 px-6 flex-grow`}>
-                                    {children}
-                                </main>
-                                <FooterSiteUniUnica />
-                            </div>
+                            {intern}
                         </Providers>
                     </body>
                 </html>
             );
+
         default:
     }
-
-
-
-
-
-
-
-
 }
