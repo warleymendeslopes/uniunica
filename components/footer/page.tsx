@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Modal, ModalBody, ModalContent, ModalHeader } from '@heroui/react';
 import { useTheme } from "next-themes";
 import { IoEnterOutline } from 'react-icons/io5';
+import QRcodeEMEC from "../IconsSVG/qrcodeEMEC/qrcode";
 
 interface CertificateResponse {
   code: number;
@@ -182,17 +183,11 @@ export default function FooterSiteUniUnica() {
                 </div>
               </div>
               <div className="w-full md:w-auto">
-                <div className="bg-neutral-800 rounded-2xl shadow-md p-4 text-center md:min-w-[260px]">
-                  <h4 className="text-white/90 font-bold text-base leading-5 mb-3">
+                <div className="bg-neutral-800 flex flex-col items-center justify-center rounded-2xl shadow-md p-4 text-center md:min-w-[260px]">
+                  <h4 className="text-white/90 font-bold text-base font-poppins leading-5 mb-3">
                     Centro Universitário Única - UNIUNICA
                   </h4>
-                  <Image
-                    src="/qrcodeteste.png"
-                    alt="Acesse no e-MEC"
-                    width={180}
-                    height={180}
-                    className="mx-auto rounded-lg"
-                  />
+                  <QRcodeEMEC />
                 </div>
               </div>
             </section>
