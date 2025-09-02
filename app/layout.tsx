@@ -72,16 +72,13 @@ export default async function RootLayout({
         try {
             const parsedData = JSON.parse(decrypted) as PartnerInfo;
             codSite = parsedData.agency;
-            siteType = `partner` //depois podemos mudar para o type que recebemos da API
+            siteType = `partner`
         } catch (parseErr) {
             console.warn('[PartnerContext] ⚠️ Erro ao parsear cookie:', parseErr);
         }
     }
 
-    // 🔥 quando mudar para intern, apaga o cookie partnerData
-    if (siteType === "intern" && encrypted) {
-        cookieStore.set(COOKIE_KEY, "", { path: "/", maxAge: 0 });
-    }
+   
 
     switch (siteType) {
         case 'partner':
