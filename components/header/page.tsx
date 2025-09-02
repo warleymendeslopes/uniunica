@@ -11,6 +11,7 @@ import {
 } from "@heroui/react";
 import {ThemeSwitch} from "@/components/theme-switch";
 import {Button} from "@heroui/button";
+import { useState, useEffect } from "react";
 
 export const AcmeLogo = () => {
     return (
@@ -52,6 +53,19 @@ export const AcmeLogo = () => {
 
 export default function AppHeader() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+     const [siteType, setSiteType] = useState<"intern" | "partner">("intern");
+
+  // 🔥 Descobre o siteType pelo header que o middleware já injeta
+  useEffect(() => {
+    const type = document.documentElement.getAttribute("data-site-type");
+    if (type === "partner") {
+      setSiteType("partner");
+    } else {
+      setSiteType("intern");
+    }
+  }, []);
+
+  const graduacaoHref = siteType === "partner" ? "/graduacao" : "/graduacao/escolha";
 
     const menuItems = [
         "Profile",
@@ -72,7 +86,7 @@ export default function AppHeader() {
 
                 <NavbarContent className="hidden sm:flex gap-25" justify="center">
                     <NavbarItem>
-                        <Link color="foreground" href="/graduacao">
+                        <Link color="foreground" href={graduacaoHref}>
                             Graduação
                         </Link>
                     </NavbarItem>
