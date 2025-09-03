@@ -9,24 +9,26 @@
  * @param params - Parâmetros da rota, incluindo a modalidade.
  * @constructor
  */
-import {detailsArea, detailsCourse} from "@/services/api";
-import {notFound} from "next/navigation";
-import {CourseAreaResponse} from "@/types/detailsArea";
+import { detailsArea, detailsCourse } from "@/services/api";
+import { notFound } from "next/navigation";
+import { CourseAreaResponse } from "@/types/detailsArea";
 import BannerSiteUniUnica from "@/components/banner/page";
-import {BannerSite} from "@/types/banner";
+import { BannerSite } from "@/types/banner";
 import ListCoursesPosGraduacao from "@/app/@partner/[modality]/[param1]/pos-graduacao";
 import DualMarquee from "@/components/dualSlider/dualSlider";
 import VideoPromoSection from "@/components/videoMarket/videoMarket";
 import Testimonials from "@/components/depoiments/depoiments";
-import {CourseDetailResponse} from "@/types/detailsCourse";
+import { CourseDetailResponse } from "@/types/detailsCourse";
 import FaqTabs from "@/components/faq/faq";
 import PageCourse from "@/template/page-courses/pageCourse";
 import Jornada from "@/components/jornada/jornada";
+import ModalityGraduacaoEAD from "@/template/pages-modality/modalityGraduacaoEAD";
+import ModalityGraduacaoPresencial from "@/template/pages-modality/modalityGraduacaoPresencial";
 
-export default async function PageParams1({params,}: {
-    params: Promise<{modality: string, param1: string }>
+export default async function PageParams1({ params, }: {
+    params: Promise<{ modality: string, param1: string }>
 }) {
-    const {modality, param1 } = await params
+    const { modality, param1 } = await params
 
     /**
      * Se a modalidade for pos-graduacao, vamos rederizar as informacoes da area,
@@ -40,8 +42,8 @@ export default async function PageParams1({params,}: {
         // pois esse componente vai rodar do lado do cliente,
         // o que pode atrasar um pouco o carregamento das
         // informações.
-        const details: CourseAreaResponse =   await detailsArea(param1, false)
-        if( details.data.length <= 0){
+        const details: CourseAreaResponse = await detailsArea(param1, false)
+        if (details.data.length <= 0) {
             notFound()
         }
         const bannerCentralizado: BannerSite = {
@@ -67,20 +69,27 @@ export default async function PageParams1({params,}: {
         };
         return (
             <>
-            <BannerSiteUniUnica {...bannerCentralizado} />
-            <Jornada />
-            <ListCoursesPosGraduacao area={param1} />
-            <DualMarquee />
-            <VideoPromoSection />
-            <Testimonials />
+                <BannerSiteUniUnica {...bannerCentralizado} />
+                <Jornada />
+                <ListCoursesPosGraduacao area={param1} />
+                <DualMarquee />
+                <VideoPromoSection />
+                <Testimonials />
             </>
         )
     }
 
+    if (modality === 'graduacao' && param1 === 'ead') {
+        return <ModalityGraduacaoEAD />;
+    } else if (modality === 'graduacao' && param1 === 'presencial') {
+        return <ModalityGraduacaoPresencial />;
+    }
+
+
     const course: CourseDetailResponse = await detailsCourse(param1, modality, true)
 
 
-    if(!course.data){
+    if (!course.data) {
         notFound();
     }
 
@@ -108,8 +117,8 @@ export default async function PageParams1({params,}: {
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
-            
-            <PageCourse course={course} modality={modality} /> 
+
+            <PageCourse course={course} modality={modality} />
             <Testimonials />
             <FaqTabs modality={modality} />
         </>

@@ -19,6 +19,7 @@ import ModalitySegundaGraduacao from "@/template/pages-modality/modalitySegundaG
 import ModalityGraduacaoEAD from "@/template/pages-modality/modalityGraduacaoEAD";
 import ModalitySemipresenciais from "@/template/pages-modality/modalitySemipresenciais";
 import ModalityDisciplinaIsolada from "@/template/pages-modality/modalityDisciplinaIsolada";
+import EscolhaGrad from '@/components/escolha/escolha';
 
 export default async function PageModality({params,}: {
     params: Promise<{ modality: string }>
@@ -41,7 +42,7 @@ export default async function PageModality({params,}: {
         case 'segunda-graduacao':
             return <ModalitySegundaGraduacao />
         case 'graduacao':
-            return <ModalityGraduacaoEAD />
+            return <EscolhaGrad />
         case 'semipresenciais':
             return <ModalitySemipresenciais />
         case 'disciplina-isolada':

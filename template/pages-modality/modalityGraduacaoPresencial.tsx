@@ -57,7 +57,7 @@ export default function ModalityGraduacaoPresencial() {
 
     const courses: List[] =
         listcourse?.data.map((item: Course) => ({
-            link: `graduacao/${item.alias}`,
+            link: `presencial/${item.alias}`,
             img: item.photo_miniature ?? item.photo ?? '',
             name: item.name ?? "",
             cta: "Inscreva-se",

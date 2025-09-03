@@ -65,8 +65,6 @@ export default function AppHeader() {
     }
   }, []);
 
-  const graduacaoHref = siteType === "partner" ? "/graduacao" : "/graduacao/escolha";
-
     const menuItems = [
         "Profile",
         "Dashboard",
@@ -86,7 +84,7 @@ export default function AppHeader() {
 
                 <NavbarContent className="hidden sm:flex gap-25" justify="center">
                     <NavbarItem>
-                        <Link color="foreground" href={graduacaoHref}>
+                        <Link color="foreground" href="/graduacao">
                             Graduação
                         </Link>
                     </NavbarItem>
