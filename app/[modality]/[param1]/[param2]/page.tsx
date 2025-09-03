@@ -1,7 +1,7 @@
 /**
  * Esta página possui duas finalidades:
  *
- * - Pode ser utilizada como página de listagem de cursos para a modalidade "pós-graduação".
+ * - Pode ser utilizada como página de listagem de cursos para a modalidade "pós-graduação" e "graduação".
  * - Pode ser utilizada como página de curso individual para as demais modalidades.
  *
  * O comportamento é definido com base no valor de `params.modality`.
