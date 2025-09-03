@@ -80,6 +80,6 @@ export default function ModalityGraduacaoEAD() {
                     <DualMarquee />
                     <ListingSG modality={"graduacao"} />
                     <Testimonials />
-                    <FaqTabs modality={'segunda-graduacao'} />
+                    <FaqTabs modality={'graduacao'} />
     </>
 }

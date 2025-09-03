@@ -32,7 +32,7 @@ export default function Jornada() {
   }, []);
 
   return (
-    <section className="relative h-[600px] bg-black py-8 text-white flex items-center justify-center ">
+    <section className="relative h-[5vh] bg-black py-8 text-white flex items-center justify-center ">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {squaresUp}
         {squaresDown}
