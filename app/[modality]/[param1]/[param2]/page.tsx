@@ -27,7 +27,7 @@ export default async function PageParams2({ params, }: {
 
     const { modality, param1, param2 } = await params
 
-  
+
 
     if (modality == 'pos-graduacao') {
         const course: CourseDetailResponse = await detailsCourse(param2, modality)
@@ -70,20 +70,17 @@ export default async function PageParams2({ params, }: {
     }
 
 
-    if(modality == 'graduacao' && param1 == 'ead' || 'presencial'){
+    if (modality == 'graduacao' && param1 == 'ead' || 'presencial') {
 
-        
         const course: CourseDetailResponse = await detailsCourse(param2, modality, true)
-        console.log('verificando em graduacao course', course)
-      
-         
-          if (!course || !course.data) {
+
+        if (!course || !course.data) {
             notFound()
-         }
+        }
 
 
-        
-    const bannerCentralizado: BannerSite = {
+
+        const bannerCentralizado: BannerSite = {
             configBanner: {
                 col: 2,
                 position: 'start',
@@ -104,24 +101,17 @@ export default async function PageParams2({ params, }: {
                 }
             },
         };
-       
+
 
 
         return (
             <>
-            <BannerSiteUniUnica {...bannerCentralizado} />
-             <Jornada />
-           <PageCourse course={course} modality={modality} />
+                <BannerSiteUniUnica {...bannerCentralizado} />
+                <Jornada />
+                <PageCourse course={course} modality={modality} />
                 <Testimonials />
                 <FaqTabs modality={modality} />
             </>
         )
     }
-
-
- 
-
-
 }
-
-
