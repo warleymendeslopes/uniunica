@@ -15,13 +15,20 @@ export default function EscolhaGrad() {
         <Image
           src="/escolha/img-modality-graduacao-online.webp"
           alt="Graduação Online"
-          width={950}
-          height={950}
-          className="w-[430px] h-[430px] lg:w-full lg:h-auto object-cover"
+          width={900}
+          height={900}
+          className="block lg:hidden w-[430px] h-[430px] object-cover"
+          priority
+        />
+         <Image
+          src="/escolha/img-modality-graduacao-online.webp"
+          alt="Graduação Online"
+          fill
+          className="w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] lg:w-full lg:h-auto object-cover"
           priority
         />
         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500" />
-        <span className="absolute z-10 px-4 text-center font-krona text-white font-extrabold text-3xl md:text-5xl uppercase">
+        <span className="absolute z-10 px-4 text-center font-krona text-white font-extrabold text-2xl sm:text-3xl md:text-5xl uppercase">
           Graduação<br />Online
         </span>
       </button>
@@ -29,16 +36,23 @@ export default function EscolhaGrad() {
         onClick={() => router.push("/graduacao/presencial")}
         className="group relative h-[45%] lg:h-full flex items-center justify-center overflow-hidden transition duration-300 hover:scale-105 hover:z-10"
       >
-        <Image
-          src="/escolha/img-modality-graduacao-presencial.webp"
-          alt="Graduação Presencial"
-          width={950}
-          height={950}
-          className="w-[950px] h-[950px] lg:w-full lg:h-full object-cover"
-          priority
-        />
+      <Image
+  src="/escolha/img-modality-graduacao-presencial.webp"
+  alt="Graduação Presencial"
+  width={900}
+  height={900}
+  className="block lg:hidden w-[430px] h-[430px] object-cover"
+  priority
+/>
+<Image
+  src="/escolha/img-modality-graduacao-presencial.webp"
+  alt="Graduação Presencial"
+  fill
+  className="hidden lg:block object-cover"
+  priority
+/>
         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500" />
-        <span className="absolute z-10 px-4 text-center font-krona text-white font-extrabold text-3xl md:text-5xl uppercase">
+        <span className="absolute z-10 px-4 text-center font-krona text-white font-extrabold text-2xl sm:text-3xl md:text-5xl uppercase">
           Graduação Presencial
         </span>
       </button>

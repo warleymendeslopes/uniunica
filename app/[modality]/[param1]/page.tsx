@@ -24,11 +24,16 @@ import PageCourse from "@/template/page-courses/pageCourse";
 import Jornada from "@/components/jornada/jornada";
 import ModalityGraduacaoEAD from "@/template/pages-modality/modalityGraduacaoEAD";
 import ModalityGraduacaoPresencial from "@/template/pages-modality/modalityGraduacaoPresencial";
+import { getCourse } from "@/hooks/helper/getCOurse";
+import { getParams1 } from "@/hooks/helper/getParams";
+import ModalitySemipresenciais from "@/template/pages-modality/modalitySemipresenciais";
 
-export default async function PageParams1({ params, }: {
-    params: Promise<{ modality: string, param1: string }>
+export default async function PageParams1({
+  params,
+}: {
+  params: Promise<{ modality: string; param1: string }>;
 }) {
-    const { modality, param1 } = await params
+  const { modality, param1 } = await getParams1(params);
 
     /**
      * Se a modalidade for pos-graduacao, vamos rederizar as informacoes da area,
@@ -83,13 +88,13 @@ export default async function PageParams1({ params, }: {
         return <ModalityGraduacaoEAD />;
     } else if (modality === 'graduacao' && param1 === 'presencial') {
         return <ModalityGraduacaoPresencial />;
+    } else if (modality === 'graduacao' && param1 === 'semipresencial'){
+        return <ModalitySemipresenciais />
     }
 
+    const course = await getCourse(param1, modality, true);
 
-    const course: CourseDetailResponse = await detailsCourse(param1, modality, true)
-
-
-    if (!course.data) {
+    if (!course) {
         notFound();
     }
 
@@ -117,7 +122,6 @@ export default async function PageParams1({ params, }: {
     return (
         <>
             <BannerSiteUniUnica {...bannerCentralizado} />
-
             <PageCourse course={course} modality={modality} />
             <Testimonials />
             <FaqTabs modality={modality} />

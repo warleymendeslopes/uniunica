@@ -28,7 +28,6 @@ export default async function PageModality({params,}: {
         'pos-graduacao',
         'segunda-graduacao',
         'graduacao',
-        'semipresenciais',
         'disciplina-isolada'
     ]
     if (!validModalities.includes(modality)) {
@@ -42,8 +41,6 @@ export default async function PageModality({params,}: {
             return <ModalitySegundaGraduacao />
         case 'graduacao':
             return <EscolhaGrad />
-        case 'semipresenciais':
-            return <ModalitySemipresenciais />
         case 'disciplina-isolada':
             return <ModalityDisciplinaIsolada />
         default:

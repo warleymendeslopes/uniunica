@@ -12,14 +12,14 @@
 
 import BannerSiteUniUnica from "@/components/banner/page"
 import Testimonials from "@/components/depoiments/depoiments"
-import { detailsArea, detailsCourse } from "@/services/api"
+import { detailsArea } from "@/services/api"
 import { BannerSite } from "@/types/banner"
 import { CourseAreaResponse } from "@/types/detailsArea"
 import { notFound } from "next/navigation"
-import { CourseDetailResponse } from "@/types/detailsCourse";
 import FaqTabs from "@/components/faq/faq"
 import PageCourse from "@/template/page-courses/pageCourse";
 import Jornada from "@/components/jornada/jornada"
+import { getCourse } from "@/hooks/helper/getCOurse"
 
 export default async function PageParams2({ params, }: {
     params: Promise<{ modality: string, param1: string, param2: string }>
@@ -30,7 +30,11 @@ export default async function PageParams2({ params, }: {
 
 
     if (modality == 'pos-graduacao') {
-        const course: CourseDetailResponse = await detailsCourse(param2, modality)
+         const course = await getCourse(param2, modality);
+
+        if (!course) notFound();
+
+
         const details: CourseAreaResponse = await detailsArea(param1, false)
         if (!course || !course.data || details.data.length <= 0) {
             notFound()
@@ -72,14 +76,9 @@ export default async function PageParams2({ params, }: {
 
     if (modality == 'graduacao' && param1 == 'ead' || 'presencial') {
 
-        const curses: CourseDetailResponse = await detailsCourse(param2, modality, true)
-
-        if (!curses || !curses.data) {
-            notFound()
-        }
-
-
-
+          const course = await getCourse(param2, modality, true);
+          if (!course) notFound()
+    
         const bannerCentralizado: BannerSite = {
             configBanner: {
                 col: 2,
@@ -92,7 +91,7 @@ export default async function PageParams2({ params, }: {
                 backgroundImage: '/fimEADdesktop.webp',
                 openTitle: `Graduação`,
                 title: `<b style="font-size: 5rem; text-transform: uppercase;">${param1}</b>`,
-                subtitle: `<span class="font-bold  mt-3 text-lg">Curso de ${curses.data.name}<br/> </span> <p style="margin-top: 20px;">${curses.data.objective}</p>`,
+                subtitle: `<span class="font-bold  mt-3 text-lg">Curso de ${course.data.name}<br/> </span> <p style="margin-top: 20px;">${course.data.objective}</p>`,
                 button: false,
                 hubspot: {
                     active: true,
@@ -108,7 +107,7 @@ export default async function PageParams2({ params, }: {
             <>
                 <BannerSiteUniUnica {...bannerCentralizado} />
                 <Jornada />
-                <PageCourse course={curses} modality={modality} />
+                <PageCourse course={course} modality={modality} />
                 <Testimonials />
                 <FaqTabs modality={modality} />
             </>
