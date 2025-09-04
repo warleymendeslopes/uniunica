@@ -57,7 +57,7 @@ export default function ModalityGraduacaoEAD() {
     }, []);
 
        const curses: List[] = listcourse?.data.map((item: Course) => ({
-            link:  `graduacao/${item.alias}`,
+            link:  `ead/${item.alias}`,
             img: item.photo_miniature ?? item.photo ?? 'skdgsdg',
             name: item.name ?? "",
             cta:  "Inscreva-se",
@@ -80,6 +80,6 @@ export default function ModalityGraduacaoEAD() {
                     <DualMarquee />
                     <ListingSG modality={"graduacao"} />
                     <Testimonials />
-                    <FaqTabs modality={'segunda-graduacao'} />
+                    <FaqTabs modality={'graduacao'} />
     </>
 }

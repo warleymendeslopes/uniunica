@@ -96,7 +96,7 @@ export async function listCourses(
 }
 
 
-export async function detailsCourse(course: string, modality: string, searchother?: boolean) {
+export async function detailsCourse(course: string,  modality: string, searchother?: boolean ) {
     let url: string = `https://api-lyratec.institutoprominas.com.br/v2/courses/detail/${modality}/${course}`;
     if (searchother) {
         url += `/?searchother=true`;

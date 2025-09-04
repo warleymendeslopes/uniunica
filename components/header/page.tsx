@@ -11,6 +11,7 @@ import {
 } from "@heroui/react";
 import {ThemeSwitch} from "@/components/theme-switch";
 import {Button} from "@heroui/button";
+import { useState, useEffect } from "react";
 
 export const AcmeLogo = () => {
     return (
@@ -52,6 +53,17 @@ export const AcmeLogo = () => {
 
 export default function AppHeader() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [siteType, setSiteType] = useState<"internal" | "partner">("internal");
+
+ 
+  useEffect(() => {
+    const type = document.documentElement.getAttribute("data-site-type");
+    if (type === "partner") {
+      setSiteType("partner");
+    } else {
+      setSiteType("internal");
+    }
+  }, []);
 
     const menuItems = [
         "Profile",
