@@ -37,7 +37,7 @@ export default function Jornada() {
         {squaresUp}
         {squaresDown}
       </div>
-      <h1 className="text-3xl uppercase font-krona z-10 relative">
+      <h1 className="text-xl lg:text-3xl uppercase font-krona z-10 relative">
         sua jornada começa aqui
       </h1>
     </section>

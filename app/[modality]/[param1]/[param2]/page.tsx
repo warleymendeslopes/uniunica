@@ -72,9 +72,9 @@ export default async function PageParams2({ params, }: {
 
     if (modality == 'graduacao' && param1 == 'ead' || 'presencial') {
 
-        const course: CourseDetailResponse = await detailsCourse(param2, modality, true)
+        const curses: CourseDetailResponse = await detailsCourse(param2, modality, true)
 
-        if (!course || !course.data) {
+        if (!curses || !curses.data) {
             notFound()
         }
 
@@ -92,7 +92,7 @@ export default async function PageParams2({ params, }: {
                 backgroundImage: '/fimEADdesktop.webp',
                 openTitle: `Graduação`,
                 title: `<b style="font-size: 5rem; text-transform: uppercase;">${param1}</b>`,
-                subtitle: `<span class="font-bold  mt-3 text-lg">Curso de ${course.data.name}<br/> </span> <p style="margin-top: 20px;">${course.data.objective}</p>`,
+                subtitle: `<span class="font-bold  mt-3 text-lg">Curso de ${curses.data.name}<br/> </span> <p style="margin-top: 20px;">${curses.data.objective}</p>`,
                 button: false,
                 hubspot: {
                     active: true,
@@ -108,7 +108,7 @@ export default async function PageParams2({ params, }: {
             <>
                 <BannerSiteUniUnica {...bannerCentralizado} />
                 <Jornada />
-                <PageCourse course={course} modality={modality} />
+                <PageCourse course={curses} modality={modality} />
                 <Testimonials />
                 <FaqTabs modality={modality} />
             </>

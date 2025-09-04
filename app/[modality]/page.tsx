@@ -16,7 +16,6 @@
 import { notFound } from 'next/navigation'
 import ModalityPosGraduacao from "@/template/pages-modality/modalityPosGraduacao";
 import ModalitySegundaGraduacao from "@/template/pages-modality/modalitySegundaGraduacao";
-import ModalityGraduacaoEAD from "@/template/pages-modality/modalityGraduacaoEAD";
 import ModalitySemipresenciais from "@/template/pages-modality/modalitySemipresenciais";
 import ModalityDisciplinaIsolada from "@/template/pages-modality/modalityDisciplinaIsolada";
 import EscolhaGrad from '@/components/escolha/escolha';
