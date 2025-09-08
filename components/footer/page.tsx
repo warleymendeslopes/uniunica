@@ -8,6 +8,8 @@ import { Modal, ModalBody, ModalContent, ModalHeader } from '@heroui/react';
 import { useTheme } from "next-themes";
 import { IoEnterOutline } from 'react-icons/io5';
 import QRcodeEMEC from "../IconsSVG/qrcodeEMEC/qrcode";
+import { PageRoute } from "@/utils/enum";
+
 
 interface CertificateResponse {
   code: number;
@@ -197,12 +199,12 @@ export default function FooterSiteUniUnica() {
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-8">
             <ul className="flex flex-wrap gap-x-6 gap-y-2 text-lg text-white ">
-              <li><Link href="/teste-vocacional" className="hover:text-white transition">Teste vocacional</Link></li>
-              <li><Link href="/embaixador" className="hover:text-white transition">Seja um embaixador</Link></li>
+              <li><Link href={PageRoute.teste_vocacional} target="_blank" className="hover:text-white transition">Teste vocacional</Link></li>
+              <li><Link href={PageRoute.embaixador} target="_blank" className="hover:text-white transition">Seja um embaixador</Link></li>
               <li><Link href="/privacidade" className="hover:text-white transition">Privacidade</Link></li>
-              <li><Link href="/transparencia/coronel-fabriciano" className="hover:text-white transition">Transparência — CF</Link></li>
-              <li><Link href="/transparencia/ipatinga" className="hover:text-white transition">Transparência — Ipatinga</Link></li>
-              <li><Link href="/ppc" className="hover:text-white transition">PPC</Link></li>
+              <li><Link href={PageRoute.relatorio_transparencia_cf} target="_blank" className="hover:text-white transition">Transparência — CF</Link></li>
+              <li><Link href={PageRoute.relatorio_transparenia_ipa} target="_blank" className="hover:text-white transition">Transparência — Ipatinga</Link></li>
+              <li><Link href={PageRoute.ppc} target="_blank" className="hover:text-white transition">PPC</Link></li>
               <li><Link href="/validador-numero" className="hover:text-white transition">Validador de Número</Link></li>
             </ul>
           </div>
