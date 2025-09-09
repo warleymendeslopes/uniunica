@@ -46,6 +46,7 @@ export default function ListingMarketing({ modality }: ModalityListingSG) {
                                   className="object-cover object-center"
                                   sizes="(min-width:1024px) 360px, (min-width:768px) 320px, 100vw"
                               />
+                              
                           </div>
                       </div>
                   </div>

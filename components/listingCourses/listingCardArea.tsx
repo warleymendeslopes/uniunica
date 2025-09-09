@@ -57,7 +57,7 @@ export default function CursosPorModalidade({
             placeholder="Pesquise por nome do curso..."
             value={searchTerm}
             onChange={handleSearchChange}
-            className="dark:bg-[#2a2a2a] p-3 rounded-lg outline-none w-full h-[55px]"
+            className="dark:bg-[#2a2a2a] bg-[#f1f1f1] shadow-xl p-3 rounded-lg outline-none w-full h-[55px]"
           />
           {searchTerm && (
             <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -72,9 +72,9 @@ export default function CursosPorModalidade({
           <button
             key={a.link ?? index}
             onClick={() => router.push(`${a.link}`)}
-            className="relative group text-center rounded-lg overflow-hidden hover:shadow-lg transition cursor-pointer"
+            className="relative group text-center rounded-lg shadow-xl overflow-hidden hover:shadow-2xl  transition-shadow cursor-pointer"
           >
-            <div className="relative w-[200px] h-[260px] lg:w-[280px] lg:h-[346px]">
+            <div className="relative w-[200px] h-[260px] lg:w-[280px] lg:h-[346px] shadow-2xl">
               <Image
                 src={a.img}
                 alt={a.name}
@@ -83,10 +83,13 @@ export default function CursosPorModalidade({
                 className="object-cover"
                 unoptimized
               />
-              <div className="absolute inset-0 bg-gradient-to-t dark:from-black/70 dark:via-black/30 from-white/70 via-white/30 to-transparent" />
-              <div className="absolute -left-3 bottom-0 lg:left-0 w-full p-3 font-krona flex flex-col items-center justify-center text-center">
-                <p className="uppercase mb-3 text-xs lg:text-base drop-shadow-md">
-                  {a.name}
+             <div className="absolute inset-0 bg-gradient-to-t
+                from-white via-white/80 
+                dark:from-black/70 dark:via-black/30 dark:to-transparent" />
+
+              <div className="absolute -left-3 bottom-0 lg:left-0 w-full p-3 font-krona  font-medium flex flex-col items-center justify-center text-center">
+                <p className="uppercase mb-3 text-xs lg:text-base">
+                  {a.name} 
                 </p>
                 <span className="uppercase rounded-lg text-[10px] lg:text-base border-1 p-2 mb-3">
                   {a.cta || 'ESCOLHER CURSO'}
