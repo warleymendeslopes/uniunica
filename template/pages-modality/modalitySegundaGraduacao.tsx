@@ -22,7 +22,7 @@ export default function ModalitySegundaGraduacao() {
             position: 'start',
             skeleton: false,
             titleFont: 'poppins',
-            ButtonPosition: 'start'
+            ButtonPosition: 'center'
         },
         content1: {
             backgroundImage: '/fimEADdesktop.webp',
