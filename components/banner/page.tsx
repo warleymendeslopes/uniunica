@@ -12,11 +12,11 @@ interface BannerSiteUniUnicaProps extends BannerSite {
 }
 
 const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({
-                                                                   configBanner,
-                                                                   content1,
-                                                                   content2,
-                                                                   hubspotPosition = "bottom", // Valor padrão é 'bottom'
-                                                               }) => {
+    configBanner,
+    content1,
+    content2,
+    hubspotPosition = "bottom", // Valor padrão é 'bottom'
+}) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure() // Moved useDisclosure hook to top level
 
     const getPositionClasses = () => {
@@ -59,15 +59,18 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({
                     <div className="absolute right-0 h-full aspect-square bg-yellow-500 rounded-full shadow-inner z-0"></div>
                 </button>
 
-                <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="xl">
-                    <ModalContent className={`bg-[#101827] text-white p-6 content-form`}>
+                <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="xl"  classNames={{
+    wrapper: "overflow-hidden", // sobrescreve o wrapper que hoje está com overflow-x-auto
+  }}>
+                    <ModalContent className="bg-[#101827] text-white p-6 content-form overflow-hidden">
                         <ModalHeader className="flex flex-col gap-1 text-center font-bold text-2xl">
                             {content.hubspot!.title}
                         </ModalHeader>
-                        <ModalBody>
-                            <HubSpotForm className="" formId={content.hubspot!.idform} />
+                        <ModalBody className="overflow-hidden">
+                            <HubSpotForm className="overflow-hidden" formId={content.hubspot!.idform} />
                         </ModalBody>
                     </ModalContent>
+
                 </Modal>
             </div>
         )
@@ -149,22 +152,22 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({
         >
             <div className="absolute inset-0 bg-black/40"></div>
 
-                <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-                    <div className={`${getPositionClasses()} ${getColumnClasses()}`}>
-                        <div className="w-full">
-                            {renderContent(content1, false, hubspotPosition === "first" && hubspotContent === content1)}
-                        </div>
-                        {configBanner.col === 2 && content2 && (
-                            <div className="w-full">
-                                {renderContent(content2, true, hubspotPosition === "second" && hubspotContent === content2)}
-                            </div>
-                        )}
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+                <div className={`${getPositionClasses()} ${getColumnClasses()}`}>
+                    <div className="w-full">
+                        {renderContent(content1, false, hubspotPosition === "first" && hubspotContent === content1)}
                     </div>
-
-                    {hubspotPosition === "bottom" && hubspotContent && (
-                        <div className={`mt-12 flex justify-${configBanner.ButtonPosition ? configBanner.ButtonPosition : "start"}`}>{renderHubSpotForm(hubspotContent)}</div>
+                    {configBanner.col === 2 && content2 && (
+                        <div className="w-full">
+                            {renderContent(content2, true, hubspotPosition === "second" && hubspotContent === content2)}
+                        </div>
                     )}
                 </div>
+
+                {hubspotPosition === "bottom" && hubspotContent && (
+                    <div className={`mt-12 flex justify-${configBanner.ButtonPosition ? configBanner.ButtonPosition : "start"}`}>{renderHubSpotForm(hubspotContent)}</div>
+                )}
+            </div>
         </section>
     )
 }

@@ -64,6 +64,7 @@ export default function HubSpotForm({
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
+
     useLayoutEffect(() => {
         const createForm = () => {
             if (window.hbspt && containerRef.current && document.getElementById(uniqueId)) {
@@ -152,7 +153,7 @@ export default function HubSpotForm({
 
     if (error) {
         return (
-            <div className={`${className} text-center text-red-600`}>
+            <div className={`${className} text-center text-red`}>
                 <p>Erro ao carregar formulário: {error}</p>
                 <button
                     onClick={() => window.location.reload()}
@@ -165,14 +166,111 @@ export default function HubSpotForm({
     }
 
     return (
-        <div className={className}>
+        <div className={`${className}`}>
             {isLoading && (
                 <div className="flex items-center justify-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
                     <span className="ml-2 text-gray-600">Carregando formulário...</span>
                 </div>
             )}
-            <div id={uniqueId} ref={containerRef} className={isLoading ? "hidden" : ""} />
+            {/*
+             solicitar a remoção do titulo da hubspot para podermos personalizar o titulo que vamos querer
+             em cada formulário, assim ficando melhor para estilizar.
+            */}
+            <div className="font-krona uppercase text-2xl text-center">
+                inscreva-se agora
+            </div>
+            <div
+  id={uniqueId}
+  ref={containerRef}
+  className={
+    isLoading
+      ? "hidden"
+      :
+      `overflow-hidden
+
+        /* Labels */
+        [&_label]:block
+        [&_label]:mb-2
+        [&_label]:font-semibold
+        [&_label]:outline-none
+
+        // estilizar os inputs
+        [&_input]:w-full
+        [&_input]:p-3
+        [&_input]:rounded-lg
+        [&_input]:border
+        [&_input]:border-none
+        [&_input]:bg-white
+        [&_input]:text-black
+        [&_input]:focus:ring-2
+        [&_input]:focus:ring-blue-500
+        [&_input]:outline-none
+        [&_input.button]:bg-yellow-500
+        [&_input]:ring-0
+
+
+        /* Textarea */
+        [&_textarea]:w-full
+        [&_textarea]:p-3
+        [&_textarea]:rounded-lg
+        [&_textarea]:border
+        [&_textarea]:border-gray-300
+        [&_textarea]:bg-white
+        [&_textarea]:text-black
+        [&_textarea]:outline-none
+
+         // estilizar o select
+        [&_select]:w-full
+        [&_select]:p-3
+        [&_select]:rounded-lg
+        [&_select]:border
+        [&_select]:border-gray-300
+        [&_select]:bg-white
+        [&_select]:text-black
+        [&_select]:outline-none
+
+         // estilizar o checkbox
+        [&_.hs-form-checkbox-display]:flex
+        [&_.hs-form-checkbox-display]:items-center
+        [&_.hs-form-checkbox-display]:space-x-2
+        [&_input[type=checkbox]]:h-3
+        [&_input[type=checkbox]]:w-3
+        [&_input[type=checkbox]]:rounded-md
+        [&_input[type=checkbox]]:border-gray-400
+        [&_input[type=checkbox]]:bg-transparent
+
+        // modificar o botao
+        [&_input[type=submit]]:bg-yellow-500
+        [&_input[type=submit]]:font-poppins
+        [&_input[type=submit]]:font-bold
+        [&_input[type=submit]]:border-none
+        [&_input[type=submit]]:cursor-pointer
+
+        /* Textos auxiliares */
+        [&_p]:text-sm
+        [&_p]:text-gray-700
+        [&_span]:text-[10px]
+        [&_span]:text-white/60
+        [&_span]:ml-1
+        [&_span]:mt-3
+
+        /* Erros */
+        [&_.hs-error-msgs]:text-red-600
+        [&_.hs-error-msgs]:text-sm
+        [&_.hs-error-msgs]:mt-1
+
+        /* Ocultar reCAPTCHA */
+        [&_.grecaptcha-badge]:hidden
+        [&_iframe[src*="recaptcha"]]:hidden
+      `
+  }
+/>
+
+           
+
+
+
         </div>
     )
 }
