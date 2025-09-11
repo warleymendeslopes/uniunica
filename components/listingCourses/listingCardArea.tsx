@@ -3,8 +3,8 @@ import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Pagination } from '@heroui/react';
-import {CursosPorModalidadeProps} from "@/types/listCards";
-import {normalizeText} from "@/utils/functions";
+import { CursosPorModalidadeProps } from "@/types/listCards";
+import { normalizeText } from "@/utils/functions";
 
 export default function CursosPorModalidade({
   list,
@@ -41,13 +41,13 @@ export default function CursosPorModalidade({
 
   return (
     <section className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center">
-  {currentCourses.length > 0 && (
-  <h2
-    className="text-xl lg:text-2xl text-center py-8 font-bold uppercase font-krona mb-4"
-  >
-    {currentCourses[0].title || "Escolha sua área de estudo"}
-  </h2>
-)}
+      {currentCourses.length > 0 && (
+        <h2
+          className="text-xl lg:text-2xl text-center py-8 font-bold uppercase font-krona mb-4"
+        >
+          {currentCourses[0].title || "Escolha sua área de estudo"}
+        </h2>
+      )}
 
 
       {showSearch && (
@@ -83,13 +83,11 @@ export default function CursosPorModalidade({
                 className="object-cover"
                 unoptimized
               />
-             <div className="absolute inset-0 bg-gradient-to-t
-                from-white via-white/80 
-                dark:from-black/70 dark:via-black/30 dark:to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-              <div className="absolute -left-3 bottom-0 lg:left-0 w-full p-3 font-krona  font-medium flex flex-col items-center justify-center text-center">
+              <div className="absolute -left-3 bottom-0 lg:left-0 w-full p-3 font-krona text-white font-medium flex flex-col items-center justify-center text-center">
                 <p className="uppercase mb-3 text-xs lg:text-base">
-                  {a.name} 
+                  {a.name}
                 </p>
                 <span className="uppercase rounded-lg text-[10px] lg:text-base border-1 p-2 mb-3">
                   {a.cta || 'ESCOLHER CURSO'}
