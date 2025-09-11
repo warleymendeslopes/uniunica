@@ -12,6 +12,7 @@ import {
 import { ThemeSwitch } from "@/components/theme-switch";
 import { Button } from "@heroui/button";
 
+
 export const AcmeLogo = () => {
     return (
         <>
@@ -52,7 +53,6 @@ export const AcmeLogo = () => {
 
 export default function AppHeader() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-    
     return (
         <>
             <Navbar className="max-w-12xl h-9 hidden sm:flex border-0" position="static" isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
