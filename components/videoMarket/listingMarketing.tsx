@@ -1,13 +1,11 @@
 "use client";
-
 import { siteConfig } from "@/config/site";
 import { ProgramFeatureCategory, SiteConfig } from "@/types/siteConfig";
 import { ItemVideoMarketing, ModalityListingSG } from "@/types/videoMarket";
 import Image from "next/image";
 
 export default function ListingMarketing({ modality }: ModalityListingSG) {
-  const listModality: keyof SiteConfig["ProgramFeatures"] =
-    modality || ("segunda-graduacao" as any);
+  const listModality: keyof SiteConfig["ProgramFeatures"] = modality;
   const slides: ProgramFeatureCategory = siteConfig.ProgramFeatures[listModality];
 
   return (
