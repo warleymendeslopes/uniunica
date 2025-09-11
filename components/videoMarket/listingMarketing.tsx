@@ -7,7 +7,6 @@ import Image from "next/image";
 export default function ListingMarketing({ modality }: ModalityListingSG) {
   const listModality: keyof SiteConfig["ProgramFeatures"] = modality;
   const slides: ProgramFeatureCategory = siteConfig.ProgramFeatures[listModality];
-
   return (
     <section className="w-full py-10 md:py-14">
       <div className="mx-auto max-w-7xl px-6">
