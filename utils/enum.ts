@@ -5,3 +5,9 @@ export enum PageRoute {
     relatorio_transparenia_ipa = 'https://storage.googleapis.com/sites-grupo-prominas/faculdade-unica/rel-igualdade-32495498000105-2025-1.pdf',
     ppc = 'https://drive.google.com/drive/folders/1nf6zRt98lfDh1t7EcIuQZM-ZeBzduzT4'
 }
+
+export enum RedesSociais {
+    instagram = 'https://www.instagram.com/uniun1ca/',
+    facebook = 'https://www.facebook.com/uniun1ca/',
+    youtube = 'https://www.youtube.com/@uniun1ca'
+}

@@ -8,7 +8,7 @@ import { Modal, ModalBody, ModalContent, ModalHeader } from '@heroui/react';
 import { useTheme } from "next-themes";
 import { IoEnterOutline } from 'react-icons/io5';
 import QRcodeEMEC from "../IconsSVG/qrcodeEMEC/qrcode";
-import { PageRoute } from "@/utils/enum";
+import { PageRoute, RedesSociais } from "@/utils/enum";
 
 
 interface CertificateResponse {
@@ -154,13 +154,13 @@ export default function FooterSiteUniUnica() {
               </div>
 
               <div className="flex flex-row gap-3 text-white mt-6 text-xs lg:text-base">
-                <Link href="#" aria-label="Facebook" className="flex items-center gap-2 hover:text-[#6424b3] transition">
+                <Link href={RedesSociais.facebook} aria-label="Facebook" className="flex items-center gap-2 hover:text-[#6424b3] transition">
                   <Facebook className="w-5 h-5" /> Facebook
                 </Link>
-                <Link href="#" aria-label="Instagram" className="flex items-center gap-2 hover:text-[#6424b3] transition">
+                <Link href={RedesSociais.instagram} aria-label="Instagram" className="flex items-center gap-2 hover:text-[#6424b3] transition">
                   <Instagram className="w-5 h-5" /> Instagram
                 </Link>
-                <Link href="#" aria-label="YouTube" className="flex items-center gap-2 hover:text-[#6424b3] transition">
+                <Link href={RedesSociais.youtube} aria-label="YouTube" className="flex items-center gap-2 hover:text-[#6424b3] transition">
                   <Youtube className="w-5 h-5" /> YouTube
                 </Link>
                 <Link href="tel:+5531999999999" aria-label="Telefone" className="flex items-center gap-2 hover:text-[#6424b3] transition">
