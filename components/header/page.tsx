@@ -11,6 +11,7 @@ import {
 } from "@heroui/react";
 import {ThemeSwitch} from "@/components/theme-switch";
 import {Button} from "@heroui/button";
+import { usePathname } from "next/navigation";
 
 export const AcmeLogo = () => {
     return (
@@ -66,6 +67,9 @@ export default function AppHeader() {
         "Log Out",
     ];
 
+    const pathname = usePathname()
+    const isPrivacidade = pathname.includes("privacidade")
+
     return (
         <>
             <Navbar className="max-w-12xl h-9 hidden sm:flex border-0" position="static" isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
@@ -98,7 +102,7 @@ export default function AppHeader() {
                 </NavbarItem>
 
             </Navbar>
-            <Navbar className={'border-0 '} isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+            <Navbar className={`border-0 ${isPrivacidade ? "!static" : ""}`} isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
                 <NavbarContent className="sm:hidden" justify="start">
                     <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
                 </NavbarContent>
