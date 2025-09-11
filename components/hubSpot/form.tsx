@@ -50,14 +50,14 @@ const handlePhoneInput = (event: Event) => {
 }
 
 export default function HubSpotForm({
-                                        formId,
-                                        portalId = "47678762",
-                                        className = "FormHubSpot p-6",
-                                        origin = "site oficial",
-                                        courseName = "",
-                                        modality = "",
-                                        areaCourse = "",
-                                    }: HubSpotFormProps) {
+    formId,
+    portalId = "47678762",
+    className = "FormHubSpot p-6",
+    origin = "site oficial",
+    courseName = "",
+    modality = "",
+    areaCourse = "",
+}: HubSpotFormProps) {
     const containerRef = useRef<HTMLDivElement>(null)
     const reactId = useId()
     const uniqueId = `hubspot-form-${formId}-${reactId.replace(/:/g, "")}`
@@ -97,14 +97,14 @@ export default function HubSpotForm({
                                     `#${uniqueId} input[name="modalidade"], #${uniqueId} input[name="modality"]`,
                                 )
                                 modalityFields.forEach((modalityField) => {
-                                    ;(modalityField as HTMLInputElement).value = modality
+                                    ; (modalityField as HTMLInputElement).value = modality
                                 })
 
                                 const areaCourseFields = document.querySelectorAll(
                                     `#${uniqueId} input[name="area_do_curso"], #${uniqueId} input[name="area_course"]`,
                                 )
                                 areaCourseFields.forEach((areaCourseField) => {
-                                    ;(areaCourseField as HTMLInputElement).value = areaCourse
+                                    ; (areaCourseField as HTMLInputElement).value = areaCourse
                                 })
                             }, 100)
                         },
@@ -173,21 +173,14 @@ export default function HubSpotForm({
                     <span className="ml-2 text-gray-600">Carregando formulário...</span>
                 </div>
             )}
-            {/*
-             solicitar a remoção do titulo da hubspot para podermos personalizar o titulo que vamos querer
-             em cada formulário, assim ficando melhor para estilizar.
-            */}
-            <div className="font-krona uppercase text-2xl text-center">
-                inscreva-se agora
-            </div>
             <div
-  id={uniqueId}
-  ref={containerRef}
-  className={
-    isLoading
-      ? "hidden"
-      :
-      `overflow-hidden
+                id={uniqueId}
+                ref={containerRef}
+                className={
+                    isLoading
+                        ? "hidden"
+                        :
+                        `overflow-hidden
 
         /* Labels */
         [&_label]:block
@@ -239,6 +232,7 @@ export default function HubSpotForm({
         [&_input[type=checkbox]]:rounded-md
         [&_input[type=checkbox]]:border-gray-400
         [&_input[type=checkbox]]:bg-transparent
+        [&_input[type=checkbox]]:mt-5
 
         // modificar o botao
         [&_input[type=submit]]:bg-yellow-500
@@ -246,14 +240,15 @@ export default function HubSpotForm({
         [&_input[type=submit]]:font-bold
         [&_input[type=submit]]:border-none
         [&_input[type=submit]]:cursor-pointer
+        [&_input[type=submit]]:mt-3
 
         /* Textos auxiliares */
         [&_p]:text-sm
         [&_p]:text-gray-700
-        [&_span]:text-[10px]
-        [&_span]:text-white/60
+        [&_span]:text-[15px]
         [&_span]:ml-1
-        [&_span]:mt-3
+        [&_.hs-form-booleancheckbox]:leading-4.5
+
 
         /* Erros */
         [&_.hs-error-msgs]:text-red-600
@@ -264,13 +259,8 @@ export default function HubSpotForm({
         [&_.grecaptcha-badge]:hidden
         [&_iframe[src*="recaptcha"]]:hidden
       `
-  }
-/>
-
-           
-
-
-
+                }
+            />
         </div>
     )
 }
