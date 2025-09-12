@@ -29,12 +29,17 @@ const config = {
           "50%": { opacity: "0.3" },
           "100%": { transform: "translate(60px,60px)", opacity: "0.7" },
         },
+         jump: {
+          '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+          '50%': { transform: 'scale(1.05)', opacity: '0.8' },
+        },
       },
       animation: {
         'marquee-left':  'marquee-left var(--marquee-duration,30s) linear infinite',
         'marquee-right': 'marquee-right var(--marquee-duration,30s) linear infinite',
          'floatup': "floatSquares 4s linear infinite",
         'floatdown': "floatSquaresDown 4s linear infinite",
+         'jump': 'jump 1.2s infinite ease-in-out',
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
