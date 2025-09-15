@@ -205,7 +205,7 @@ export default function SheetsNumber(): JSX.Element {
   }
 
   return (
-    <section className="relative bg-[url('/fimEADdesktop.webp')] mb-12 bg-cover bg-center text-white">
+    <section className="relative bg-[url('/fimEADdesktop.webp')] bg-cover bg-center text-white">
       <div className="absolute inset-0 bg-black/40" aria-hidden />
 
       <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
