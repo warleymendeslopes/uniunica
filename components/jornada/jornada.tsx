@@ -32,12 +32,12 @@ export default function Jornada() {
   }, []);
 
   return (
-    <section className="relative h-[5vh] bg-black py-8 text-white flex items-center justify-center ">
+    <section className="relative h-[600px] bg-black py-8 text-white flex items-center justify-center ">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {squaresUp}
         {squaresDown}
       </div>
-      <h1 className="text-xl lg:text-3xl uppercase font-krona z-10 relative">
+      <h1 className="text-3xl uppercase font-krona z-10 relative">
         sua jornada começa aqui
       </h1>
     </section>

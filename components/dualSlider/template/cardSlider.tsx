@@ -1,29 +1,26 @@
 import Image from "next/image";
-import { Slide } from "@/types/dualSlides";
+import {Slide} from "@/types/dualSlides";
 
 export default function CardSlider(contentSlider: Slide) {
-  if (contentSlider.kind === "image") {
+    if (contentSlider.kind === "image") {
+        return (
+            <div className="relative w-full h-full">
+                <Image
+                    src={contentSlider.src}
+                    alt={contentSlider.alt ?? ""}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 560px, (min-width: 768px) 460px, 280px"
+                />
+            </div>
+        );
+    }
     return (
-      <div className="relative w-full h-full">
-        <Image
-          src={contentSlider.src}
-          alt={contentSlider.alt ?? ""}
-          fill
-          className="object-cover"
-          sizes="(min-width: 1024px) 560px, (min-width: 768px) 460px, 280px"
-        />
-      </div>
+        <div className="text-center font-poppins h-full w-full dark:bg-neutral-900 light:bg-gray-500 grid place-content-center px-8">
+            <p className="text-white/90 text-base md:text-xl lg:text-2xl mb-1">{contentSlider.small}</p>
+            <p className="text-4xl font-extrabold leading-none bg-gradient-to-r from-[#7c3aed] to-[#0ea5ff] bg-clip-text text-transparent">
+                {contentSlider.big}
+            </p>
+        </div>
     );
-  }
-
-  return (
-    <div className="text-center font-poppins h-full w-full bg-[#0000001c] dark:bg-neutral-900 grid place-content-center px-8">
-      <p className="text-black/80 dark:text-white/90 text-base md:text-xl lg:text-2xl mb-1">
-        {contentSlider.small}
-      </p>
-      <p className="text-4xl font-extrabold leading-none bg-gradient-to-r from-[#7c3aed] to-[#0ea5ff] bg-clip-text text-transparent">
-        {contentSlider.big}
-      </p>
-    </div>
-  );
 }

@@ -23,13 +23,13 @@ export default function ModalityGraduacaoEAD() {
             position: 'start',
             skeleton: false,
             titleFont: 'poppins',
+            ButtonPosition: 'start'
         },
         content1: {
             backgroundImage: '/fimEADdesktop.webp',
             title: `<div class="text-[5rem] text-center font-bold lg:text-[8rem]">O FIM <br/> DO EAD</div>`,
             subtitle: '<div class=" bg-yellow-300 p-3 text-center text-black font-bold text-2xl ">Graduação EAD</div>',
             button: false,
-            buttonPosition: "center",
             hubspot: {
                 active: true,
                 idform: "07ed6974-53d8-49b1-8d6c-1f30efdb3c06",
@@ -38,10 +38,9 @@ export default function ModalityGraduacaoEAD() {
 
         },
         content2: {
-           button: false,
+            button: false,
             offer: <OfferPos />
-        },
-        hubspotPosition: 'first'
+        }
     };
 
     useEffect(() => {
@@ -58,7 +57,7 @@ export default function ModalityGraduacaoEAD() {
     }, []);
 
        const curses: List[] = listcourse?.data.map((item: Course) => ({
-            link:  `ead/${item.alias}`,
+            link:  `graduacao/${item.alias}`,
             img: item.photo_miniature ?? item.photo ?? 'skdgsdg',
             name: item.name ?? "",
             cta:  "Inscreva-se",
@@ -81,6 +80,6 @@ export default function ModalityGraduacaoEAD() {
                     <DualMarquee />
                     <ListingSG modality={"graduacao"} />
                     <Testimonials />
-                    <FaqTabs modality={'graduacao'} />
+                    <FaqTabs modality={'segunda-graduacao'} />
     </>
 }

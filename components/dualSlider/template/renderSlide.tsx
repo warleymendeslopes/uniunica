@@ -9,7 +9,7 @@ export default function RenderSlide({
         <div
             className="
         shrink-0 rounded-2xl overflow-hidden
-        ring-1 ring-white/5
+        bg-neutral-900/40 ring-1 ring-white/5
         w-[280px] h-[160px]
         md:w-[460px] md:h-[240px]
         lg:w-[560px] lg:h-[300px]
