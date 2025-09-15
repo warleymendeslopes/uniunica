@@ -3,8 +3,8 @@ import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Pagination } from '@heroui/react';
-import { CursosPorModalidadeProps } from "@/types/listCards";
-import { normalizeText } from "@/utils/functions";
+import {CursosPorModalidadeProps} from "@/types/listCards";
+import {normalizeText} from "@/utils/functions";
 
 export default function CursosPorModalidade({
   list,
@@ -41,13 +41,13 @@ export default function CursosPorModalidade({
 
   return (
     <section className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center">
-      {currentCourses.length > 0 && (
-        <h2
-          className="text-xl lg:text-2xl text-center py-8 font-bold uppercase font-krona mb-4"
-        >
-          {currentCourses[0].title || "Escolha sua área de estudo"}
-        </h2>
-      )}
+  {currentCourses.length > 0 && (
+  <h2
+    className="text-xl lg:text-2xl text-center py-8 font-bold uppercase font-krona mb-4"
+  >
+    {currentCourses[0].title || "Escolha sua área de estudo"}
+  </h2>
+)}
 
 
       {showSearch && (
@@ -57,7 +57,7 @@ export default function CursosPorModalidade({
             placeholder="Pesquise por nome do curso..."
             value={searchTerm}
             onChange={handleSearchChange}
-            className="dark:bg-[#2a2a2a] bg-[#f1f1f1] shadow-xl p-3 rounded-lg outline-none w-full h-[55px]"
+            className="dark:bg-[#2a2a2a] p-3 rounded-lg outline-none w-full h-[55px]"
           />
           {searchTerm && (
             <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -72,9 +72,9 @@ export default function CursosPorModalidade({
           <button
             key={a.link ?? index}
             onClick={() => router.push(`${a.link}`)}
-            className="relative group text-center rounded-lg shadow-xl overflow-hidden hover:shadow-2xl  transition-shadow cursor-pointer"
+            className="relative group text-center rounded-lg overflow-hidden hover:shadow-lg transition cursor-pointer"
           >
-            <div className="relative w-[200px] h-[260px] lg:w-[280px] lg:h-[346px] shadow-2xl">
+            <div className="relative w-[200px] h-[260px] lg:w-[280px] lg:h-[346px]">
               <Image
                 src={a.img}
                 alt={a.name}
@@ -83,10 +83,9 @@ export default function CursosPorModalidade({
                 className="object-cover"
                 unoptimized
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-
-              <div className="absolute -left-3 bottom-0 lg:left-0 w-full p-3 font-krona text-white font-medium flex flex-col items-center justify-center text-center">
-                <p className="uppercase mb-3 text-xs lg:text-base">
+              <div className="absolute inset-0 bg-gradient-to-t dark:from-black/70 dark:via-black/30 from-white/70 via-white/30 to-transparent" />
+              <div className="absolute -left-3 bottom-0 lg:left-0 w-full p-3 font-krona flex flex-col items-center justify-center text-center">
+                <p className="uppercase mb-3 text-xs lg:text-base drop-shadow-md">
                   {a.name}
                 </p>
                 <span className="uppercase rounded-lg text-[10px] lg:text-base border-1 p-2 mb-3">
