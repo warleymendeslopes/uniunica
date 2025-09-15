@@ -9,6 +9,7 @@ import { useTheme } from "next-themes";
 import { IoEnterOutline } from 'react-icons/io5';
 import QRcodeEMEC from "../IconsSVG/qrcodeEMEC/qrcode";
 import { PageRoute, RedesSociais } from "@/utils/enum";
+import { PartnerProvider, usePartner } from "@/context/PartnerContext";
 
 
 interface CertificateResponse {
@@ -36,6 +37,7 @@ export default function FooterSiteUniUnica() {
   const subTextTheme = theme === 'light' ? 'text-neutral-600' : 'text-neutral-300';
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
+  const { partnerData } = usePartner();
 
   const handleVerifyCertificate = async () => {
     if (!certificateCode.trim()) {
@@ -152,21 +154,26 @@ export default function FooterSiteUniUnica() {
                   <span className="mt-2 block text-sm text-red-400">{error}</span>
                 )}
               </div>
-
-              <div className="flex flex-row gap-3 text-white mt-6 text-xs lg:text-base">
-                <Link href={RedesSociais.facebook} aria-label="Facebook" className="flex items-center gap-2 hover:text-[#6424b3] transition">
-                  <Facebook className="w-5 h-5" /> Facebook
-                </Link>
-                <Link href={RedesSociais.instagram} aria-label="Instagram" className="flex items-center gap-2 hover:text-[#6424b3] transition">
-                  <Instagram className="w-5 h-5" /> Instagram
-                </Link>
-                <Link href={RedesSociais.youtube} aria-label="YouTube" className="flex items-center gap-2 hover:text-[#6424b3] transition">
-                  <Youtube className="w-5 h-5" /> YouTube
-                </Link>
-                <Link href="tel:+5531999999999" aria-label="Telefone" className="flex items-center gap-2 hover:text-[#6424b3] transition">
-                  <Phone className="w-5 h-5" /> 0800 724 2300
-                </Link>
-              </div>
+              {
+                partnerData?.agency ? (
+                  null
+                ) : (
+                  <div className="flex flex-row gap-3 text-white mt-6 text-xs lg:text-base">
+                    <Link href={RedesSociais.facebook} aria-label="Facebook" className="flex items-center gap-2 hover:text-[#6424b3] transition">
+                      <Facebook className="w-5 h-5" /> Facebook
+                    </Link>
+                    <Link href={RedesSociais.instagram} aria-label="Instagram" className="flex items-center gap-2 hover:text-[#6424b3] transition">
+                      <Instagram className="w-5 h-5" /> Instagram
+                    </Link>
+                    <Link href={RedesSociais.youtube} aria-label="YouTube" className="flex items-center gap-2 hover:text-[#6424b3] transition">
+                      <Youtube className="w-5 h-5" /> YouTube
+                    </Link>
+                    <Link href="tel:+5531999999999" aria-label="Telefone" className="flex items-center gap-2 hover:text-[#6424b3] transition">
+                      <Phone className="w-5 h-5" /> 0800 724 2300
+                    </Link>
+                  </div>
+                )
+              }
             </div>
 
             <section className="flex flex-col md:flex-row items-center justify-center  gap-6">
