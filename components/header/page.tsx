@@ -9,9 +9,9 @@ import {
     NavbarItem,
     Link,
 } from "@heroui/react";
-import {ThemeSwitch} from "@/components/theme-switch";
-import {Button} from "@heroui/button";
-import { usePathname } from "next/navigation";
+import { ThemeSwitch } from "@/components/theme-switch";
+import { Button } from "@heroui/button";
+
 
 export const AcmeLogo = () => {
     return (
@@ -53,23 +53,6 @@ export const AcmeLogo = () => {
 
 export default function AppHeader() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-    const menuItems = [
-        "Profile",
-        "Dashboard",
-        "Activity",
-        "Analytics",
-        "System",
-        "Deployments",
-        "My Settings",
-        "Team Settings",
-        "Help & Feedback",
-        "Log Out",
-    ];
-
-    const pathname = usePathname()
-    const isPrivacidade = pathname.includes("privacidade")
-
     return (
         <>
             <Navbar className="max-w-12xl h-9 hidden sm:flex border-0" position="static" isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
@@ -102,7 +85,7 @@ export default function AppHeader() {
                 </NavbarItem>
 
             </Navbar>
-            <Navbar className={`border-0 ${isPrivacidade ? "!static" : ""}`} isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+            <Navbar className={'border-0 '} isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
                 <NavbarContent className="sm:hidden" justify="start">
                     <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
                 </NavbarContent>
