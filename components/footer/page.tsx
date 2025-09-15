@@ -8,7 +8,7 @@ import { Modal, ModalBody, ModalContent, ModalHeader } from '@heroui/react';
 import { useTheme } from "next-themes";
 import { IoEnterOutline } from 'react-icons/io5';
 import QRcodeEMEC from "../IconsSVG/qrcodeEMEC/qrcode";
-import { PageRoute, RedesSociais } from "@/utils/enum";
+import { Footer, RedesSociais } from "@/utils/enum";
 import { PartnerProvider, usePartner } from "@/context/PartnerContext";
 
 
@@ -206,13 +206,13 @@ export default function FooterSiteUniUnica() {
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-8">
             <ul className="flex flex-wrap gap-x-6 gap-y-2 text-lg text-white ">
-              <li><Link href={PageRoute.teste_vocacional} target="_blank" className="hover:text-white transition">Teste vocacional</Link></li>
-              <li><Link href={PageRoute.embaixador} target="_blank" className="hover:text-white transition">Seja um embaixador</Link></li>
-              <li><Link href="/privacidade" className="hover:text-white transition">Privacidade</Link></li>
-              <li><Link href={PageRoute.relatorio_transparencia_cf} target="_blank" className="hover:text-white transition">Transparência — CF</Link></li>
-              <li><Link href={PageRoute.relatorio_transparenia_ipa} target="_blank" className="hover:text-white transition">Transparência — Ipatinga</Link></li>
-              <li><Link href={PageRoute.ppc} target="_blank" className="hover:text-white transition">PPC</Link></li>
-              <li><Link href="/validador-numero" className="hover:text-white transition">Validador de Número</Link></li>
+              <li><Link href={Footer.teste_vocacional} target="_blank" className="hover:text-white transition">Teste vocacional</Link></li>
+              <li><Link href={Footer.embaixador} target="_blank" className="hover:text-white transition">Seja um embaixador</Link></li>
+              <li><Link href={Footer.privacidade} className="hover:text-white transition">Privacidade</Link></li>
+              <li><Link href={Footer.relatorio_transparencia_cf} target="_blank" className="hover:text-white transition">Transparência — CF</Link></li>
+              <li><Link href={Footer.relatorio_transparenia_ipa} target="_blank" className="hover:text-white transition">Transparência — Ipatinga</Link></li>
+              <li><Link href={Footer.ppc} target="_blank" className="hover:text-white transition">PPC</Link></li>
+              <li><Link href={Footer.numero_certo} className="hover:text-white transition">Validador de Número</Link></li>
             </ul>
           </div>
         </div>
