@@ -1,13 +1,13 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
 import type { PartnerInfo } from '@/types/PartnerInfo';
-import Cookies from 'js-cookie';
 import CryptoJS from 'crypto-js';
+import Cookies from 'js-cookie';
+import type { ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
-const COOKIE_KEY = 'partnerData';
-const ENCRYPTION_SECRET = 'chave-secreta-segura'; // use env no futuro
+const COOKIE_KEY = process.env.NEXT_PUBLIC_COOKIE_KEY!;
+const ENCRYPTION_SECRET = process.env.NEXT_PUBLIC_ENCRYPTION_SECRET!;
 
 interface PartnerContextType {
     partnerData: PartnerInfo | null;
@@ -22,9 +22,9 @@ const PartnerContext = createContext<PartnerContextType>({
 export const usePartner = () => useContext(PartnerContext);
 
 export const PartnerProvider = ({
-                                    codSite,
-                                    children,
-                                }: {
+    codSite,
+    children,
+}: {
     codSite: string;
     children: ReactNode;
 }) => {
@@ -69,7 +69,7 @@ export const PartnerProvider = ({
             }
         };
 
-        fetchPartner();
+        fetchPartner().catch();
     }, [codSite]);
 
     return (

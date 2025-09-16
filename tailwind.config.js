@@ -1,4 +1,4 @@
-import {heroui} from "@heroui/theme"
+const { heroui } = require("@heroui/theme")
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -10,16 +10,16 @@ const config = {
   ],
   theme: {
     extend: {
-         keyframes: {
+      keyframes: {
         'marquee-left': {
-          '0%':   { transform: 'translate3d(0,0,0)' },
+          '0%': { transform: 'translate3d(0,0,0)' },
           '100%': { transform: 'translate3d(-50%,0,0)' },
         },
         'marquee-right': {
-          '0%':   { transform: 'translate3d(-50%,0,0)' },
+          '0%': { transform: 'translate3d(-50%,0,0)' },
           '100%': { transform: 'translate3d(0,0,0)' },
         },
-           floatSquares: {
+        floatSquares: {
           "0%": { transform: "translate(0,0)", opacity: "0.5" },
           "50%": { opacity: "0.3" },
           "100%": { transform: "translate(-60px,-60px)", opacity: "0.7" },
@@ -31,9 +31,9 @@ const config = {
         },
       },
       animation: {
-        'marquee-left':  'marquee-left var(--marquee-duration,30s) linear infinite',
+        'marquee-left': 'marquee-left var(--marquee-duration,30s) linear infinite',
         'marquee-right': 'marquee-right var(--marquee-duration,30s) linear infinite',
-         'floatup': "floatSquares 4s linear infinite",
+        'floatup': "floatSquares 4s linear infinite",
         'floatdown': "floatSquaresDown 4s linear infinite",
       },
       fontFamily: {

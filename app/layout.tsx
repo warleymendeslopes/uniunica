@@ -35,13 +35,13 @@ interface RootLayoutProps {
     sellers: ReactNode;
     children: ReactNode;
 }
-const COOKIE_KEY = 'partnerData';
-const ENCRYPTION_SECRET = 'chave-secreta-segura';
+const COOKIE_KEY = process.env.COOKIE_KEY!;
+const ENCRYPTION_SECRET = process.env.ENCRYPTION_SECRET!;
 
 import { Krona_One, Poppins } from "next/font/google";
 import Script from "next/script";
-import AppHeader from "@/components/header/page";
 import InternalSite from "@/template/internalSite";
+import {RequestGeolocation} from "@/app/RequestGeolocation";
 
 export const krona = Krona_One({
     subsets: ["latin"],
@@ -95,6 +95,7 @@ export default async function RootLayout({
                         <SetAgencyParam codSite={codSite} />
                         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
                             <PartnerProvider codSite={codSite}>
+                                <RequestGeolocation />
                                 {partner}
                             </PartnerProvider>
                         </Providers>
@@ -114,6 +115,7 @@ export default async function RootLayout({
                         )}
                     >
                         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+                            <RequestGeolocation />
                             <InternalSite children={children} />
                         </Providers>
                     </body>
