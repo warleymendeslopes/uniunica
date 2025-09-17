@@ -84,7 +84,9 @@ const BannerSiteUniUnica: React.FC<BannerSiteUniUnicaProps> = ({
           <div className="absolute right-0 h-full aspect-square bg-yellow-500 rounded-full shadow-inner z-0"></div>
         </button>
 
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="xl">
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="xl"  classNames={{
+    wrapper: "overflow-hidden",
+  }}>
           <ModalContent className="bg-[#101827] text-white p-6 content-form">
             <ModalHeader className="flex flex-col gap-1 text-center font-bold text-2xl">
               {content.hubspot!.title}
