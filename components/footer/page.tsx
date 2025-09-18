@@ -8,6 +8,9 @@ import { Modal, ModalBody, ModalContent, ModalHeader } from '@heroui/react';
 import { useTheme } from "next-themes";
 import { IoEnterOutline } from 'react-icons/io5';
 import QRcodeEMEC from "../IconsSVG/qrcodeEMEC/qrcode";
+import { Footer, RedesSociais } from "@/utils/enum";
+import { PartnerProvider, usePartner } from "@/context/PartnerContext";
+
 
 interface CertificateResponse {
   code: number;
@@ -34,6 +37,7 @@ export default function FooterSiteUniUnica() {
   const subTextTheme = theme === 'light' ? 'text-neutral-600' : 'text-neutral-300';
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
+  const { partnerData } = usePartner();
 
   const handleVerifyCertificate = async () => {
     if (!certificateCode.trim()) {
@@ -150,21 +154,26 @@ export default function FooterSiteUniUnica() {
                   <span className="mt-2 block text-sm text-red-400">{error}</span>
                 )}
               </div>
-
-              <div className="flex flex-row gap-3 text-white mt-6 text-xs lg:text-base">
-                <Link href="#" aria-label="Facebook" className="flex items-center gap-2 hover:text-[#6424b3] transition">
-                  <Facebook className="w-5 h-5" /> Facebook
-                </Link>
-                <Link href="#" aria-label="Instagram" className="flex items-center gap-2 hover:text-[#6424b3] transition">
-                  <Instagram className="w-5 h-5" /> Instagram
-                </Link>
-                <Link href="#" aria-label="YouTube" className="flex items-center gap-2 hover:text-[#6424b3] transition">
-                  <Youtube className="w-5 h-5" /> YouTube
-                </Link>
-                <Link href="tel:+5531999999999" aria-label="Telefone" className="flex items-center gap-2 hover:text-[#6424b3] transition">
-                  <Phone className="w-5 h-5" /> 0800 724 2300
-                </Link>
-              </div>
+              {
+                partnerData?.agency ? (
+                  null
+                ) : (
+                  <div className="flex flex-row gap-3 text-white mt-6 text-xs lg:text-base">
+                    <Link href={RedesSociais.facebook} aria-label="Facebook" className="flex items-center gap-2 hover:text-[#6424b3] transition">
+                      <Facebook className="w-5 h-5" /> Facebook
+                    </Link>
+                    <Link href={RedesSociais.instagram} aria-label="Instagram" className="flex items-center gap-2 hover:text-[#6424b3] transition">
+                      <Instagram className="w-5 h-5" /> Instagram
+                    </Link>
+                    <Link href={RedesSociais.youtube} aria-label="YouTube" className="flex items-center gap-2 hover:text-[#6424b3] transition">
+                      <Youtube className="w-5 h-5" /> YouTube
+                    </Link>
+                    <Link href="tel:+5531999999999" aria-label="Telefone" className="flex items-center gap-2 hover:text-[#6424b3] transition">
+                      <Phone className="w-5 h-5" /> 0800 724 2300
+                    </Link>
+                  </div>
+                )
+              }
             </div>
 
             <section className="flex flex-col md:flex-row items-center justify-center  gap-6">
@@ -197,13 +206,13 @@ export default function FooterSiteUniUnica() {
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-8">
             <ul className="flex flex-wrap gap-x-6 gap-y-2 text-lg text-white ">
-              <li><Link href="/teste-vocacional" className="hover:text-white transition">Teste vocacional</Link></li>
-              <li><Link href="/embaixador" className="hover:text-white transition">Seja um embaixador</Link></li>
-              <li><Link href="/privacidade" className="hover:text-white transition">Privacidade</Link></li>
-              <li><Link href="/transparencia/coronel-fabriciano" className="hover:text-white transition">Transparência — CF</Link></li>
-              <li><Link href="/transparencia/ipatinga" className="hover:text-white transition">Transparência — Ipatinga</Link></li>
-              <li><Link href="/ppc" className="hover:text-white transition">PPC</Link></li>
-              <li><Link href="/validador-numero" className="hover:text-white transition">Validador de Número</Link></li>
+              <li><Link href={Footer.teste_vocacional} target="_blank" className="hover:text-white transition">Teste vocacional</Link></li>
+              <li><Link href={Footer.embaixador} target="_blank" className="hover:text-white transition">Seja um embaixador</Link></li>
+              <li><Link href={Footer.privacidade} className="hover:text-white transition">Privacidade</Link></li>
+              <li><Link href={Footer.relatorio_transparencia_cf} target="_blank" className="hover:text-white transition">Transparência — CF</Link></li>
+              <li><Link href={Footer.relatorio_transparenia_ipa} target="_blank" className="hover:text-white transition">Transparência — Ipatinga</Link></li>
+              <li><Link href={Footer.ppc} target="_blank" className="hover:text-white transition">PPC</Link></li>
+              <li><Link href={Footer.numero_certo} className="hover:text-white transition">Validador de Número</Link></li>
             </ul>
           </div>
         </div>
